@@ -1,0 +1,170 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:transient a :Plugin ;
+   a :DynamicsPlugin ;
+
+   doap:name "Transient mangler" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#transient> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Attack speed" ;
+     :index 0 ;
+     :symbol "attack" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Sustain time" ;
+     :index 1 ;
+     :symbol "sustain" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+     :minimum -1.0 ;
+     :maximum 1.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+     :minimum -1.0 ;
+     :maximum 1.0 ;
+   ] ;
+  
+   swhext:code """
+#include "ladspa-util.h"
+
+#define BUFFER_SIZE 10240
+#define SSTAB 0.00001f
+#define ASTAB 0.02f
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+buffer = calloc(BUFFER_SIZE, sizeof(float));
+fast_buffer_sum = 0.1;
+medi_buffer_sum = 0.1;
+slow_buffer_sum = 0.1;
+buffer_pos = 0;
+fast_track = 0.0;
+medi_track = 0.0;
+slow_track = 0.0;
+count = 0;
+sample_rate = s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+memset(buffer, 0, BUFFER_SIZE * sizeof(float));
+fast_buffer_sum = 0.1;
+medi_buffer_sum = 0.1;
+slow_buffer_sum = 0.1;
+buffer_pos = 0;
+fast_track = 0.1;
+medi_track = 0.1;
+slow_track = 0.1;
+count = 0;
+sample_rate = sample_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+unsigned long pos;
+const int fast_sum_size = (2 * sample_rate) / 1000;
+const int medi_sum_size = (25 * sample_rate) / 1000;
+const int slow_sum_size = (100 * sample_rate) / 1000;
+const float fast_track_lag = 1.5f / fast_sum_size;
+const float medi_track_lag = 1.0f / medi_sum_size;
+const float slow_track_lag = 1.3f / slow_sum_size;
+float ratio;
+LADSPA_Data in;
+
+for (pos = 0; pos < sample_count; pos++) {
+	in = input[pos];
+	buffer[buffer_pos] = fabs(in);
+	fast_buffer_sum += buffer[buffer_pos];
+	medi_buffer_sum += buffer[buffer_pos];
+	slow_buffer_sum += buffer[buffer_pos];
+	fast_buffer_sum -= buffer[MOD(buffer_pos - fast_sum_size, BUFFER_SIZE)];
+	medi_buffer_sum -= buffer[MOD(buffer_pos - medi_sum_size, BUFFER_SIZE)];
+	slow_buffer_sum -= buffer[MOD(buffer_pos - slow_sum_size, BUFFER_SIZE)];
+	if (count++ > slow_sum_size) {
+		fast_track += (fast_buffer_sum/fast_sum_size - fast_track)
+		 * fast_track_lag;
+		medi_track += (medi_buffer_sum/medi_sum_size - medi_track)
+		 * medi_track_lag;
+		slow_track += (slow_buffer_sum/slow_sum_size - slow_track)
+		 * slow_track_lag;
+	}
+
+	// Attack
+	ratio = (fast_track + ASTAB) / (medi_track + ASTAB);
+	if (ratio * attack > 1.0f) {
+		in *= ratio * attack;
+	} else if (ratio * attack < -1.0f) {
+		in /= ratio * -attack;
+	}
+
+	// Sustain
+	ratio = (slow_track + SSTAB) / (medi_track + SSTAB);
+	if (ratio * sustain > 1.0f) {
+		in *= ratio * sustain;
+	} else if (ratio * sustain < -1.0f) {
+		in /= ratio * -sustain;
+	}
+
+	buffer_write(output[pos], in);
+	buffer_pos = (buffer_pos + 1) % BUFFER_SIZE;
+}
+
+plugin_data->count = count;
+plugin_data->fast_track = fast_track;
+plugin_data->medi_track = medi_track;
+plugin_data->slow_track = slow_track;
+plugin_data->buffer_pos = buffer_pos;
+plugin_data->fast_buffer_sum = fast_buffer_sum;
+plugin_data->medi_buffer_sum = medi_buffer_sum;
+plugin_data->slow_buffer_sum = slow_buffer_sum;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

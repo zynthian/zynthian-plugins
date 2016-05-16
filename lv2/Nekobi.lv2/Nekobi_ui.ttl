@@ -1,0 +1,14 @@
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix ui:  <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://distrho.sf.net/plugins/Nekobi#UI>
+    lv2:extensionData ui:idleInterface ,
+                      ui:showInterface ;
+
+    lv2:optionalFeature ui:noUserResize ,
+                        ui:resize ,
+                        ui:touch ;
+
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/options#options> ,
+                        <http://lv2plug.in/ns/ext/urid#map> .
+

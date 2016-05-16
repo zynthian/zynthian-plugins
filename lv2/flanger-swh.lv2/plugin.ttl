@@ -1,0 +1,206 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:flanger a :Plugin ;
+   a :FlangerPlugin ;
+
+   doap:name "Flanger" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#flanger> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Delay base (ms)" ;
+     :index 0 ;
+     :symbol "delay_base" ;
+     :minimum 0.1 ;
+     :maximum 25 ;
+     :default 6.325 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Max slowdown (ms)" ;
+     :index 1 ;
+     :symbol "detune" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 2.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "LFO frequency (Hz)" ;
+     :index 2 ;
+     :symbol "law_freq" ;
+     :minimum 0.05 ;
+     :maximum 100 ;
+     :default 25.0375 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback" ;
+     :index 3 ;
+     :symbol "feedback" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 4 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 5 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+#include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+int min_size;
+
+sample_rate = s_rate;
+
+prev_law_peak = 0.0f;
+next_law_peak = 1.0f;
+prev_law_pos = 0;
+next_law_pos = 10;
+
+min_size = sample_rate * 0.04f;
+for (delay_size = 1024; delay_size < min_size; delay_size *= 2);
+delay_tbl = malloc(sizeof(LADSPA_Data) * delay_size);
+delay_pos = 0;
+count = 0;
+old_d_base = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+memset(delay_tbl, 0, sizeof(LADSPA_Data) * delay_size);
+delay_pos = 0;
+count = 0;
+old_d_base = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+free(plugin_data->delay_tbl);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+unsigned long pos;
+long d_base, new_d_base;
+LADSPA_Data out;
+float delay_depth;
+float dp; // float delay position
+float dp_frac; // fractional part
+long dp_idx; // integer delay index
+long law_p; // period of law
+float frac = 0.0f, step; // Portion the way through the block
+float law; /* law amplitude */
+float n_ph, p_ph;
+const float fb = f_clamp(feedback, -0.999f, 0.999f);
+
+// Set law params
+law_p = (float)sample_rate / law_freq;
+if (law_p < 1) {
+	law_p = 1;
+}
+
+// Calculate base delay size in samples
+new_d_base = (LIMIT(f_round(delay_base), 0, 25) * sample_rate) / 1000;
+
+// Calculate delay depth in samples
+delay_depth = f_clamp(detune * (float)sample_rate * 0.001f, 0.0f, delay_size - new_d_base - 1.0f);
+
+step = 1.0f/sample_count;
+for (pos = 0; pos < sample_count; pos++) {
+	if (count % law_p == 0) {
+		// Value for amplitude of law peak
+		next_law_peak = (float)rand() / (float)RAND_MAX;
+		next_law_pos = count + law_p;
+	} else if (count % law_p == law_p / 2) {
+		// Value for amplitude of law peak
+		prev_law_peak = (float)rand() / (float)RAND_MAX;
+		prev_law_pos = count + law_p;
+	}
+
+	// Calculate position in delay table
+	d_base = LIN_INTERP(frac, old_d_base, new_d_base);
+	n_ph = (float)(law_p - abs(next_law_pos - count))/(float)law_p;
+	p_ph = n_ph + 0.5f;
+	while (p_ph > 1.0f) {
+		p_ph -= 1.0f;
+	}
+	law = f_sin_sq(3.1415926f*p_ph)*prev_law_peak +
+		f_sin_sq(3.1415926f*n_ph)*next_law_peak;
+
+	dp = (float)(delay_pos - d_base) - (delay_depth * law);
+	// Get the integer part
+	dp_idx = f_round(dp - 0.5f);
+	// Get the fractional part
+	dp_frac = dp - dp_idx;
+
+	// Accumulate into output buffer
+	out = cube_interp(dp_frac, delay_tbl[(dp_idx-1) & (delay_size-1)], delay_tbl[dp_idx & (delay_size-1)], delay_tbl[(dp_idx+1) & (delay_size-1)], delay_tbl[(dp_idx+2) & (delay_size-1)]);
+
+	// Store new delayed value
+	delay_tbl[delay_pos] = flush_to_zero(input[pos] + (fb * out));
+	// Sometimes the delay can pick up NaN values, I'm not sure why
+	// and this is easier than fixing it
+	if (isnan(delay_tbl[delay_pos])) {
+		delay_tbl[delay_pos] = 0.0f;
+	}
+
+	out = f_clamp(delay_tbl[delay_pos] * 0.707f, -1.0, 1.0);
+	buffer_write(output[pos], out);
+
+	frac += step;
+	delay_pos = (delay_pos + 1) & (delay_size-1);
+
+	count++;
+}
+
+plugin_data->count = count;
+plugin_data->prev_law_peak = prev_law_peak;
+plugin_data->next_law_peak = next_law_peak;
+plugin_data->prev_law_pos = prev_law_pos;
+plugin_data->next_law_pos = next_law_pos;
+plugin_data->delay_pos = delay_pos;
+plugin_data->old_d_base = new_d_base;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

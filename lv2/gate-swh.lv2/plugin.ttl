@@ -1,0 +1,275 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:gate a :Plugin ;
+   a :GatePlugin ;
+
+   doap:name "Gate" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#gate> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "LF key filter (Hz)" ;
+     :index 0 ;
+     :symbol "lf_fc" ;
+     :minimum 25.0 ;
+     :maximum 4000.0 ;
+     :default 500.0 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "HF key filter (Hz)" ;
+     :index 1 ;
+     :symbol "hf_fc" ;
+     :minimum 250.0 ;
+     :maximum 20000.0 ;
+     :default 2000.0 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Threshold (dB)" ;
+     :index 2 ;
+     :symbol "threshold" ;
+     :minimum -70.0 ;
+     :maximum +20.0 ;
+     :default -40.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Attack (ms)" ;
+     :index 3 ;
+     :symbol "attack" ;
+     :minimum 0.01 ;
+     :maximum 1000.0 ;
+     :default 0.1 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Hold (ms)" ;
+     :index 4 ;
+     :symbol "hold" ;
+     :minimum 2.0 ;
+     :maximum 2000.0 ;
+     :default 50.0 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Decay (ms)" ;
+     :index 5 ;
+     :symbol "decay" ;
+     :minimum 2.0 ;
+     :maximum 4000.0 ;
+     :default 50.0 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Range (dB)" ;
+     :index 6 ;
+     :symbol "range" ;
+     :minimum -90.0 ;
+     :maximum 0.0 ;
+     :default -20.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Output select (-1 = key listen, 0 = gate, 1 = bypass)" ;
+     :index 7 ;
+     :symbol "select" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "Key level (dB)" ;
+     :index 8 ;
+     :symbol "level" ;
+     :minimum -90.0 ;
+     :maximum 0.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "Gate state" ;
+     :index 9 ;
+     :symbol "gate_state" ;
+     :minimum 0.0 ;
+     :maximum 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 10 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 11 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+      #include "util/biquad.h"
+
+      #define ENV_TR 0.0001f
+
+      #define CLOSED  1
+      #define OPENING 2
+      #define OPEN    3
+      #define HOLD    4
+      #define CLOSING 5
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      fs = s_rate;
+      env = 0.0f;
+      gate = 0.0f;
+      state = CLOSED;
+      hold_count = 0;
+
+      lf = malloc(sizeof(biquad));
+      hf = malloc(sizeof(biquad));
+      biquad_init(lf);
+      biquad_init(hf);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      env = 0.0f;
+      gate = 0.0f;
+      state = CLOSED;
+      biquad_init(lf);
+      biquad_init(hf);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->lf);
+      free(plugin_data->hf);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float cut = DB_CO(range);
+      float t_level = DB_CO(threshold);
+      float a_rate = 1000.0f / (attack * fs);
+      float d_rate = 1000.0f / (decay * fs);
+      float post_filter, apost_filter;
+      int op = f_round(select);
+
+      ls_set_params(lf, lf_fc, -40.0f, 0.6f, fs);
+      hs_set_params(hf, hf_fc, -50.0f, 0.6f, fs);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	post_filter = biquad_run(lf, input[pos]);
+	post_filter = biquad_run(hf, post_filter);
+	apost_filter = fabs(post_filter);
+
+        if (apost_filter > env) {
+          env = apost_filter;
+        } else {
+          env = apost_filter * ENV_TR + env * (1.0f - ENV_TR);
+        }
+
+	if (state == CLOSED) {
+	  if (env >= t_level) {
+	    state = OPENING;
+	  }
+        } else if (state == OPENING) {
+	  gate += a_rate;
+	  if (gate >= 1.0f) {
+	    gate = 1.0f;
+	    state = OPEN;
+	  }
+        } else if (state == OPEN) {
+          if (env < t_level) {
+            state = HOLD;
+            hold_count = f_round(hold * fs * 0.001f);
+          }
+        } else if (state == HOLD) {
+	  if (env >= t_level) {
+	    state = OPEN;
+          } else if (hold_count <= 0) {
+            state = CLOSING;
+          } else {
+            hold_count--;
+          }
+	} else if (state == CLOSING) {
+	  gate -= d_rate;
+	  if (env >= t_level) {
+	    state = OPENING;
+	  } else if (gate <= 0.0f) {
+	    gate = 0.0f;
+	    state = CLOSED;
+	  }
+	}
+
+	if (op == 0) {
+          buffer_write(output[pos], input[pos] * (cut * (1.0f - gate) + gate));
+	} else if (op == -1) {
+          buffer_write(output[pos], post_filter);
+	} else {
+	  buffer_write(output[pos], input[pos]);
+	}
+      }
+
+      *(plugin_data->level) = CO_DB(env);
+      switch (state) {
+      case OPEN:
+        *(plugin_data->gate_state) = 1.0;
+        break;
+      case HOLD:
+        *(plugin_data->gate_state) = 0.5;
+        break;
+      default:
+        *(plugin_data->gate_state) = 0.0;
+      }
+
+      plugin_data->env = env;
+      plugin_data->gate = gate;
+      plugin_data->state = state;
+      plugin_data->hold_count = hold_count;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

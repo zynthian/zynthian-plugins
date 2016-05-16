@@ -1,0 +1,59 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:ulaw a :Plugin ;
+   a :DynamicsPlugin ;
+
+   doap:name "μ-Law Compressor" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#ulaw> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      /* float u = 255.0; */
+      float uloginv = 0.18033688011112; /* 1.0 / log(1.0 + u) */
+      unsigned long pos;
+      for (pos = 0; pos < sample_count; pos++) {
+          float s = input[pos];
+          float sabs = fabs(s);
+          if (s >= 0)
+              s =  uloginv * log(1.0 + 255.0 * sabs);
+          else
+              s = -uloginv * log(1.0 + 255.0 * sabs);
+          buffer_write(output[pos], s);
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

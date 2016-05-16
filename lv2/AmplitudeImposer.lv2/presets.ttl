@@ -1,0 +1,14 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://www.niallmoody.com/ndcplugs/ampimposer.htm#preset001>
+    lv2:port [
+        lv2:symbol "depth" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "thres" ;
+        pset:value 0.500000 ;
+    ] .
+
+

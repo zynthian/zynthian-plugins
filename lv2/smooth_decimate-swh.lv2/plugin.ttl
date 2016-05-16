@@ -1,0 +1,114 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:smoothDecimate a :Plugin ;
+   a :DistortionPlugin ;
+
+   doap:name "Smooth Decimator" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#smoothDecimate> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Resample rate" ;
+     :index 0 ;
+     :symbol "rate" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 1 ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Smoothing" ;
+     :index 1 ;
+     :symbol "smooth" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 1 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      buffer = calloc(8, sizeof(float));
+      buffer_pos = 0;
+      accum = 0.0f;
+      fs = (float)s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      buffer_pos = 0;
+      accum = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float smoothed;
+      float inc = (rate / fs);
+      inc = f_clamp(inc, 0.0f, 1.0f);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	accum += inc;
+	if (accum >= 1.0f) {
+	  accum -= 1.0f;
+	  buffer_pos = (buffer_pos + 1) & 7;
+	  buffer[buffer_pos] = input[pos];
+	}
+	smoothed = cube_interp(accum, buffer[(buffer_pos - 3) & 7],
+                                      buffer[(buffer_pos - 2) & 7],
+                                      buffer[(buffer_pos - 1) & 7],
+                                      buffer[buffer_pos]);
+	buffer_write(output[pos], LIN_INTERP(smooth, buffer[(buffer_pos - 3) & 7], smoothed));
+      }
+
+      plugin_data->accum = accum;
+      plugin_data->buffer_pos = buffer_pos;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

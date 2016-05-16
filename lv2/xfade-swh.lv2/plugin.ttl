@@ -1,0 +1,219 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:xfade-in1 a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "in1" .
+  
+swh:xfade-in2 a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "in2" .
+  
+swh:xfade-out a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "out" .
+  
+swh:xfade a :Plugin ;
+   a :MixerPlugin ;
+
+   doap:name "Crossfade" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#xfade> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Crossfade" ;
+     :index 0 ;
+     :symbol "xfade" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input A left" ;
+     :index 1 ;
+     :symbol "inputLA" ;
+     pg:inGroup swh:xfade-in1 ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input A right" ;
+     :index 2 ;
+     :symbol "inputRA" ;
+     pg:inGroup swh:xfade-in1 ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input B left" ;
+     :index 3 ;
+     :symbol "inputLB" ;
+     pg:inGroup swh:xfade-in2 ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input B right" ;
+     :index 4 ;
+     :symbol "inputRB" ;
+     pg:inGroup swh:xfade-in2 ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output left" ;
+     :index 5 ;
+     :symbol "outputL" ;
+     pg:inGroup swh:xfade-out ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output right" ;
+     :index 6 ;
+     :symbol "outputR" ;
+     pg:inGroup swh:xfade-out ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const float coefB = (xfade + 1.0f) * 0.5f;
+      const float coefA = 1.0f - coefB;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        buffer_write(outputL[pos], inputLA[pos] * coefA + inputLB[pos] * coefB);
+        buffer_write(outputR[pos], inputRA[pos] * coefA + inputRB[pos] * coefB);
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:xfade4 a :Plugin ;
+   a :MixerPlugin ;
+
+   doap:name "Crossfade (4 outs)" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#xfade4> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Crossfade" ;
+     :index 0 ;
+     :symbol "xfade" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input A left" ;
+     :index 1 ;
+     :symbol "inputLA" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input A right" ;
+     :index 2 ;
+     :symbol "inputRA" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input B left" ;
+     :index 3 ;
+     :symbol "inputLB" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input B right" ;
+     :index 4 ;
+     :symbol "inputRB" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output A left" ;
+     :index 5 ;
+     :symbol "outputLA" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output A right" ;
+     :index 6 ;
+     :symbol "outputRA" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output B left" ;
+     :index 7 ;
+     :symbol "outputLB" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output B right" ;
+     :index 8 ;
+     :symbol "outputRB" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const float coefB = (xfade + 1.0f) * 0.5f;
+      const float coefA = 1.0f - coefB;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        buffer_write(outputLA[pos], inputLA[pos] * coefA);
+        buffer_write(outputRA[pos], inputRA[pos] * coefA);
+        buffer_write(outputLB[pos], inputLB[pos] * coefB);
+        buffer_write(outputRB[pos], inputRB[pos] * coefB);
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

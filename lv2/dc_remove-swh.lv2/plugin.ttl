@@ -1,0 +1,62 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:dcRemove a :Plugin ;
+   a :HighpassPlugin ;
+   a :UtilityPlugin ;
+
+   doap:name "DC Offset Remover" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#dcRemove> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      itm1 = 0.0f;
+      otm1 = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        otm1 = 0.999f * otm1 + input[pos] - itm1;
+	itm1 = input[pos];
+        output[pos] = otm1;
+      }
+
+      plugin_data->itm1 = itm1;
+      plugin_data->otm1 = otm1;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

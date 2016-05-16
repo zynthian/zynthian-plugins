@@ -1,0 +1,46 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion>
+    a lv2:Plugin ;
+    lv2:binary <ZynDistortion.so> ;
+    rdfs:seeAlso <ZynDistortion.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Distortion> ;
+    rdfs:label "Overdrive 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Distortion> ;
+    rdfs:label "Overdrive 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Distortion> ;
+    rdfs:label "A. Exciter 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Distortion> ;
+    rdfs:label "A. Exciter 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Distortion> ;
+    rdfs:label "Guitar Amp" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Distortion> ;
+    rdfs:label "Quantisize" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

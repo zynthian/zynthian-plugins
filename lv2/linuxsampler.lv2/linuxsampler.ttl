@@ -1,0 +1,47 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ls: <http://linuxsampler.org/plugins/linuxsampler#> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+
+<http://linuxsampler.org/plugins/linuxsampler>
+    a lv2:InstrumentPlugin, doap:Project ;
+    doap:name "LinuxSampler" ;
+    doap:maintainer [
+        foaf:name "linuxsampler.org"
+    ] ;
+    doap:license <http://linuxsampler.org/downloads.html#exception> ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/state#mapPath> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/state#makePath> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/urid#map> ;
+    lv2:port [
+        a atom:AtomPort , lv2:InputPort ;
+        atom:bufferType atom:Sequence ;
+        atom:supports <http://lv2plug.in/ns/ext/midi#MidiEvent> ;
+        lv2:index 0 ;
+        lv2:symbol "midi" ;
+        lv2:name "MIDI Input"
+    ] , [
+        a lv2:AudioPort , lv2:OutputPort ;
+        lv2:index 1 ;
+        lv2:symbol "out_left" ;
+        lv2:name "Output Left" ;
+        lv2:designation pg:left ;
+        pg:group ls:Out1
+    ] , [
+        a lv2:AudioPort , lv2:OutputPort ;
+        lv2:index 2 ;
+        lv2:symbol "out_right" ;
+        lv2:name "Output Right" ;
+        lv2:designation pg:right ;
+        pg:group ls:Out1
+    ] .
+
+ls:Out1
+    a pg:StereoGroup, pg:OutputGroup ;
+    lv2:name "Out 1" ;
+    lv2:symbol "out1" .
+

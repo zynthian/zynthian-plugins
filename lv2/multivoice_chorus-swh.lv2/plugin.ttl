@@ -1,0 +1,247 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:multivoiceChorus a :Plugin ;
+   a :ChorusPlugin ;
+
+   doap:name "Multivoice Chorus" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#multivoiceChorus> ;
+
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Number of voices" ;
+     :index 0 ;
+     :symbol "voices" ;
+     :minimum 1 ;
+     :maximum 8 ;
+     :default 1.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Delay base (ms)" ;
+     :index 1 ;
+     :symbol "delay_base" ;
+     :minimum 10 ;
+     :maximum 40 ;
+     :default 10 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Voice separation (ms)" ;
+     :index 2 ;
+     :symbol "voice_spread" ;
+     :minimum 0 ;
+     :maximum 2 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Detune (%)" ;
+     :index 3 ;
+     :symbol "detune" ;
+     :minimum 0 ;
+     :maximum 5 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "LFO frequency (Hz)" ;
+     :index 4 ;
+     :symbol "law_freq" ;
+     :minimum 2 ;
+     :maximum 30 ;
+     :default 9 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Output attenuation (dB)" ;
+     :index 5 ;
+     :symbol "attendb" ;
+     :minimum -20 ;
+     :maximum 0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 6 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 7 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+#include "ladspa-util.h"
+#define MAX_LAWS 7
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+int min_size;
+
+sample_rate = s_rate;
+
+max_law_p = s_rate/2;
+last_law_p = -1;
+law_pos = 0;
+law_roll = 0;
+
+min_size = sample_rate / 10;
+for (delay_size = 1024; delay_size < min_size; delay_size *= 2);
+delay_mask = delay_size - 1;
+delay_tbl = calloc(sizeof(float), delay_size);
+delay_pos = 0;
+
+prev_peak_pos = malloc(sizeof(unsigned int) * MAX_LAWS);
+next_peak_pos = malloc(sizeof(unsigned int) * MAX_LAWS);
+prev_peak_amp = malloc(sizeof(float) * MAX_LAWS);
+next_peak_amp = malloc(sizeof(float) * MAX_LAWS);
+dp_targ = malloc(sizeof(float) * MAX_LAWS);
+dp_curr = malloc(sizeof(float) * MAX_LAWS);
+
+count = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+memset(delay_tbl, 0, sizeof(float) * delay_size);
+memset(prev_peak_pos, 0, sizeof(unsigned int) * MAX_LAWS);
+memset(next_peak_pos, 0, sizeof(unsigned int) * MAX_LAWS);
+memset(prev_peak_amp, 0, sizeof(float) * MAX_LAWS);
+memset(next_peak_amp, 0, sizeof(float) * MAX_LAWS);
+memset(dp_targ, 0, sizeof(float) * MAX_LAWS);
+memset(dp_curr, 0, sizeof(float) * MAX_LAWS);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+free(plugin_data->delay_tbl);
+free(plugin_data->prev_peak_pos);
+free(plugin_data->next_peak_pos);
+free(plugin_data->prev_peak_amp);
+free(plugin_data->next_peak_amp);
+free(plugin_data->dp_targ);
+free(plugin_data->dp_curr);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+unsigned long pos;
+int d_base, t;
+LADSPA_Data out;
+float delay_depth;
+float dp; // float delay position
+float dp_frac; // fractional part
+int dp_idx; // Integer delay index
+int laws, law_separation, base_offset;
+int law_p; // Period of law
+float atten; // Attenuation
+
+// Set law params
+laws = LIMIT(f_round(voices) - 1, 0, 7);
+law_p = LIMIT(f_round(sample_rate/f_clamp(law_freq, 0.0001f, 1000.0f)), 1, max_law_p);
+if (laws > 0) {
+	law_separation = law_p / laws;
+} else {
+	law_separation = 0;
+}
+
+// Calculate voice spread in samples
+base_offset = (f_clamp(voice_spread, 0.0f, 2.0f) * sample_rate) / 1000;
+// Calculate base delay size in samples
+d_base = (f_clamp(delay_base, 5.0f, 40.0f) * sample_rate) / 1000;
+// Calculate delay depth in samples
+delay_depth = f_clamp((law_p * f_clamp(detune, 0.0f, 10.0f)) / (100.0f * M_PI), 0.0f, delay_size - d_base - 1 - (base_offset * laws));
+
+// Calculate output attenuation
+atten = DB_CO(f_clamp(attendb, -100.0, 24.0));
+
+for (pos = 0; pos < sample_count; pos++) {
+	// N times per law 'frequency' splurge a new set of windowed data
+	// into one of the N law buffers. Keeps the laws out of phase.
+	if (laws > 0 && (count % law_separation) == 0) {
+		next_peak_amp[law_roll] = (float)rand() / (float)RAND_MAX;
+		next_peak_pos[law_roll] = count + law_p;
+	}
+	if (laws > 0 && (count % law_separation) == law_separation/2) {
+		prev_peak_amp[law_roll] = (float)rand() / (float)RAND_MAX;
+		prev_peak_pos[law_roll] = count + law_p;
+		// Pick the next law to be changed
+		law_roll = (law_roll + 1) % laws;
+	}
+
+	out = input[pos];
+	if (count % 16 < laws) {
+		unsigned int t = count % 16;
+		// Calculate sinus phases
+		float n_ph = (float)(law_p - abs(next_peak_pos[t] - count))/law_p;
+		float p_ph = n_ph + 0.5f;
+		if (p_ph > 1.0f) {
+			p_ph -= 1.0f;
+		}
+
+		dp_targ[t] = f_sin_sq(3.1415926f*p_ph)*prev_peak_amp[t] + f_sin_sq(3.1415926f*n_ph)*next_peak_amp[t];
+	}
+	for (t=0; t<laws; t++) {
+		dp_curr[t] = 0.9f*dp_curr[t] + 0.1f*dp_targ[t];
+		//dp_curr[t] = dp_targ[t];
+		dp = (float)(delay_pos + d_base - (t*base_offset)) - delay_depth * dp_curr[t];
+		// Get the integer part
+		dp_idx = f_round(dp-0.5f);
+		// Get the fractional part
+		dp_frac = dp - dp_idx;
+		// Calculate the modulo'd table index
+		dp_idx = dp_idx & delay_mask;
+
+		// Accumulate into output buffer
+		out += cube_interp(dp_frac, delay_tbl[(dp_idx-1) & delay_mask], delay_tbl[dp_idx], delay_tbl[(dp_idx+1) & delay_mask], delay_tbl[(dp_idx+2) & delay_mask]);
+	}
+	law_pos = (law_pos + 1) % (max_law_p * 2);
+
+	// Store new delay value
+	delay_tbl[delay_pos] = input[pos];
+	delay_pos = (delay_pos + 1) & delay_mask;
+
+	buffer_write(output[pos], out * atten);
+	count++;
+}
+
+plugin_data->count = count;
+plugin_data->law_pos = law_pos;
+plugin_data->last_law_p = last_law_p;
+plugin_data->law_roll = law_roll;
+plugin_data->delay_pos = delay_pos;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

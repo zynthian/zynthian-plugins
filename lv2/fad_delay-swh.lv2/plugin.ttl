@@ -1,0 +1,141 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:fadDelay a :Plugin ;
+   a :DelayPlugin ;
+
+   doap:name "Fractionally Addressed Delay Line" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#fadDelay> ;
+
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Delay (seconds)" ;
+     :index 0 ;
+     :symbol "delay" ;
+     :minimum 0.1 ;
+     :maximum 10 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback (dB)" ;
+     :index 1 ;
+     :symbol "fb_db" ;
+     :minimum -70 ;
+     :maximum 0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+#include "ladspa-util.h"
+
+#define BASE_BUFFER 8 // Base buffer length (s)
+		""" ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+			unsigned int min_bs;
+
+			sample_rate = s_rate;
+			min_bs = BASE_BUFFER * s_rate;
+			for (buffer_size = 4096; buffer_size < min_bs;
+			     buffer_size *= 2);
+			buffer = calloc(buffer_size, sizeof(LADSPA_Data));
+			buffer_mask = buffer_size - 1;
+			phase = 0;
+			last_phase = 0;
+			last_in = 0.0f;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+			int i;
+
+			for (i = 0; i < buffer_size; i++) {
+				buffer[i] = 0;
+			}
+			phase = 0;
+			last_phase = 0;
+			last_in = 0.0f;
+			sample_rate = sample_rate;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+			free(plugin_data->buffer);
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+long int pos;
+float increment = (float)buffer_size / ((float)sample_rate *
+					f_max(fabs(delay), 0.01));
+float lin_int, lin_inc;
+int track;
+int fph;
+LADSPA_Data out;
+const float fb = DB_CO(fb_db);
+
+for (pos = 0; pos < sample_count; pos++) {
+	fph = f_round(floor(phase));
+	last_phase = fph;
+	lin_int = phase - (float)fph;
+	out = LIN_INTERP(lin_int, buffer[(fph+1) & buffer_mask],
+	 buffer[(fph+2) & buffer_mask]);
+	phase += increment;
+	lin_inc = 1.0f / (floor(phase) - last_phase + 1);
+	lin_inc = lin_inc > 1.0f ? 1.0f : lin_inc;
+	lin_int = 0.0f;
+	for (track = last_phase; track < phase; track++) {
+		lin_int += lin_inc;
+		buffer[track % buffer_size] = out * fb +
+		 LIN_INTERP(lin_int, last_in, input[pos]);
+	}
+	last_in = input[pos];
+	buffer_write(output[pos], out);
+	if (phase >= buffer_size) {
+		phase -= buffer_size;
+	}
+}
+
+// Store current phase in instance
+plugin_data->phase = phase;
+plugin_data->last_phase = last_phase;
+plugin_data->last_in = last_in;
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

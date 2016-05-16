@@ -1,0 +1,70 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus>
+    a lv2:Plugin ;
+    lv2:binary <ZynChorus.so> ;
+    rdfs:seeAlso <ZynChorus.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Chorus 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Chorus 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Chorus 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Celeste 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Celeste 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Flange 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset007>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Flange 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset008>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Flange 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset009>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Flange 4" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Chorus:preset010>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Chorus> ;
+    rdfs:label "Flange 5" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

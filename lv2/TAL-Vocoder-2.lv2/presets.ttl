@@ -1,0 +1,1563 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix state: <http://lv2plug.in/ns/ext/state#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset001> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="0" version="1">
+  <programs>
+    <program programname="A Voice Robot 1" volume="0.50400000810623168945"
+             harmonics="0" noisevolume="0" pulsevolume="0" sawvolume="0.97600007057189941406"
+             suboscvolume="0.55600005388259887695" osctranspose="0.40000000596046447754"
+             polymode="1" portamento="0" tune="0.50800001621246337891" inputmode="0"
+             chorus="0" enveloperelease="0.39200001955032348633" oscsync="0"
+             pulsetune="0.50800001621246337891" sawtune="0.54000002145767211914"
+             pulsefinetune="0.52400004863739013672" sawfinetune="0.52000004053115844727"
+             esserintensity="0.5879999995231628418" vocoderband00="0.46800002455711364746"
+             vocoderband01="0.47200003266334533691" vocoderband02="0.46400001645088195801"
+             vocoderband03="0.44800001382827758789" vocoderband04="0.44800001382827758789"
+             vocoderband05="0.46400001645088195801" vocoderband06="0.47600001096725463867"
+             vocoderband07="0.49200001358985900879" vocoderband08="0.48800003528594970703"
+             vocoderband09="0.46400001645088195801" vocoderband10="0.48000001907348632812"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.504000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.976000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.556000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.540000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.524000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.520000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.588000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.392000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.468000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.472000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.464000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.448000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.448000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.464000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.476000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.492000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.488000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.464000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.480000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset002> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="1" version="1">
+  <programs>
+    <program programname="B Voice Robot Harmonic" volume="0.52000004053115844727"
+             harmonics="0.72400003671646118164" noisevolume="0" pulsevolume="0"
+             sawvolume="0.78800004720687866211" suboscvolume="0.5960000157356262207"
+             osctranspose="0.60000002384185791016" polymode="1" portamento="0"
+             tune="0.5" inputmode="0" chorus="0" enveloperelease="0.34000000357627868652"
+             oscsync="0" pulsetune="0.5" sawtune="0" pulsefinetune="0.44000002741813659668"
+             sawfinetune="0.54000002145767211914" esserintensity="0.40800002217292785645"
+             vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5"
+             vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.520000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.724000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.788000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.596000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.600000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.440000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.540000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.408000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset003> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="2" version="1">
+  <programs>
+    <program programname="C Noise Speech" volume="0.46400001645088195801"
+             harmonics="0" noisevolume="1" pulsevolume="0" sawvolume="0" suboscvolume="0"
+             osctranspose="0" polymode="0" portamento="0" tune="0.5" inputmode="0"
+             chorus="0" enveloperelease="0.67200005054473876953" oscsync="0"
+             pulsetune="0.5" sawtune="0.5" pulsefinetune="0.5" sawfinetune="0.5"
+             esserintensity="0" vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5"
+             vocoderband03="0.5" vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5"
+             vocoderband07="0.5" vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.464000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.672000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset004> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="3" version="1">
+  <programs>
+    <program programname="D Portamento Speech" volume="0.56000000238418579102"
+             harmonics="0" noisevolume="0" pulsevolume="0" sawvolume="0.84400004148483276367"
+             suboscvolume="0.71600002050399780273" osctranspose="0.42400002479553222656"
+             polymode="0" portamento="0.60800004005432128906" tune="0.5" inputmode="0"
+             chorus="0" enveloperelease="0.46800002455711364746" oscsync="0"
+             pulsetune="0.5" sawtune="0.28800001740455627441" pulsefinetune="0.5"
+             sawfinetune="0.5" esserintensity="0.62400001287460327148" vocoderband00="0.5"
+             vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5" vocoderband04="0.5"
+             vocoderband05="0.49600002169609069824" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.560000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.844000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.716000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.424000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.288000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.624000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.608000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.468000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.496000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset005> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="4" version="1">
+  <programs>
+    <program programname="E Voice Robot 2" volume="0.41600000858306884766"
+             harmonics="0" noisevolume="0" pulsevolume="0.51200002431869506836"
+             sawvolume="1" suboscvolume="0.66400003433227539062" osctranspose="1"
+             polymode="1" portamento="0" tune="0.5" inputmode="0" chorus="0"
+             enveloperelease="0.32800000905990600586" oscsync="0" pulsetune="0.54000002145767211914"
+             sawtune="0" pulsefinetune="0.43600001931190490723" sawfinetune="0.59200000762939453125"
+             esserintensity="0.61600005626678466797" vocoderband00="0.10000000149011611938"
+             vocoderband01="0.232000008225440979" vocoderband02="0.26800000667572021484"
+             vocoderband03="0.42400002479553222656" vocoderband04="0.5" vocoderband05="0.5"
+             vocoderband06="0.46000000834465026855" vocoderband07="0.5" vocoderband08="0.5"
+             vocoderband09="0.5" vocoderband10="0.42400002479553222656"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.416000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.512000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.664000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.540000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.436000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.592000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.616000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.328000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.100000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.232000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.268000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.424000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.460000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.424000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset006> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="5" version="1">
+  <programs>
+    <program programname="F Noisy Speech" volume="0.5879999995231628418" harmonics="0"
+             noisevolume="0.24400001764297485352" pulsevolume="0.72400003671646118164"
+             sawvolume="0.86400002241134643555" suboscvolume="0" osctranspose="0.036000002175569534302"
+             polymode="0" portamento="0.41600000858306884766" tune="0.5" inputmode="0"
+             chorus="0" enveloperelease="0.20000000298023223877" oscsync="0"
+             pulsetune="0.5" sawtune="0.82800006866455078125" pulsefinetune="0.37200000882148742676"
+             sawfinetune="0.62400001287460327148" esserintensity="0.26800000667572021484"
+             vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5"
+             vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.588000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.244000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.724000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.864000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.036000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.828000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.372000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.624000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.268000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.416000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.200000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset007> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="6" version="1">
+  <programs>
+    <program programname="G default" volume="0.5" harmonics="0" noisevolume="0"
+             pulsevolume="0" sawvolume="0.5" suboscvolume="0" osctranspose="0.11200000345706939697"
+             polymode="1" portamento="0" tune="0.5" inputmode="0" chorus="0"
+             enveloperelease="0.20000000298023223877" oscsync="0" pulsetune="0.5"
+             sawtune="0.5" pulsefinetune="0.5" sawfinetune="0.5" esserintensity="0.5"
+             vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5"
+             vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.112000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.200000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset008> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="7" version="1">
+  <programs>
+    <program programname="H default" volume="0.5" harmonics="0" noisevolume="0"
+             pulsevolume="0" sawvolume="0.5" suboscvolume="0" osctranspose="0.1840000152587890625"
+             polymode="1" portamento="0" tune="0.5" inputmode="0" chorus="0"
+             enveloperelease="0.20000000298023223877" oscsync="0" pulsetune="0.5"
+             sawtune="0.5" pulsefinetune="0.5" sawfinetune="0.5" esserintensity="0.5"
+             vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5"
+             vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.184000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.200000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset009> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="8" version="1">
+  <programs>
+    <program programname="I default" volume="0.5" harmonics="0" noisevolume="0"
+             pulsevolume="0" sawvolume="0.5" suboscvolume="0" osctranspose="0.11200000345706939697"
+             polymode="1" portamento="0" tune="0.5" inputmode="0" chorus="0"
+             enveloperelease="0.20000000298023223877" oscsync="0" pulsetune="0.5"
+             sawtune="0.5" pulsefinetune="0.5" sawfinetune="0.5" esserintensity="0.5"
+             vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5"
+             vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.112000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.200000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset010> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="9" version="1">
+  <programs>
+    <program programname="J default" volume="0.5" harmonics="0" noisevolume="0"
+             pulsevolume="0" sawvolume="0.5" suboscvolume="0" osctranspose="0.064000003039836883545"
+             polymode="1" portamento="0" tune="0.5" inputmode="0" chorus="0"
+             enveloperelease="0.20000000298023223877" oscsync="0" pulsetune="0.5"
+             sawtune="0.5" pulsefinetune="0.5" sawfinetune="0.5" esserintensity="0.5"
+             vocoderband00="0.5" vocoderband01="0.5" vocoderband02="0.5" vocoderband03="0.5"
+             vocoderband04="0.5" vocoderband05="0.5" vocoderband06="0.5" vocoderband07="0.5"
+             vocoderband08="0.5" vocoderband09="0.5" vocoderband10="0.5"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_volume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "harmonics" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "noisevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsevolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "sawvolume" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "suboscvolume" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "osctranspose" ;
+        pset:value 0.064000 ;
+    ] ,
+    [
+        lv2:symbol "suboscoctave" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "oscsync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "pulsetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawtune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "pulsefinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "sawfinetune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "esserintensity" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "polymode" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "portamento" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "tal_tune" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "panic" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "inputmode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "chorus" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "enveloperelease" ;
+        pset:value 0.200000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband00" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband01" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband02" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband03" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband04" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband05" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband06" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband07" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband08" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband09" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "vocoderband10" ;
+        pset:value 0.500000 ;
+    ] .
+
+

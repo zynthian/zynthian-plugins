@@ -1,0 +1,272 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:triplePara a :Plugin ;
+   a :ParaEQPlugin ;
+
+   doap:name "Triple band parametric with shelves" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#triplePara> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Low-shelving gain (dB)" ;
+     :index 0 ;
+     :symbol "gain_L" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Low-shelving frequency (Hz)" ;
+     :index 1 ;
+     :symbol "fc_L" ;
+     :minimum 0.0001 ;
+     :maximum 0.49 ;
+     :default 0.0001 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Low-shelving slope" ;
+     :index 2 ;
+     :symbol "bw_L" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 1 gain (dB)" ;
+     :index 3 ;
+     :symbol "gain_1" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 1 frequency (Hz)" ;
+     :index 4 ;
+     :symbol "fc_1" ;
+     :minimum 0.0001 ;
+     :maximum 0.49 ;
+     :default 0.122575 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 1 bandwidth (octaves)" ;
+     :index 5 ;
+     :symbol "bw_1" ;
+     :minimum 0 ;
+     :maximum 4 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 2 gain (dB)" ;
+     :index 6 ;
+     :symbol "gain_2" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 2 frequency (Hz)" ;
+     :index 7 ;
+     :symbol "fc_2" ;
+     :minimum 0.0001 ;
+     :maximum 0.49 ;
+     :default 0.24505 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 2 bandwidth (octaves)" ;
+     :index 8 ;
+     :symbol "bw_2" ;
+     :minimum 0 ;
+     :maximum 4 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 3 gain (dB)" ;
+     :index 9 ;
+     :symbol "gain_3" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 3 frequency (Hz)" ;
+     :index 10 ;
+     :symbol "fc_3" ;
+     :minimum 0.0001 ;
+     :maximum 0.49 ;
+     :default 0.367525 ;
+     :default 0.367525 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band 3 bandwidth (octaves)" ;
+     :index 11 ;
+     :symbol "bw_3" ;
+     :minimum 0 ;
+     :maximum 4 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "High-shelving gain (dB)" ;
+     :index 12 ;
+     :symbol "gain_H" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "High-shelving frequency (Hz)" ;
+     :index 13 ;
+     :symbol "fc_H" ;
+     :minimum 0.0001 ;
+     :maximum 0.49 ;
+     :default 0.49 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "High-shelving slope" ;
+     :index 14 ;
+     :symbol "bw_H" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 15 ;
+     :symbol "input" ;
+     :minimum -1.0 ;
+     :maximum +1.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 16 ;
+     :symbol "output" ;
+     :minimum -1.0 ;
+     :maximum +1.0 ;
+   ] ;
+  
+   swhext:code """
+      #include "util/biquad.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+fs = s_rate;
+
+filters = calloc(5, sizeof(biquad));
+biquad_init(&filters[0]);
+biquad_init(&filters[1]);
+biquad_init(&filters[2]);
+biquad_init(&filters[3]);
+biquad_init(&filters[4]);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+biquad_init(&filters[0]);
+biquad_init(&filters[1]);
+biquad_init(&filters[2]);
+biquad_init(&filters[3]);
+biquad_init(&filters[4]);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+unsigned long pos;
+float in;
+
+ls_set_params(&filters[0], fc_L, gain_L, bw_L, fs);
+eq_set_params(&filters[1], fc_1, gain_1, bw_1, fs);
+eq_set_params(&filters[2], fc_2, gain_2, bw_2, fs);
+eq_set_params(&filters[3], fc_3, gain_3, bw_3, fs);
+hs_set_params(&filters[4], fc_H, gain_H, bw_H, fs);
+
+for (pos = 0; pos < sample_count; pos++) {
+	in = biquad_run(&filters[0], input[pos]);
+	in = biquad_run(&filters[1], in);
+	in = biquad_run(&filters[2], in);
+	in = biquad_run(&filters[3], in);
+	in = biquad_run(&filters[4], in);
+	buffer_write(output[pos], in);
+}
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+biquad_init(&filters[0]);
+biquad_init(&filters[1]);
+biquad_init(&filters[2]);
+biquad_init(&filters[3]);
+biquad_init(&filters[4]);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+free(plugin_data->filters);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

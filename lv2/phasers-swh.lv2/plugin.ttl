@@ -1,0 +1,734 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:lfoPhaser a :Plugin ;
+   a :PhaserPlugin ;
+
+   doap:name "LFO Phaser" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#lfoPhaser> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "LFO rate (Hz)" ;
+     :index 0 ;
+     :symbol "lfo_rate" ;
+     :minimum 0 ;
+     :maximum 100 ;
+     :default 25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "LFO depth" ;
+     :index 1 ;
+     :symbol "lfo_depth" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback" ;
+     :index 2 ;
+     :symbol "fb" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Spread (octaves)" ;
+     :index 3 ;
+     :symbol "spread" ;
+     :minimum 0 ;
+     :maximum 2 ;
+     :default 1 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 4 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 5 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define LFO_SIZE 4096
+
+      typedef struct {
+        float a1;
+	float zm1;
+      } allpass;
+
+      inline static float ap_run(allpass *a, float x)
+      {
+	float y = x * -(a->a1) + a->zm1;
+        a->zm1 = y * a->a1 + x;
+
+        return y;
+      }
+
+      inline static void ap_set_delay(allpass *a, float d)
+      {
+        a->a1 = (1.0f - d) / (1.0f + d);
+      }
+
+      inline static void ap_clear(allpass *a)
+      {
+        a->a1  = 0.0f;
+        a->zm1 = 0.0f;
+      }
+
+      typedef struct {
+        float ga;
+        float gr;
+        float env;
+      } envelope;
+
+      inline static float env_run(envelope *e, float in)
+      {
+        float env_lvl = e->env;
+
+        in = fabs(in);
+
+        if (env_lvl < in) {
+          env_lvl = e->ga * (env_lvl - in) + in;
+        } else {
+          env_lvl = e->gr * (env_lvl - in) + in;
+        }
+
+	e->env = env_lvl;
+	return env_lvl;
+      }
+
+      // Set attack time in samples
+      inline static void env_set_attack(envelope *e, float a)
+      {
+        e->ga = f_exp(-1.0f/a);
+      }
+
+      // Set release time in samples
+      inline static void env_set_release(envelope *e, float r)
+      {
+        e->gr = f_exp(-1.0f/r);
+      }
+
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      unsigned int i;
+      float p;
+
+      ap = calloc(6, sizeof(allpass));
+      ym1 = 0.0f;
+      lfo_tbl = malloc(sizeof(float) * LFO_SIZE);
+      p = 0.0f;
+      for (i=0; i<LFO_SIZE; i++) {
+        p += M_PI * 0.0004882812f;
+        lfo_tbl[i] = (sin(p) + 1.1f) * 0.25f;
+      }
+      lfo_pos = 0;
+
+      // Frames per lfo value
+      f_per_lv = (float)s_rate * 0.0002441406f;
+
+      count = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      ap_clear(ap);
+      ap_clear(ap+1);
+      ap_clear(ap+2);
+      ap_clear(ap+3);
+      ap_clear(ap+4);
+      ap_clear(ap+5);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->ap);
+      free(plugin_data->lfo_tbl);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      unsigned int mod;
+      float y, d, ofs;
+
+      mod = f_round(f_per_lv / lfo_rate);
+      if (mod < 1) {
+        mod=1;
+      }
+
+      d = lfo_tbl[lfo_pos];
+
+      for (pos = 0; pos < sample_count; pos++) {
+        // Get new value for LFO if needed
+	if (++count % mod == 0) {
+	  lfo_pos++;
+	  lfo_pos &= 0x7FF;
+	  count = 0;
+          d = lfo_tbl[lfo_pos] * lfo_depth;
+
+          ap_set_delay(ap, d);
+	  ofs = spread * 0.01562f;
+          ap_set_delay(ap+1, d+ofs);
+	  ofs *= 2.0f;
+          ap_set_delay(ap+2, d+ofs);
+	  ofs *= 2.0f;
+          ap_set_delay(ap+3, d+ofs);
+	  ofs *= 2.0f;
+          ap_set_delay(ap+4, d+ofs);
+	  ofs *= 2.0f;
+          ap_set_delay(ap+5, d+ofs);
+
+        }
+	//Run in series, doesn't quite sound as nice
+	y = ap_run(ap, input[pos] + ym1 * fb);
+	y = ap_run(ap+1, y);
+	y = ap_run(ap+2, y);
+	y = ap_run(ap+3, y);
+	y = ap_run(ap+4, y);
+	y = ap_run(ap+5, y);
+
+        buffer_write(output[pos], y);
+	ym1 = y;
+      }
+
+      plugin_data->ym1 = ym1;
+      plugin_data->count = count;
+      plugin_data->lfo_pos = lfo_pos;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:fourByFourPole a :Plugin ;
+   a :AllpassPlugin ;
+
+   doap:name "4 x 4 pole allpass" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#fourByFourPole> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency 1" ;
+     :index 0 ;
+     :symbol "f0" ;
+     :minimum 1 ;
+     :maximum 20000 ;
+     :default 5000.75 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback 1" ;
+     :index 1 ;
+     :symbol "fb0" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency 2" ;
+     :index 2 ;
+     :symbol "f1" ;
+     :minimum 1 ;
+     :maximum 20000 ;
+     :default 10000.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback 2" ;
+     :index 3 ;
+     :symbol "fb1" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency 3" ;
+     :index 4 ;
+     :symbol "f2" ;
+     :minimum 1 ;
+     :maximum 20000 ;
+     :default 15000.25 ;
+     :default 15000.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback 3" ;
+     :index 5 ;
+     :symbol "fb2" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency 4" ;
+     :index 6 ;
+     :symbol "f3" ;
+     :minimum 1 ;
+     :maximum 20000 ;
+     :default 20000 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback 4" ;
+     :index 7 ;
+     :symbol "fb3" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 8 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 9 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define LFO_SIZE 4096
+
+      typedef struct {
+        float a1;
+	float zm1;
+      } allpass;
+
+      inline static float ap_run(allpass *a, float x)
+      {
+	float y = x * -(a->a1) + a->zm1;
+        a->zm1 = y * a->a1 + x;
+
+        return y;
+      }
+
+      inline static void ap_set_delay(allpass *a, float d)
+      {
+        a->a1 = (1.0f - d) / (1.0f + d);
+      }
+
+      inline static void ap_clear(allpass *a)
+      {
+        a->a1  = 0.0f;
+        a->zm1 = 0.0f;
+      }
+
+      typedef struct {
+        float ga;
+        float gr;
+        float env;
+      } envelope;
+
+      inline static float env_run(envelope *e, float in)
+      {
+        float env_lvl = e->env;
+
+        in = fabs(in);
+
+        if (env_lvl < in) {
+          env_lvl = e->ga * (env_lvl - in) + in;
+        } else {
+          env_lvl = e->gr * (env_lvl - in) + in;
+        }
+
+	e->env = env_lvl;
+	return env_lvl;
+      }
+
+      // Set attack time in samples
+      inline static void env_set_attack(envelope *e, float a)
+      {
+        e->ga = f_exp(-1.0f/a);
+      }
+
+      // Set release time in samples
+      inline static void env_set_release(envelope *e, float r)
+      {
+        e->gr = f_exp(-1.0f/r);
+      }
+
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      ap = calloc(16, sizeof(allpass));
+      y0 = 0.0f;
+      y1 = 0.0f;
+      y2 = 0.0f;
+      y3 = 0.0f;
+      sr_r_2 = 1.0f / s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      ap_clear(ap);
+      ap_clear(ap+1);
+      ap_clear(ap+2);
+      ap_clear(ap+3);
+      ap_clear(ap+4);
+      ap_clear(ap+5);
+      ap_clear(ap+6);
+      ap_clear(ap+7);
+      ap_clear(ap+8);
+      ap_clear(ap+9);
+      ap_clear(ap+10);
+      ap_clear(ap+11);
+      ap_clear(ap+12);
+      ap_clear(ap+13);
+      ap_clear(ap+14);
+      ap_clear(ap+15);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->ap);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+
+      ap_set_delay(ap,   f0 * sr_r_2);
+      ap_set_delay(ap+1, f0 * sr_r_2);
+      ap_set_delay(ap+2, f0 * sr_r_2);
+      ap_set_delay(ap+3, f0 * sr_r_2);
+      ap_set_delay(ap+4, f1 * sr_r_2);
+      ap_set_delay(ap+5, f1 * sr_r_2);
+      ap_set_delay(ap+6, f1 * sr_r_2);
+      ap_set_delay(ap+7, f1 * sr_r_2);
+      ap_set_delay(ap+8, f2 * sr_r_2);
+      ap_set_delay(ap+9, f2 * sr_r_2);
+      ap_set_delay(ap+10, f2 * sr_r_2);
+      ap_set_delay(ap+11, f2 * sr_r_2);
+      ap_set_delay(ap+12, f3 * sr_r_2);
+      ap_set_delay(ap+13, f3 * sr_r_2);
+      ap_set_delay(ap+14, f3 * sr_r_2);
+      ap_set_delay(ap+15, f3 * sr_r_2);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	y0 = ap_run(ap,   input[pos] + y0 * fb0);
+	y0 = ap_run(ap+1,   y0);
+	y0 = ap_run(ap+2,   y0);
+	y0 = ap_run(ap+3,   y0);
+
+	y1 = ap_run(ap+4,   y0 + y1 * fb1);
+	y1 = ap_run(ap+5,   y1);
+	y1 = ap_run(ap+6,   y1);
+	y1 = ap_run(ap+7,   y1);
+
+	y2 = ap_run(ap+8,  y1 + y2 * fb2);
+	y2 = ap_run(ap+9,  y2);
+	y2 = ap_run(ap+10, y2);
+	y2 = ap_run(ap+11, y2);
+
+	y3 = ap_run(ap+12, y2 + y3 * fb3);
+	y3 = ap_run(ap+13, y3);
+	y3 = ap_run(ap+14, y3);
+	y3 = ap_run(ap+15, y3);
+
+        buffer_write(output[pos], y3);
+      }
+
+      plugin_data->y0 = y0;
+      plugin_data->y1 = y1;
+      plugin_data->y2 = y2;
+      plugin_data->y3 = y3;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:autoPhaser a :Plugin ;
+   a :PhaserPlugin ;
+
+   doap:name "Auto phaser" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#autoPhaser> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Attack time (s)" ;
+     :index 0 ;
+     :symbol "attack_p" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Decay time (s)" ;
+     :index 1 ;
+     :symbol "decay_p" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Modulation depth" ;
+     :index 2 ;
+     :symbol "depth_p" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback" ;
+     :index 3 ;
+     :symbol "fb" ;
+     :minimum -1 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Spread (octaves)" ;
+     :index 4 ;
+     :symbol "spread" ;
+     :minimum 0 ;
+     :maximum 2 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 5 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 6 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define LFO_SIZE 4096
+
+      typedef struct {
+        float a1;
+	float zm1;
+      } allpass;
+
+      inline static float ap_run(allpass *a, float x)
+      {
+	float y = x * -(a->a1) + a->zm1;
+        a->zm1 = y * a->a1 + x;
+
+        return y;
+      }
+
+      inline static void ap_set_delay(allpass *a, float d)
+      {
+        a->a1 = (1.0f - d) / (1.0f + d);
+      }
+
+      inline static void ap_clear(allpass *a)
+      {
+        a->a1  = 0.0f;
+        a->zm1 = 0.0f;
+      }
+
+      typedef struct {
+        float ga;
+        float gr;
+        float env;
+      } envelope;
+
+      inline static float env_run(envelope *e, float in)
+      {
+        float env_lvl = e->env;
+
+        in = fabs(in);
+
+        if (env_lvl < in) {
+          env_lvl = e->ga * (env_lvl - in) + in;
+        } else {
+          env_lvl = e->gr * (env_lvl - in) + in;
+        }
+
+	e->env = env_lvl;
+	return env_lvl;
+      }
+
+      // Set attack time in samples
+      inline static void env_set_attack(envelope *e, float a)
+      {
+        e->ga = f_exp(-1.0f/a);
+      }
+
+      // Set release time in samples
+      inline static void env_set_release(envelope *e, float r)
+      {
+        e->gr = f_exp(-1.0f/r);
+      }
+
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      ap = calloc(6, sizeof(allpass));
+      env = calloc(1, sizeof(envelope));
+      ym1 = 0.0f;
+      sample_rate = (float)s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      ap_clear(ap);
+      ap_clear(ap+1);
+      ap_clear(ap+2);
+      ap_clear(ap+3);
+      ap_clear(ap+4);
+      ap_clear(ap+5);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->ap);
+      free(plugin_data->env);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float y, d, ofs;
+      float attack = attack_p;
+      float decay = decay_p;
+      const float depth = depth_p * 0.5f;
+
+      if (attack < 0.01f) {
+        attack = 0.01f;
+      }
+      if (decay < 0.01f) {
+        decay = 0.01f;
+      }
+      env_set_attack(env, attack * sample_rate * 0.25f);
+      env_set_release(env, decay * sample_rate * 0.25f);
+
+
+      for (pos = 0; pos < sample_count; pos++) {
+        if (pos % 4 == 0) {
+          d = env_run(env, input[pos]) * depth;
+          ap_set_delay(ap, d);
+          ofs = spread * 0.01562f;
+          ap_set_delay(ap+1, d+ofs);
+          ofs *= 2.0f;
+          ap_set_delay(ap+2, d+ofs);
+          ofs *= 2.0f;
+          ap_set_delay(ap+3, d+ofs);
+          ofs *= 2.0f;
+          ap_set_delay(ap+4, d+ofs);
+          ofs *= 2.0f;
+          ap_set_delay(ap+5, d+ofs);
+        }
+
+	//Run allpass filters in series
+	y = ap_run(ap, input[pos] + ym1 * fb);
+	y = ap_run(ap+1, y);
+	y = ap_run(ap+2, y);
+	y = ap_run(ap+3, y);
+	y = ap_run(ap+4, y);
+	y = ap_run(ap+5, y);
+
+        buffer_write(output[pos], y);
+	ym1 = y;
+      }
+
+      plugin_data->ym1 = ym1;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

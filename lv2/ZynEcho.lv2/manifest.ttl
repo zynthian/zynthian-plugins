@@ -1,0 +1,64 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo>
+    a lv2:Plugin ;
+    lv2:binary <ZynEcho.so> ;
+    rdfs:seeAlso <ZynEcho.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Echo 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Echo 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Echo 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Simple Echo" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Canyon" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Panning Echo 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset007>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Panning Echo 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset008>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Panning Echo 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset009>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Echo> ;
+    rdfs:label "Feedback Echo" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

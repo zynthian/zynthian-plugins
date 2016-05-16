@@ -1,0 +1,67 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:sinusWavewrapper a :Plugin ;
+   a :WaveshaperPlugin ;
+
+   doap:name "Sinus wavewrapper" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#sinusWavewrapper> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Wrap degree" ;
+     :index 0 ;
+     :symbol "wrap" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 1 ;
+     :symbol "input" ;
+     :minimum -1 ;
+     :maximum +1 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 2 ;
+     :symbol "output" ;
+     :minimum -1 ;
+     :maximum +1 ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+			float coef = wrap * M_PI;
+			unsigned long pos;
+
+			if (coef < 0.05f) {
+				coef = 0.05f;
+			}
+
+			for (pos = 0; pos < sample_count; pos++) {
+				output[pos] = sin(input[pos] * coef);
+			}
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

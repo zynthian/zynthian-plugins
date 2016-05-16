@@ -1,0 +1,262 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:ringmod_2i1o a :Plugin ;
+   a :ModulatorPlugin ;
+
+   doap:name "Ringmod with two inputs" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#ringmod_2i1o> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Modulation depth (0=none, 1=AM, 2=RM)" ;
+     :index 0 ;
+     :symbol "depth" ;
+     :minimum 0 ;
+     :maximum 2 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 1 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Modulator" ;
+     :index 2 ;
+     :symbol "modulator" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+			#include "ladspa-util.h"
+
+			int refcount;
+			LADSPA_Data *sin_tbl, *tri_tbl, *saw_tbl, *squ_tbl;
+			long sample_rate;
+		""" ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+			unsigned long pos;
+			float tmpa = depth * 0.5f;
+			float tmpb = 2.0f - depth;
+
+			for (pos = 0; pos < sample_count; pos++) {
+				buffer_write(output[pos], input[pos] * (tmpa * modulator[pos] + tmpb));
+			}
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:ringmod_1i1o1l a :Plugin ;
+   a :ModulatorPlugin ;
+
+   doap:name "Ringmod with LFO" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#ringmod_1i1o1l> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Modulation depth (0=none, 1=AM, 2=RM)" ;
+     :index 0 ;
+     :symbol "depthp" ;
+     :minimum 0 ;
+     :maximum 2 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency (Hz)" ;
+     :index 1 ;
+     :symbol "freq" ;
+     :minimum 1 ;
+     :maximum 1000 ;
+     :default 440.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Sine level" ;
+     :index 2 ;
+     :symbol "sin" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Triangle level" ;
+     :index 3 ;
+     :symbol "tri" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Sawtooth level" ;
+     :index 4 ;
+     :symbol "saw" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Square level" ;
+     :index 5 ;
+     :symbol "squ" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 6 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 7 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+			#include "ladspa-util.h"
+
+			int refcount;
+			LADSPA_Data *sin_tbl, *tri_tbl, *saw_tbl, *squ_tbl;
+			long sample_rate;
+		""" ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+			long i;
+
+			sample_rate = s_rate;
+
+			if (refcount++ == 0) {
+				sin_tbl = malloc(sizeof(LADSPA_Data) * sample_rate);
+				for (i = 0; i < sample_rate; i++) {
+					sin_tbl[i] = sin(i * 2 * M_PI / sample_rate);
+				}
+				
+				tri_tbl = malloc(sizeof(LADSPA_Data) * sample_rate);
+				for (i = 0; i < sample_rate; i++) {
+					tri_tbl[i] = acos(cos(i * 2 * M_PI / sample_rate)) / M_PI * 2 - 1;
+				}
+
+				squ_tbl = malloc(sizeof(LADSPA_Data) * sample_rate);
+				for (i = 0; i < sample_rate; i++) {
+					squ_tbl[i] = (i < sample_rate/2) ? 1 : -1;
+				}
+
+				saw_tbl = malloc(sizeof(LADSPA_Data) * sample_rate);
+				for (i = 0; i < sample_rate; i++) {
+					saw_tbl[i] = ((2.0 * i) - (float)sample_rate) / (float)sample_rate;
+				}
+			}
+
+			offset = 0;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+			offset = 0;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+			plugin_data = plugin_data;
+			if (--refcount == 0) {
+				free(sin_tbl);
+				free(tri_tbl);
+				free(squ_tbl);
+				free(saw_tbl);
+			}
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+			LADSPA_Data scale = fabs(sin) + fabs(tri) +
+			 fabs(saw) + fabs(squ);
+			int o;
+			unsigned long pos;
+
+			// Rescale to more useful value
+			const float depth = depthp * 0.5f;
+
+			if (scale == 0.0) {
+				scale = 1.0;
+			}
+
+			for (pos = 0; pos < sample_count; pos++) {
+				o = f_round(offset);
+				buffer_write(output[pos], input[pos] *
+				 (depth * (((sin / scale) * sin_tbl[o]) +
+				   ((tri / scale) * tri_tbl[o]) +
+				   ((saw / scale) * saw_tbl[o]) +
+				   ((squ / scale) * squ_tbl[o])) +
+				   (1.0f - depth)));
+				offset += freq;
+				if (offset > sample_rate) {
+					offset -= sample_rate;
+				}
+			}
+
+			plugin_data->offset = offset;
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

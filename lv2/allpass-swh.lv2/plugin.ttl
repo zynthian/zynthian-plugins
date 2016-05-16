@@ -1,0 +1,616 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:allpass_n a :Plugin ;
+   a :DelayPlugin ;
+
+   doap:name "Allpass delay line, noninterpolating" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#allpass_n> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "in" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "out" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Max Delay (s)" ;
+     :index 2 ;
+     :symbol "max_delay" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Delay Time (s)" ;
+     :index 3 ;
+     :symbol "delay_time" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Decay Time (s)" ;
+     :index 4 ;
+     :symbol "decay_time" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define MIN(a,b) ((a) < (b) ? (a) : (b))
+      #define CALC_DELAY(delaytime) \\
+        (f_clamp (delaytime * sample_rate, 1.f, (float)(buffer_mask + 1)))
+
+      #define LOG001 -6.9077552789f
+
+      static inline float
+      calc_feedback (float delaytime, float decaytime)
+      {
+        if (delaytime == 0.f)
+          return 0.f;
+        else if (decaytime > 0.f)
+          return exp(LOG001 * delaytime / decaytime);
+	else if (decaytime < 0.f)
+          return -exp(LOG001 * delaytime / -decaytime);
+        else
+          return 0.f;
+      }
+
+      void ignore(float some_var)
+      { }
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      sample_rate = s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      unsigned int minsize, size;
+    
+      if (plugin_data->max_delay && *plugin_data->max_delay > 0)
+        minsize = sample_rate * *plugin_data->max_delay;
+      else if (plugin_data->delay_time)
+        minsize = sample_rate * *plugin_data->delay_time;
+      else
+        minsize = sample_rate; /* 1 second default */
+    
+      size = 1;
+      while (size < minsize) size <<= 1;
+    
+      /* calloc sets the buffer to zero. */
+      plugin_data->buffer = calloc(size, sizeof(float));
+      if (plugin_data->buffer)
+        plugin_data->buffer_mask = size - 1;
+      else
+        plugin_data->buffer_mask = 0;
+      plugin_data->write_phase = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      int i;
+
+      ignore(max_delay);
+
+      if (write_phase == 0) {
+        plugin_data->last_delay_time = delay_time;
+        plugin_data->last_decay_time = decay_time;
+        plugin_data->delay_samples = delay_samples = CALC_DELAY (delay_time);
+        plugin_data->feedback = feedback = calc_feedback (delay_time, decay_time);
+      }
+      
+      if (delay_time == plugin_data->last_delay_time) {
+        long read_phase = write_phase - (long)delay_samples;
+        float *readptr = buffer + (read_phase & buffer_mask);
+        float *writeptr = buffer + (write_phase & buffer_mask);
+        float *lastptr = buffer + buffer_mask + 1;
+
+        if (decay_time == plugin_data->last_decay_time) {
+          long remain = sample_count;
+
+          while (remain) {
+            long read_space = lastptr - readptr;
+            long write_space = lastptr - writeptr;
+            long to_process = MIN (MIN (read_space, remain), write_space);
+
+            if (to_process == 0)
+              return; // buffer not allocated.
+
+            remain -= to_process;
+
+            for (i=0; i<to_process; i++) {
+              float read = *(readptr++);
+              float written = read * feedback + in[i];
+              *(writeptr++) = written;
+              buffer_write(out[i], read - feedback * written);
+            }
+
+            if (readptr == lastptr) readptr = buffer;
+            if (writeptr == lastptr) writeptr = buffer;
+          }
+        } else {
+          float next_feedback = calc_feedback (delay_time, decay_time);
+          float feedback_slope = (next_feedback - feedback) / sample_count;
+          long remain = sample_count;
+
+          while (remain) {
+            long read_space = lastptr - readptr;
+            long write_space = lastptr - writeptr;
+            long to_process = MIN (MIN (read_space, remain), write_space);
+
+            if (to_process == 0)
+              return; // buffer not allocated.
+
+            remain -= to_process;
+
+            for (i=0; i<to_process; i++) {
+              float read = *(readptr++);
+              float written = read * feedback + in[i];
+              *(writeptr++) = written;
+              buffer_write(out[i], read - feedback * written);
+              feedback += feedback_slope;
+            }
+
+            if (readptr == lastptr) readptr = buffer;
+            if (writeptr == lastptr) writeptr = buffer;
+          }
+
+          plugin_data->last_decay_time = decay_time;
+          plugin_data->feedback = feedback;
+        }
+
+        write_phase += sample_count;
+      } else {
+        float next_delay_samples = CALC_DELAY (delay_time);
+        float delay_samples_slope = (next_delay_samples - delay_samples) / sample_count;
+        float next_feedback = calc_feedback (delay_time, decay_time);
+        float feedback_slope = (next_feedback - feedback) / sample_count;
+
+        for (i=0; i<sample_count; i++) {
+          long read_phase;
+          float read, written;
+
+          delay_samples += delay_samples_slope;
+          write_phase++;
+          read_phase = write_phase - (long)delay_samples;
+          read = buffer[read_phase & buffer_mask];
+
+          written = read * feedback + in[i];
+          buffer[write_phase & buffer_mask] = written;
+          buffer_write(out[i], read - feedback * written);
+
+          feedback += feedback_slope;
+        }
+
+        plugin_data->last_delay_time = delay_time;
+        plugin_data->last_decay_time = decay_time;
+        plugin_data->feedback = feedback;
+        plugin_data->delay_samples = delay_samples;
+      }
+      
+      plugin_data->write_phase = write_phase;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:allpass_l a :Plugin ;
+   a :DelayPlugin ;
+
+   doap:name "Allpass delay line, linear interpolation" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#allpass_l> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "in" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "out" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Max Delay (s)" ;
+     :index 2 ;
+     :symbol "max_delay" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Delay Time (s)" ;
+     :index 3 ;
+     :symbol "delay_time" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Decay Time (s)" ;
+     :index 4 ;
+     :symbol "decay_time" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define MIN(a,b) ((a) < (b) ? (a) : (b))
+      #define CALC_DELAY(delaytime) \\
+        (f_clamp (delaytime * sample_rate, 1.f, (float)(buffer_mask + 1)))
+
+      #define LOG001 -6.9077552789f
+
+      static inline float
+      calc_feedback (float delaytime, float decaytime)
+      {
+        if (delaytime == 0.f)
+          return 0.f;
+        else if (decaytime > 0.f)
+          return exp(LOG001 * delaytime / decaytime);
+	else if (decaytime < 0.f)
+          return -exp(LOG001 * delaytime / -decaytime);
+        else
+          return 0.f;
+      }
+
+      void ignore(float some_var)
+      { }
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      sample_rate = s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      unsigned int minsize, size;
+    
+      if (plugin_data->max_delay && *plugin_data->max_delay > 0)
+        minsize = sample_rate * *plugin_data->max_delay;
+      else if (plugin_data->delay_time)
+        minsize = sample_rate * *plugin_data->delay_time;
+      else
+        minsize = sample_rate; /* 1 second default */
+    
+      size = 1;
+      while (size < minsize) size <<= 1;
+    
+      /* calloc sets the buffer to zero. */
+      plugin_data->buffer = calloc(size, sizeof(float));
+      if (plugin_data->buffer)
+        plugin_data->buffer_mask = size - 1;
+      else
+        plugin_data->buffer_mask = 0;
+      plugin_data->write_phase = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      int i;
+
+      if (write_phase == 0) {
+        plugin_data->last_delay_time = delay_time;
+        plugin_data->last_decay_time = decay_time;
+        plugin_data->delay_samples = delay_samples = CALC_DELAY (delay_time);
+        plugin_data->feedback = feedback = calc_feedback (delay_time, decay_time);
+      }
+      
+      if (delay_time == plugin_data->last_delay_time && decay_time == plugin_data->last_decay_time) {
+        long idelay_samples = (long)delay_samples;
+        float frac = delay_samples - idelay_samples;
+
+        for (i=0; i<sample_count; i++) {
+          long read_phase = write_phase - (long)delay_samples;
+          float r1 = buffer[read_phase & buffer_mask];
+          float r2 = buffer[(read_phase-1) & buffer_mask];
+          float read = LIN_INTERP (frac, r1, r2);
+          float written = read * feedback + in[i];
+
+          buffer[write_phase++ & buffer_mask] = written;
+          buffer_write(out[i], read - feedback * written);
+          write_phase++;
+        }
+      } else {
+        float next_delay_samples = CALC_DELAY (delay_time);
+        float delay_samples_slope = (next_delay_samples - delay_samples) / sample_count;
+        float next_feedback = calc_feedback (delay_time, decay_time);
+        float feedback_slope = (next_feedback - feedback) / sample_count;
+
+        for (i=0; i<sample_count; i++) {
+          long read_phase, idelay_samples;
+          float read, written, frac;
+
+          delay_samples += delay_samples_slope;
+          write_phase++;
+          read_phase = write_phase - (long)delay_samples;
+          idelay_samples = (long)delay_samples;
+          frac = delay_samples - idelay_samples;
+          read = LIN_INTERP (frac,
+                             buffer[read_phase & buffer_mask], 
+                             buffer[(read_phase-1) & buffer_mask]);
+          written = read * feedback + in[i];
+          buffer[write_phase & buffer_mask] = written;
+          buffer_write(out[i], read - feedback * written);
+
+          feedback += feedback_slope;
+        }
+
+        plugin_data->last_delay_time = delay_time;
+        plugin_data->last_decay_time = decay_time;
+        plugin_data->feedback = feedback;
+        plugin_data->delay_samples = delay_samples;
+      }
+      
+      plugin_data->write_phase = write_phase;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:allpass_c a :Plugin ;
+   a :DelayPlugin ;
+
+   doap:name "Allpass delay line, cubic spline interpolation" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#allpass_c> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "in" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "out" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Max Delay (s)" ;
+     :index 2 ;
+     :symbol "max_delay" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Delay Time (s)" ;
+     :index 3 ;
+     :symbol "delay_time" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Decay Time (s)" ;
+     :index 4 ;
+     :symbol "decay_time" ;
+     :minimum 0 ;
+     :maximum 10 ;
+     :default 0.0 ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define MIN(a,b) ((a) < (b) ? (a) : (b))
+      #define CALC_DELAY(delaytime) \\
+        (f_clamp (delaytime * sample_rate, 1.f, (float)(buffer_mask + 1)))
+
+      #define LOG001 -6.9077552789f
+
+      static inline float
+      calc_feedback (float delaytime, float decaytime)
+      {
+        if (delaytime == 0.f)
+          return 0.f;
+        else if (decaytime > 0.f)
+          return exp(LOG001 * delaytime / decaytime);
+	else if (decaytime < 0.f)
+          return -exp(LOG001 * delaytime / -decaytime);
+        else
+          return 0.f;
+      }
+
+      void ignore(float some_var)
+      { }
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      sample_rate = s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      unsigned int minsize, size;
+    
+      if (plugin_data->max_delay && *plugin_data->max_delay > 0)
+        minsize = sample_rate * *plugin_data->max_delay;
+      else if (plugin_data->delay_time)
+        minsize = sample_rate * *plugin_data->delay_time;
+      else
+        minsize = sample_rate; /* 1 second default */
+    
+      size = 1;
+      while (size < minsize) size <<= 1;
+    
+      /* calloc sets the buffer to zero. */
+      plugin_data->buffer = calloc(size, sizeof(float));
+      if (plugin_data->buffer)
+        plugin_data->buffer_mask = size - 1;
+      else
+        plugin_data->buffer_mask = 0;
+      plugin_data->write_phase = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      int i;
+
+      if (write_phase == 0) {
+        plugin_data->last_delay_time = delay_time;
+        plugin_data->last_decay_time = decay_time;
+        plugin_data->delay_samples = delay_samples = CALC_DELAY (delay_time);
+        plugin_data->feedback = feedback = calc_feedback (delay_time, decay_time);
+      }
+      
+      if (delay_time == plugin_data->last_delay_time && decay_time == plugin_data->last_decay_time) {
+        long idelay_samples = (long)delay_samples;
+        float frac = delay_samples - idelay_samples;
+
+        for (i=0; i<sample_count; i++) {
+          long read_phase = write_phase - (long)delay_samples;
+          float read = cube_interp (frac,
+                                          buffer[(read_phase-1) & buffer_mask], 
+                                          buffer[read_phase & buffer_mask], 
+                                          buffer[(read_phase+1) & buffer_mask], 
+                                          buffer[(read_phase+2) & buffer_mask]);
+          float written = read * feedback + in[i];
+
+          buffer[write_phase++ & buffer_mask] = written;
+          buffer_write(out[i], read - feedback * written);
+        }
+      } else {
+        float next_delay_samples = CALC_DELAY (delay_time);
+        float delay_samples_slope = (next_delay_samples - delay_samples) / sample_count;
+        float next_feedback = calc_feedback (delay_time, decay_time);
+        float feedback_slope = (next_feedback - feedback) / sample_count;
+
+        for (i=0; i<sample_count; i++) {
+          long read_phase, idelay_samples;
+          float read, written, frac;
+
+          delay_samples += delay_samples_slope;
+          write_phase++;
+          read_phase = write_phase - (long)delay_samples;
+          idelay_samples = (long)delay_samples;
+          frac = delay_samples - idelay_samples;
+          read = cube_interp (frac,
+                              buffer[(read_phase-1) & buffer_mask], 
+                              buffer[read_phase & buffer_mask], 
+                              buffer[(read_phase+1) & buffer_mask], 
+                              buffer[(read_phase+2) & buffer_mask]);
+          written = read * feedback + in[i];
+          buffer[write_phase & buffer_mask] = written;
+          buffer_write(out[i], read - feedback * written);
+
+          feedback += feedback_slope;
+        }
+
+        plugin_data->last_delay_time = delay_time;
+        plugin_data->last_decay_time = decay_time;
+        plugin_data->feedback = feedback;
+        plugin_data->delay_samples = delay_samples;
+      }
+      
+      plugin_data->write_phase = write_phase;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

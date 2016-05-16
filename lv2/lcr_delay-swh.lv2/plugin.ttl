@@ -1,0 +1,309 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:lcrDelay-main_in a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_in" .
+  
+swh:lcrDelay-main_out a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_out" .
+  
+swh:lcrDelay a :Plugin ;
+   a :DelayPlugin ;
+
+   doap:name "L/C/R Delay" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#lcrDelay> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "L delay (ms)" ;
+     :index 0 ;
+     :symbol "ldel" ;
+     :minimum 0 ;
+     :maximum 2700 ;
+     :default 675 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "L level" ;
+     :index 1 ;
+     :symbol "llev" ;
+     :minimum 0 ;
+     :maximum 50 ;
+     :default 25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "C delay (ms)" ;
+     :index 2 ;
+     :symbol "cdel" ;
+     :minimum 0 ;
+     :maximum 2700 ;
+     :default 675 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "C level" ;
+     :index 3 ;
+     :symbol "clev" ;
+     :minimum 0 ;
+     :maximum 50 ;
+     :default 25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "R delay (ms)" ;
+     :index 4 ;
+     :symbol "rdel" ;
+     :minimum 0 ;
+     :maximum 2700 ;
+     :default 675 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "R level" ;
+     :index 5 ;
+     :symbol "rlev" ;
+     :minimum 0 ;
+     :maximum 50 ;
+     :default 25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback" ;
+     :index 6 ;
+     :symbol "feedback" ;
+     :minimum -100 ;
+     :maximum 100 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "High damp (%)" ;
+     :index 7 ;
+     :symbol "high_d" ;
+     :minimum 0 ;
+     :maximum 100 ;
+     :default 50 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Low damp (%)" ;
+     :index 8 ;
+     :symbol "low_d" ;
+     :minimum 0 ;
+     :maximum 100 ;
+     :default 50 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Spread" ;
+     :index 9 ;
+     :symbol "spread" ;
+     :minimum 0 ;
+     :maximum 50 ;
+     :default 25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Dry/Wet level" ;
+     :index 10 ;
+     :symbol "wet" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "L input" ;
+     :index 11 ;
+     :symbol "in_l" ;
+     pg:inGroup swh:lcrDelay-main_in ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "R input" ;
+     :index 12 ;
+     :symbol "in_r" ;
+     pg:inGroup swh:lcrDelay-main_in ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "L output" ;
+     :index 13 ;
+     :symbol "out_l" ;
+     pg:inGroup swh:lcrDelay-main_out ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "R output" ;
+     :index 14 ;
+     :symbol "out_r" ;
+     pg:inGroup swh:lcrDelay-main_out ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+      #include "util/biquad.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      int buffer_size = 32768;
+
+      fs = s_rate;
+      while (buffer_size < fs * 2.7f) {
+	buffer_size *= 2;
+      }
+      buffer = calloc(buffer_size, sizeof(LADSPA_Data));
+      buffer_mask = buffer_size - 1;
+      buffer_pos = 0;
+      last_ll = 0.0f;
+      last_cl = 0.0f;
+      last_rl = 0.0f;
+      last_ld = 0.0f;
+      last_cd = 0.0f;
+      last_rd = 0.0f;
+
+      filters = malloc(2 * sizeof(biquad));
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      memset(buffer, 0, (buffer_mask + 1) * sizeof(LADSPA_Data));
+      last_ll = 0.0f;
+      last_cl = 0.0f;
+      last_rl = 0.0f;
+      last_ld = 0.0f;
+      last_cd = 0.0f;
+      last_rd = 0.0f;
+      biquad_init(filters);
+      biquad_init(filters + 1);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->filters);
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const float sc_r = 1.0f / (float)sample_count;
+      const float spr_t = 0.5f + spread * 0.01f;
+      const float spr_o = 0.5f - spread * 0.01f;
+      float fb = feedback * 0.01f;
+      float ll, cl, rl, ld, cd, rd;
+      float ll_d, cl_d, rl_d, ld_d, cd_d, rd_d;
+      float left, right;
+      float fbs; /* Feedback signal */
+
+      if (fb < -0.99f) {
+	fb = -0.99f;
+      } else if (fb > 0.99f) {
+	fb = 0.99f;
+      }
+
+      ls_set_params(filters, fs * 0.0001f * powf(2.0f, low_d * 0.12f),
+		    -0.5f * low_d, 0.5f, fs);
+      hs_set_params(filters + 1, fs * (0.41f - 0.0001f *
+		    powf(2.0f, high_d * 0.12f)), -70.0f, 0.9f, fs);
+
+      ll = last_ll;				/* Start value of Left Level */
+      ll_d = (llev * 0.01f - last_ll) * sc_r; 	/* Delta for Left Level */
+      cl = last_cl;
+      cl_d = (clev * 0.01f - last_cl) * sc_r;
+      rl = last_rl;
+      rl_d = (rlev * 0.01f - last_rl) * sc_r;
+
+      ld = last_ld;
+      ld_d = (ldel * fs * 0.001f - last_ld) * sc_r;
+      cd = last_cd;
+      cd_d = (cdel * fs * 0.001f - last_cd) * sc_r;
+      rd = last_rd;
+      rd_d = (rdel * fs * 0.001f - last_rd) * sc_r;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        /* Increment linear interpolators */
+	ll += ll_d;
+	rl += rl_d;
+	cl += cl_d;
+	ld += ld_d;
+	rd += rd_d;
+	cd += cd_d;
+
+	/* Write input into delay line */
+	buffer[buffer_pos] = in_l[pos] + in_r[pos];
+	/* Add feedback, must be done afterwards for case where C delay = 0 */
+	fbs = buffer[(buffer_pos - f_round(cd)) & buffer_mask] * fb;
+	fbs = flush_to_zero(fbs);
+	fbs = biquad_run(filters, fbs);
+	fbs = biquad_run(filters + 1, fbs);
+	buffer[buffer_pos] += fbs;
+
+	/* Outputs from left and right delay beffers + centre mix */
+        left  = buffer[(buffer_pos - f_round(ld)) & buffer_mask] * ll +
+                buffer[(buffer_pos - f_round(cd)) & buffer_mask] * cl;
+        right = buffer[(buffer_pos - f_round(rd)) & buffer_mask] * rl +
+                buffer[(buffer_pos - f_round(cd)) & buffer_mask] * cl;
+
+	/* Left and right channel outs */
+	buffer_write(out_l[pos], in_l[pos] * (1.0f - wet) +
+			(left * spr_t + right * spr_o) * wet);
+        buffer_write(out_r[pos], in_r[pos] * (1.0f - wet) +
+			(left * spr_o + right * spr_t) * wet);
+
+	buffer_pos = (buffer_pos + 1) & buffer_mask;
+      }
+
+      plugin_data->last_ll = ll;
+      plugin_data->last_cl = cl;
+      plugin_data->last_rl = rl;
+      plugin_data->last_ld = ld;
+      plugin_data->last_cd = cd;
+      plugin_data->last_rd = rd;
+      plugin_data->buffer_pos = buffer_pos;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

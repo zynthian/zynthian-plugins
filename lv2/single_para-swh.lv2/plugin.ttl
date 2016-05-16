@@ -1,0 +1,112 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:singlePara a :Plugin ;
+   a :ParaEQPlugin ;
+
+   doap:name "Single band parametric" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#singlePara> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Gain (dB)" ;
+     :index 0 ;
+     :symbol "gain" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency (Hz)" ;
+     :index 1 ;
+     :symbol "fc" ;
+     :minimum 0 ;
+     :maximum 0.4 ;
+     :default 440.0 ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Bandwidth (octaves)" ;
+     :index 2 ;
+     :symbol "bw" ;
+     :minimum 0 ;
+     :maximum 4 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 3 ;
+     :symbol "input" ;
+     :minimum -1.0 ;
+     :maximum +1.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 4 ;
+     :symbol "output" ;
+     :minimum -1.0 ;
+     :maximum +1.0 ;
+   ] ;
+  
+   swhext:code """
+      #include "util/biquad.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      fs = (float)s_rate;
+      filter = malloc(sizeof(biquad));
+      biquad_init(filter);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      biquad_init(filter);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->filter);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+
+      eq_set_params(filter, fc, gain, bw, fs);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	buffer_write(output[pos], biquad_run(filter, input[pos]));
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

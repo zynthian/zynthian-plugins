@@ -1,0 +1,232 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset001>
+    lv2:port [
+        lv2:symbol "lrcross" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "drive" ;
+        pset:value 56 ;
+    ] ,
+    [
+        lv2:symbol "level" ;
+        pset:value 70 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "negate" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 96 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "pf" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset002>
+    lv2:port [
+        lv2:symbol "lrcross" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "drive" ;
+        pset:value 29 ;
+    ] ,
+    [
+        lv2:symbol "level" ;
+        pset:value 75 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "negate" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "pf" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset003>
+    lv2:port [
+        lv2:symbol "lrcross" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "drive" ;
+        pset:value 75 ;
+    ] ,
+    [
+        lv2:symbol "level" ;
+        pset:value 80 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 5 ;
+    ] ,
+    [
+        lv2:symbol "negate" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 105 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "pf" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset004>
+    lv2:port [
+        lv2:symbol "lrcross" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "drive" ;
+        pset:value 85 ;
+    ] ,
+    [
+        lv2:symbol "level" ;
+        pset:value 62 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "negate" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 118 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "pf" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset005>
+    lv2:port [
+        lv2:symbol "lrcross" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "drive" ;
+        pset:value 63 ;
+    ] ,
+    [
+        lv2:symbol "level" ;
+        pset:value 75 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 2 ;
+    ] ,
+    [
+        lv2:symbol "negate" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 55 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "pf" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Distortion:preset006>
+    lv2:port [
+        lv2:symbol "lrcross" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "drive" ;
+        pset:value 88 ;
+    ] ,
+    [
+        lv2:symbol "level" ;
+        pset:value 75 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 4 ;
+    ] ,
+    [
+        lv2:symbol "negate" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "pf" ;
+        pset:value 0 ;
+    ] .
+
+

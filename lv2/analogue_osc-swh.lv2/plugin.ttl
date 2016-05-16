@@ -1,0 +1,146 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:analogueOsc a :Plugin ;
+   a :OscillatorPlugin ;
+
+   doap:name "Analogue Oscillator" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#analogueOsc> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Waveform (1=sin, 2=tri, 3=squ, 4=saw)" ;
+     :index 0 ;
+     :symbol "wave" ;
+     :minimum 1 ;
+     :maximum 4 ;
+     :default 1.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency (Hz)" ;
+     :index 1 ;
+     :symbol "freq" ;
+     :minimum 0.000001 ;
+     :maximum 0.499 ;
+     :default 440.0 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Warmth" ;
+     :index 2 ;
+     :symbol "warm" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Instability" ;
+     :index 3 ;
+     :symbol "instab" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 4 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include <math.h>
+
+      #include "ladspa-util.h"
+      #include "util/blo.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      tables = blo_h_tables_new(512);
+      osc = blo_h_new(tables, BLO_SINE, (float)s_rate);
+      fs = (float)s_rate;
+      itm1 = 0.0f;
+      otm1 = 0.0f;
+      otm2 = 0.0f;
+      rnda = 43437;
+      rndb = 111145;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      blo_h_tables_free(plugin_data->tables);
+      blo_h_free(plugin_data->osc);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      LADSPA_Data x, y;
+      const float q = warm - 0.999f;
+      const float leak = 1.0f - warm * 0.02f;
+      const unsigned int max_jump = (unsigned int)f_round(instab * 30000.0f) + 1;
+
+      osc->wave = LIMIT(f_round(wave) - 1, 0, BLO_N_WAVES-1);
+      osc->nyquist = fs * (0.47f - f_clamp(warm, 0.0f, 1.0f) * 0.41f);
+      blo_hd_set_freq(osc, freq);
+
+      tables = tables; // So gcc doesn't think it's unused
+
+      for (pos = 0; pos < sample_count; pos++) {
+	x = blo_hd_run_cub(osc);
+        rnda += 432577;
+        rnda *= 47;
+	rndb += 7643113;
+        rnda *= 59;
+        osc->ph.all += (((rnda + rndb)/2) % max_jump) - max_jump/2;
+        osc->ph.all &= osc->ph_mask;
+	y = (x - q) / (1.0f - f_exp(-1.2f * (x - q))) +
+              q / (1.0f - f_exp(1.2f * q));
+	/* Catch the case where x ~= q */
+	if (fabs(y) > 1.0f) {
+		y = 0.83333f + q / (1.0f - f_exp(1.2f * q));
+	}
+	otm2 = otm1;
+        otm1 = leak * otm1 + y - itm1;
+        itm1 = y;
+
+        buffer_write(output[pos], (otm1 + otm2) * 0.5f);
+      }
+
+      plugin_data->itm1 = itm1;
+      plugin_data->otm1 = otm1;
+      plugin_data->otm2 = otm2;
+      plugin_data->rnda = rnda;
+      plugin_data->rndb = rndb;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

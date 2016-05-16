@@ -1,0 +1,284 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:fastLookaheadLimiter a :Plugin ;
+   a :LimiterPlugin ;
+
+   doap:name "Fast Lookahead limiter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#fastLookaheadLimiter> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Input gain (dB)" ;
+     :index 0 ;
+     :symbol "ingain" ;
+     :minimum -20 ;
+     :maximum 20 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Limit (dB)" ;
+     :index 1 ;
+     :symbol "limit" ;
+     :minimum -20 ;
+     :maximum 0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Release time (s)" ;
+     :index 2 ;
+     :symbol "release" ;
+     :minimum 0.01 ;
+     :maximum 2.0 ;
+     :default 0.5075 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "Attenuation (dB)" ;
+     :index 3 ;
+     :symbol "attenuation" ;
+     :minimum 0 ;
+     :maximum 70 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input 1" ;
+     :index 4 ;
+     :symbol "in_1" ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input 2" ;
+     :index 5 ;
+     :symbol "in_2" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output 1" ;
+     :index 6 ;
+     :symbol "out_1" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output 2" ;
+     :index 7 ;
+     :symbol "out_2" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "latency" ;
+     :index 8 ;
+     :symbol "latency" ;
+     :portProperty :reportsLatency ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      //#define DEBUG
+
+      #define NUM_CHUNKS 16
+      #define BUFFER_TIME 0.0053
+
+      #ifdef DEBUG
+	#include "stdio.h"
+      #endif
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      fs = s_rate;
+      buffer_len = 128;
+      buffer_pos = 0;
+
+      /* Find size for power-of-two interleaved delay buffer */
+      while(buffer_len < fs * BUFFER_TIME * 2) {
+        buffer_len *= 2;
+      }
+      buffer = calloc(buffer_len, sizeof(float));
+      delay = (int)(0.005 * fs);
+
+      chunk_pos = 0;
+      chunk_num = 0;
+
+      /* find a chunk size (in smaples) thats roughly 0.5ms */
+      chunk_size = s_rate / 2000; 
+      chunks = calloc(NUM_CHUNKS, sizeof(float));
+
+      peak = 0.0f;
+      atten = 1.0f;
+      atten_lp = 1.0f;
+      delta = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      memset(buffer, 0, NUM_CHUNKS * sizeof(float));
+
+      chunk_pos = 0;
+      chunk_num = 0;
+      peak = 0.0f;
+      atten = 1.0f;
+      atten_lp = 1.0f;
+      delta = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const float max = DB_CO(limit);
+      const float trim = DB_CO(ingain);
+      float sig;
+      unsigned int i;
+
+      #ifdef DEBUG
+      float clip = 0.0, clipp = 0.0;
+      int clipc = 0;
+      #endif
+
+      for (pos = 0; pos < sample_count; pos++) {
+	if (chunk_pos++ == chunk_size) {
+	  /* we've got a full chunk */
+         
+	  delta = (1.0f - atten) / (fs * release);
+	  round_to_zero(&delta);
+	  for (i=0; i<10; i++) {
+	    const int p = (chunk_num - 9 + i) & (NUM_CHUNKS - 1);
+            const float this_delta = (max / chunks[p] - atten) /
+				      ((float)(i) * fs * 0.0005f + 1.0f);
+
+	    if (this_delta < delta) {
+	      delta = this_delta;
+	    }
+          }
+
+          chunks[chunk_num++ & (NUM_CHUNKS - 1)] = peak;
+	  peak = 0.0f;
+	  chunk_pos = 0;
+        }
+
+	buffer[(buffer_pos * 2) & (buffer_len - 1)] =     in_1[pos] * trim
+							+ 1.0e-30;
+	buffer[(buffer_pos * 2 + 1) & (buffer_len - 1)] = in_2[pos] * trim
+							+ 1.0e-30;
+
+	sig = fabs(in_1[pos]) > fabs(in_2[pos]) ? fabs(in_1[pos]) :
+		fabs(in_2[pos]);
+	sig += 1.0e-30;
+	if (sig * trim > peak) {
+	  peak = sig * trim;
+	}
+	//round_to_zero(&peak);
+	//round_to_zero(&sig);
+
+	atten += delta;
+	atten_lp = atten * 0.1f + atten_lp * 0.9f;
+	//round_to_zero(&atten_lp);
+	if (delta > 0.0f && atten > 1.0f) {
+	  atten = 1.0f;
+	  delta = 0.0f;
+	}
+
+	buffer_write(out_1[pos], buffer[(buffer_pos * 2 - delay * 2) &
+					(buffer_len - 1)] * atten_lp);
+	buffer_write(out_2[pos], buffer[(buffer_pos * 2 - delay * 2 + 1) &
+					(buffer_len - 1)] * atten_lp);
+	round_to_zero(&out_1[pos]);
+	round_to_zero(&out_2[pos]);
+
+	if (out_1[pos] < -max) {
+          #ifdef DEBUG
+	  clip += 20.0*log10(out_1[pos] / -max);
+	  clipc++;
+          if (fabs(out_1[pos] - max) > clipp) {
+            clipp = fabs(out_1[pos] / -max);
+          }
+          #endif
+	  buffer_write(out_1[pos], -max);
+	} else if (out_1[pos] > max) {
+          #ifdef DEBUG
+	  clip += 20.0*log10(out_1[pos] / max);
+	  clipc++;
+          if (fabs(out_1[pos] - max) > clipp) {
+            clipp = fabs(out_1[pos] / max);
+          }
+          #endif
+	  buffer_write(out_1[pos], max);
+	}
+	if (out_2[pos] < -max) {
+          #ifdef DEBUG
+	  clip += 20.0*log10(out_2[pos] / -max);
+	  clipc++;
+          if (fabs(out_2[pos] - max) > clipp) {
+            clipp = fabs(out_2[pos] / -max);
+          }
+          #endif
+	  buffer_write(out_2[pos], -max);
+	} else if (out_2[pos] > max) {
+          #ifdef DEBUG
+	  clip += 20.0*log10(out_2[pos] / max);
+	  clipc++;
+          if (fabs(out_2[pos] - max) > clipp) {
+            clipp = fabs(out_2[pos] / max);
+          }
+          #endif
+	  buffer_write(out_2[pos], max);
+	}
+
+	buffer_pos++;
+      }
+
+      #ifdef DEBUG
+      if (clipc > 0) {
+        printf("%d overs: %fdB avg, %fdB peak\\n", clipc, clip/(float)clipc, 20.0*log10(clipp));
+      }
+      #endif
+
+      plugin_data->buffer_pos = buffer_pos;
+      plugin_data->peak = peak;
+      plugin_data->atten = atten;
+      plugin_data->atten_lp = atten_lp;
+      plugin_data->chunk_pos = chunk_pos;
+      plugin_data->chunk_num = chunk_num;
+
+      *(plugin_data->attenuation) = -CO_DB(atten);
+      *(plugin_data->latency) = delay;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+       free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

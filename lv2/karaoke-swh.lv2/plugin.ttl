@@ -1,0 +1,93 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:karaoke-main_in a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_in" .
+  
+swh:karaoke-main_out a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_out" .
+  
+swh:karaoke a :Plugin ;
+   a :FilterPlugin ;
+
+   doap:name "Karaoke" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#karaoke> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Vocal volume (dB)" ;
+     :index 0 ;
+     :symbol "gain" ;
+     :minimum -70 ;
+     :maximum 0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Left in" ;
+     :index 1 ;
+     :symbol "lin" ;
+     pg:inGroup swh:karaoke-main_in ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Right in" ;
+     :index 2 ;
+     :symbol "rin" ;
+     pg:inGroup swh:karaoke-main_in ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Left out" ;
+     :index 3 ;
+     :symbol "lout" ;
+     pg:inGroup swh:karaoke-main_out ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Right out" ;
+     :index 4 ;
+     :symbol "rout" ;
+     pg:inGroup swh:karaoke-main_out ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float coef = pow(10.0f, gain * 0.05f) * 0.5f;
+      float m, s;
+
+      for (pos = 0; pos < sample_count; pos++) {
+	m = lin[pos] + rin[pos];
+	s = lin[pos] - rin[pos];
+        lout[pos] = m * coef + s * 0.5f;
+        rout[pos] = m * coef - s * 0.5f;
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

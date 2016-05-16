@@ -1,0 +1,202 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset001>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 59 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset002>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 21 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 59 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset003>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 60 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 59 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 10 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset004>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 44 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 0 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset005>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 102 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 50 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 82 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 48 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset006>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 44 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 17 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 82 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 24 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset007>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 46 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 118 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 100 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 68 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 18 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset008>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 26 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 100 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 67 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 36 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Echo:preset009>
+    lv2:port [
+        lv2:symbol "delay" ;
+        pset:value 28 ;
+    ] ,
+    [
+        lv2:symbol "lrdelay" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 100 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 90 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 55 ;
+    ] .
+
+

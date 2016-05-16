@@ -1,0 +1,22 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://distrho.sf.net/plugins/3BandEQ>
+    a lv2:Plugin ;
+    lv2:binary <3BandEQ_dsp.so> ;
+    rdfs:seeAlso <3BandEQ_dsp.ttl> .
+
+<http://distrho.sf.net/plugins/3BandEQ#UI>
+    a ui:X11UI ;
+    ui:binary <3BandEQ_ui.so> ;
+    rdfs:seeAlso <3BandEQ_ui.ttl> .
+
+<http://distrho.sf.net/plugins/3BandEQ#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://distrho.sf.net/plugins/3BandEQ> ;
+    rdfs:label "Default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

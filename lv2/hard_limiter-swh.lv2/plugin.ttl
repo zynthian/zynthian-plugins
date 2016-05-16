@@ -1,0 +1,90 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:hardLimiter a :Plugin ;
+   a :LimiterPlugin ;
+   a :DistortionPlugin ;
+
+   doap:name "Hard Limiter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#hardLimiter> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "dB limit" ;
+     :index 0 ;
+     :symbol "limit_db" ;
+     :minimum -50.0 ;
+     :maximum 0.0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Wet level" ;
+     :index 1 ;
+     :symbol "wet_gain" ;
+     :minimum 0.0 ;
+     :maximum 1.0 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Residue level" ;
+     :index 2 ;
+     :symbol "res_gain" ;
+     :minimum 0.0 ;
+     :maximum 1.0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 3 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 4 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include <math.h>
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+	unsigned long i;
+	for (i = 0; i < sample_count; i++)
+	{
+		float limit_g = pow(10, limit_db / 20);
+		float sign = input[i] < 0.0 ? -1.0 : 1.0;
+		float data = input[i] * sign;
+		float residue = data > limit_g ? data - limit_g : 0.0;
+		data -= residue;
+		buffer_write(output[i],
+			 sign * (wet_gain * data + res_gain * residue));
+	}
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

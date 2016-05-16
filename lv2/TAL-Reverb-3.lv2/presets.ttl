@@ -1,0 +1,909 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix state: <http://lv2plug.in/ns/ext/state#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:juce:TalReverb3#preset001> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="0" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.230000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.412000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.892000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.328000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset002> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="1" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.321000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.236000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.316000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset003> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="2" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.504000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.245000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.460000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.572000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset004> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="3" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.363000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.756000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.968000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.388000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset005> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="4" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.310000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset006> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="5" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.157000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.668000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset007> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="6" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.331000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.604000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset008> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="7" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.321000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.524000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.504000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset009> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="8" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.352000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.228000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.072000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.824000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.064000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+<urn:juce:TalReverb3#preset010> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="9" version="1">
+  <programs>
+    <program programname="Stereo Plate" dry="0.5" wet="0.23000000417232513428"
+             roomsize="0.4120000302791595459" predelay="0" lowshelfgain="0.89200001955032348633"
+             highshelfgain="0.32800000905990600586" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="Short Stereo Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.23600001633167266846" predelay="0" lowshelfgain="1"
+             highshelfgain="0.3160000145435333252" stereowidth="1" realstereomode="1"
+             power="1"/>
+    <program programname="High Plate" dry="0.50400000810623168945" wet="0.24500000476837158203"
+             roomsize="0.46000000834465026855" predelay="0" lowshelfgain="0.57200002670288085938"
+             highshelfgain="1" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Long Mono Plate" dry="0.5" wet="0.36300000548362731934"
+             roomsize="0.75600004196166992188" predelay="0" lowshelfgain="0.96800005435943603516"
+             highshelfgain="0.38800001144409179688" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Big Fx Plate" dry="0.5" wet="0.31000000238418579102"
+             roomsize="1" predelay="0" lowshelfgain="1" highshelfgain="1"
+             stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Air Plate" dry="0.5" wet="0.15700000524520874023"
+             roomsize="0.66800004243850708008" predelay="0" lowshelfgain="0"
+             highshelfgain="1" stereowidth="1" realstereomode="0" power="1"/>
+    <program programname="Bass Plate" dry="0.5" wet="0.3310000300407409668"
+             roomsize="0.60400003194808959961" predelay="0" lowshelfgain="1"
+             highshelfgain="0" stereowidth="1" realstereomode="1" power="1"/>
+    <program programname="Mono Air Plate" dry="0.5" wet="0.32100000977516174316"
+             roomsize="0.52400004863739013672" predelay="0" lowshelfgain="0.50400000810623168945"
+             highshelfgain="0.50800001621246337891" stereowidth="0" realstereomode="1"
+             power="1"/>
+    <program programname="Short Mono Plate" dry="0.5" wet="0.35200002789497375488"
+             roomsize="0.2280000150203704834" predelay="0.072000004351139068604"
+             lowshelfgain="0.8240000605583190918" highshelfgain="0.064000003039836883545"
+             stereowidth="0" realstereomode="1" power="1"/>
+    <program programname="Gentle Plate" dry="0.5" wet="0.26600000262260437012"
+             roomsize="0.34000000357627868652" predelay="0" lowshelfgain="0.75600004196166992188"
+             highshelfgain="0.24800001084804534912" stereowidth="1" realstereomode="1"
+             power="1"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.266000 ;
+    ] ,
+    [
+        lv2:symbol "room_size" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "pre_delay" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "low_shelf_gain" ;
+        pset:value 0.756000 ;
+    ] ,
+    [
+        lv2:symbol "high_shelf_gain" ;
+        pset:value 0.248000 ;
+    ] ,
+    [
+        lv2:symbol "stereo" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "stereo_input" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "power" ;
+        pset:value 1.000000 ;
+    ] .
+
+

@@ -1,0 +1,84 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder>
+    a lv2:Plugin ;
+    lv2:binary <TAL-Vocoder-2.so> ;
+    rdfs:seeAlso <TAL-Vocoder-2.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#ExternalUI>
+    a <http://kxstudio.sf.net/ns/lv2ext/external-ui#Widget> ;
+    ui:binary <TAL-Vocoder-2.so> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#ParentUI>
+    a ui:X11UI ;
+    ui:binary <TAL-Vocoder-2.so> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature ui:noUserResize ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "A Voice Robot 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "B Voice Robot Harmonic" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "C Noise Speech" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "D Portamento Speech" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "E Voice Robot 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "F Noisy Speech" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset007>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "G default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset008>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "H default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset009>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "I default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://kunz.corrupt.ch/products/tal-vocoder#preset010>
+    a pset:Preset ;
+    lv2:appliesTo <http://kunz.corrupt.ch/products/tal-vocoder> ;
+    rdfs:label "J default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

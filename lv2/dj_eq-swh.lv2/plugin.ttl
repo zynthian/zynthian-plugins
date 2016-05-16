@@ -1,0 +1,289 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:dj_eq_mono a :Plugin ;
+   a :EQPlugin ;
+
+   doap:name "DJ EQ (mono)" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#dj_eq_mono> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Lo gain (dB)" ;
+     :index 0 ;
+     :symbol "lo" ;
+     :minimum -70 ;
+     :maximum +6 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Mid gain (dB)" ;
+     :index 1 ;
+     :symbol "mid" ;
+     :minimum -70 ;
+     :maximum +6 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Hi gain (dB)" ;
+     :index 2 ;
+     :symbol "hi" ;
+     :minimum -70 ;
+     :maximum +6 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 3 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 4 ;
+     :symbol "output" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "latency" ;
+     :index 5 ;
+     :symbol "latency" ;
+     :portProperty :reportsLatency ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+      #include "util/biquad.h"
+
+      #define BANDS 3
+
+      #define PEAK_BW	  0.3f /* Peak EQ bandwidth (octaves) */
+      #define SHELF_SLOPE 1.5f /* Shelf EQ slope (arb. units) */
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+fs = s_rate;
+
+filters = calloc(BANDS, sizeof(biquad));
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+	biquad_init(&filters[0]);
+	eq_set_params(&filters[0], 100.0f, 0.0f, PEAK_BW, fs);
+	biquad_init(&filters[1]);
+	eq_set_params(&filters[1], 1000.0f, 0.0f, PEAK_BW, fs);
+	biquad_init(&filters[2]);
+	hs_set_params(&filters[2], 10000.0f, 0.0f, SHELF_SLOPE, fs);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float samp;
+
+      eq_set_params(&filters[0], 100.0f, lo, PEAK_BW, fs);
+      eq_set_params(&filters[1], 1000.0f, mid, PEAK_BW, fs);
+      hs_set_params(&filters[2], 10000.0f, hi, SHELF_SLOPE, fs);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	samp = biquad_run(&filters[0], input[pos]);
+        samp = biquad_run(&filters[1], samp);
+        samp = biquad_run(&filters[2], samp);
+        buffer_write(output[pos], samp);
+      }
+
+      *(plugin_data->latency) = 3; //XXX is this right?
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
+
+swh:dj_eq-main_in a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_in" .
+  
+swh:dj_eq-main_out a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_out" .
+  
+swh:dj_eq a :Plugin ;
+   a :EQPlugin ;
+
+   doap:name "DJ EQ" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#dj_eq> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Lo gain (dB)" ;
+     :index 0 ;
+     :symbol "lo" ;
+     :minimum -70 ;
+     :maximum +6 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Mid gain (dB)" ;
+     :index 1 ;
+     :symbol "mid" ;
+     :minimum -70 ;
+     :maximum +6 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Hi gain (dB)" ;
+     :index 2 ;
+     :symbol "hi" ;
+     :minimum -70 ;
+     :maximum +6 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input L" ;
+     :index 3 ;
+     :symbol "left_input" ;
+     pg:inGroup swh:dj_eq-main_in ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input R" ;
+     :index 4 ;
+     :symbol "right_input" ;
+     pg:inGroup swh:dj_eq-main_in ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output L" ;
+     :index 5 ;
+     :symbol "left_output" ;
+     pg:inGroup swh:dj_eq-main_out ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output R" ;
+     :index 6 ;
+     :symbol "right_output" ;
+     pg:inGroup swh:dj_eq-main_out ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "latency" ;
+     :index 7 ;
+     :symbol "latency" ;
+     :portProperty :reportsLatency ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+      #include "util/biquad.h"
+
+      #define BANDS 3
+
+      #define PEAK_BW	  0.3f /* Peak EQ bandwidth (octaves) */
+      #define SHELF_SLOPE 1.5f /* Shelf EQ slope (arb. units) */
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+fs = s_rate;
+
+filters = calloc(BANDS * 2, sizeof(biquad));
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      int i;
+
+      for (i=0; i<2; i++) {
+	biquad_init(&filters[i*BANDS + 0]);
+	eq_set_params(&filters[i*BANDS + 0], 100.0f, 0.0f, PEAK_BW, fs);
+	biquad_init(&filters[i*BANDS + 1]);
+	eq_set_params(&filters[i*BANDS + 1], 1000.0f, 0.0f, PEAK_BW, fs);
+	biquad_init(&filters[i*BANDS + 2]);
+	hs_set_params(&filters[i*BANDS + 2], 10000.0f, 0.0f, SHELF_SLOPE, fs);
+      }
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      unsigned int i;
+      float samp;
+
+      for (i=0; i<2; i++) {
+        eq_set_params(&filters[i*BANDS + 0], 100.0f, lo, PEAK_BW, fs);
+        eq_set_params(&filters[i*BANDS + 1], 1000.0f, mid, PEAK_BW, fs);
+        hs_set_params(&filters[i*BANDS + 2], 10000.0f, hi, SHELF_SLOPE, fs);
+      }
+
+      for (pos = 0; pos < sample_count; pos++) {
+	samp = biquad_run(&filters[0], left_input[pos]);
+        samp = biquad_run(&filters[1], samp);
+        samp = biquad_run(&filters[2], samp);
+        buffer_write(left_output[pos], samp);
+
+	samp = biquad_run(&filters[3], right_input[pos]);
+        samp = biquad_run(&filters[4], samp);
+        samp = biquad_run(&filters[5], samp);
+        buffer_write(right_output[pos], samp);
+      }
+
+      *(plugin_data->latency) = 3; //XXX is this right?
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

@@ -1,0 +1,80 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:matrixStMS-in a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "in" .
+  
+swh:matrixStMS-out a pg:Group ;
+   a pg:MidSideGroup ;
+   :symbol "out" ;
+   pg:source swh:matrixStMS-in .
+  
+swh:matrixStMS a :Plugin ;
+   a :ConverterPlugin ;
+
+   doap:name "Matrix: Stereo to MS" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#matrixStMS> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Left" ;
+     :index 0 ;
+     :symbol "left" ;
+     pg:inGroup swh:matrixStMS-in ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Right" ;
+     :index 1 ;
+     :symbol "right" ;
+     pg:inGroup swh:matrixStMS-in ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Mid" ;
+     :index 2 ;
+     :symbol "mid" ;
+     pg:inGroup swh:matrixStMS-out ;
+     pg:role pg:centerChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Side" ;
+     :index 3 ;
+     :symbol "side" ;
+     pg:inGroup swh:matrixStMS-out ;
+     pg:role pg:sideChannel ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        mid[pos] = (left[pos] + right[pos]) * 0.5;
+        side[pos] = (left[pos] - right[pos]) * 0.5;
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

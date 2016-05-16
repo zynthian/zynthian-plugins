@@ -1,0 +1,19 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+swh:bwxover_iir a :Plugin ;
+  :binary <plugin-linux.so> ;
+  rdfs:seeAlso <plugin.ttl> ;
+  dcterms:replaces <urn:ladspa:1902> .
+
+swh:buttlow_iir a :Plugin ;
+  :binary <plugin-linux.so> ;
+  rdfs:seeAlso <plugin.ttl> ;
+  dcterms:replaces <urn:ladspa:1903> .
+
+swh:butthigh_iir a :Plugin ;
+  :binary <plugin-linux.so> ;
+  rdfs:seeAlso <plugin.ttl> ;
+  dcterms:replaces <urn:ladspa:1904> .

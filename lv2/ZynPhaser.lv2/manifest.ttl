@@ -1,0 +1,82 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser>
+    a lv2:Plugin ;
+    lv2:binary <ZynPhaser.so> ;
+    rdfs:seeAlso <ZynPhaser.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Phaser 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Phaser 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Phaser 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Phaser 4" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Phaser 5" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Phaser 6" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset007>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Analog Phaser 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset008>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Analog Phaser 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset009>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Analog Phaser 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset010>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Analog Phaser 4" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset011>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Analog Phaser 5" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Phaser:preset012>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Phaser> ;
+    rdfs:label "Analog Phaser 6" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

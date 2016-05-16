@@ -1,0 +1,156 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset001>
+    lv2:port [
+        lv2:symbol "lfofreq" ;
+        pset:value 70 ;
+    ] ,
+    [
+        lv2:symbol "lforand" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lfotype" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lfostereo" ;
+        pset:value 62 ;
+    ] ,
+    [
+        lv2:symbol "depth" ;
+        pset:value 60 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 105 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 25 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "phase" ;
+        pset:value 64 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset002>
+    lv2:port [
+        lv2:symbol "lfofreq" ;
+        pset:value 73 ;
+    ] ,
+    [
+        lv2:symbol "lforand" ;
+        pset:value 106 ;
+    ] ,
+    [
+        lv2:symbol "lfotype" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lfostereo" ;
+        pset:value 101 ;
+    ] ,
+    [
+        lv2:symbol "depth" ;
+        pset:value 60 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 105 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 17 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "phase" ;
+        pset:value 64 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset003>
+    lv2:port [
+        lv2:symbol "lfofreq" ;
+        pset:value 63 ;
+    ] ,
+    [
+        lv2:symbol "lforand" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lfotype" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "lfostereo" ;
+        pset:value 100 ;
+    ] ,
+    [
+        lv2:symbol "depth" ;
+        pset:value 112 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 105 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 31 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "phase" ;
+        pset:value 42 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset004>
+    lv2:port [
+        lv2:symbol "lfofreq" ;
+        pset:value 25 ;
+    ] ,
+    [
+        lv2:symbol "lforand" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lfotype" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "lfostereo" ;
+        pset:value 66 ;
+    ] ,
+    [
+        lv2:symbol "depth" ;
+        pset:value 101 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 11 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 47 ;
+    ] ,
+    [
+        lv2:symbol "lrcross" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "phase" ;
+        pset:value 86 ;
+    ] .
+
+

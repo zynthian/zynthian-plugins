@@ -1,0 +1,22 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://distrho.sf.net/plugins/3BandSplitter>
+    a lv2:Plugin ;
+    lv2:binary <3BandSplitter_dsp.so> ;
+    rdfs:seeAlso <3BandSplitter_dsp.ttl> .
+
+<http://distrho.sf.net/plugins/3BandSplitter#UI>
+    a ui:X11UI ;
+    ui:binary <3BandSplitter_ui.so> ;
+    rdfs:seeAlso <3BandSplitter_ui.ttl> .
+
+<http://distrho.sf.net/plugins/3BandSplitter#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://distrho.sf.net/plugins/3BandSplitter> ;
+    rdfs:label "Default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

@@ -1,0 +1,135 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:gongBeater a :Plugin ;
+   a :GeneratorPlugin ;
+
+   doap:name "Gong beater" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#gongBeater> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Impulse gain (dB)" ;
+     :index 0 ;
+     :symbol "imp_gain" ;
+     :minimum -70 ;
+     :maximum 0 ;
+     :default -70 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Strike gain (dB)" ;
+     :index 1 ;
+     :symbol "strike_gain" ;
+     :minimum -70 ;
+     :maximum 0 ;
+     :default 0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Strike duration (s)" ;
+     :index 2 ;
+     :symbol "strike_duration" ;
+     :minimum 0.001 ;
+     :maximum 0.2 ;
+     :default 0.1005 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 3 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 4 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      running = 0;
+      x = 0.5f;
+      y = 0.0f;
+      xm = 0.5f;
+      ym = 0.0f;
+      fs = (float)s_rate;
+      imp_level = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      running = 0;
+      x = 0.5f;
+      y = 0.0f;
+      xm = 0.5f;
+      ym = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const float imp_amp = DB_CO(imp_gain);
+      const float strike_amp = DB_CO(strike_gain);
+      const float omega = 6.2831852f / (strike_duration * fs);
+
+      pos = 0;
+      while (pos < sample_count) {
+        for (; !running && pos < sample_count; pos++) {
+	  if (fabs(input[pos]) > 0.05f) {
+	    running = strike_duration * fs;
+	    imp_level = fabs(input[pos]);
+	  }
+          buffer_write(output[pos], input[pos] * imp_amp);
+        }
+        for (; running && pos < sample_count; pos++, running--) {
+	  if (fabs(input[pos]) > imp_level) {
+	    imp_level = fabs(input[pos]);
+	  }
+	  x -= omega * y;
+	  y += omega * x;
+	  xm -= omega * 0.5f * ym;
+	  ym += omega * 0.5f * xm;
+
+	  buffer_write(output[pos], input[pos] * imp_amp + y * strike_amp *
+			    imp_level * 4.0f * ym);
+	}
+      }
+
+      plugin_data->x = x;
+      plugin_data->y = y;
+      plugin_data->xm = xm;
+      plugin_data->ym = ym;
+      plugin_data->running = running;
+      plugin_data->imp_level = imp_level;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

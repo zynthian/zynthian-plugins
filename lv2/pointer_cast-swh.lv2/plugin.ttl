@@ -1,0 +1,115 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:pointerCastDistortion a :Plugin ;
+   a :DistortionPlugin ;
+
+   doap:name "Pointer cast distortion" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#pointerCastDistortion> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Effect cutoff freq (Hz)" ;
+     :index 0 ;
+     :symbol "cutoff" ;
+     :minimum 0.0001 ;
+     :maximum 0.3 ;
+     :default 0.075075 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Dry/wet mix" ;
+     :index 1 ;
+     :symbol "wet" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include <limits.h>
+
+      #include "ladspa-util.h"
+      #include "util/biquad.h"
+
+      typedef union {
+	LADSPA_Data fp;
+	int         in;
+      } pcast;
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      filt = malloc(sizeof(biquad));
+      fs = s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      biquad_init(filt);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const float filt_scale = cutoff < 50.0f ? cutoff / 50.0f : 1.0f;
+
+      lp_set_params(filt, cutoff, 1.0f, fs);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	pcast val;
+	float sign, filt_val, dist_val;
+
+	filt_val = biquad_run(filt, input[pos]) * filt_scale;
+	sign = filt_val < 0.0f ? -1.0f : 1.0f;
+	val.fp = fabs(filt_val);
+	dist_val = sign * (LADSPA_Data)val.in / (LADSPA_Data)INT_MAX +
+		   (input[pos] - filt_val);
+        buffer_write(output[pos], LIN_INTERP(wet, input[pos], dist_val));
+      }
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->filt);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

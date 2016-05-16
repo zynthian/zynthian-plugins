@@ -1,0 +1,98 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:bandpass_a_iir a :Plugin ;
+   a :BandpassPlugin ;
+
+   doap:name "Glame Bandpass Analog Filter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#bandpass_a_iir> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Center Frequency (Hz)" ;
+     :index 0 ;
+     :symbol "center" ;
+     :minimum 0.0001 ;
+     :maximum 0.45 ;
+     :default 0.112575 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Bandwidth (Hz)" ;
+     :index 1 ;
+     :symbol "width" ;
+     :minimum 0.0001 ;
+     :maximum 0.45 ;
+     :default 0.22505 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+			#include "util/iir.h"
+                        
+		""" ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+                  sample_rate = s_rate;
+                """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+                  calc_2polebandpass(iirf, gt, center, width, sample_rate);
+                  iir_process_buffer_1s_5(iirf, gt, input, output, sample_count);
+                """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """                  
+                  plugin_data->gt = init_iir_stage(IIR_STAGE_LOWPASS,1,3,2);
+                  plugin_data->iirf = init_iirf_t(plugin_data->gt);
+                  calc_2polebandpass(iirf, plugin_data->gt, *(plugin_data->center), *(plugin_data->width), sample_rate);
+                """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+                  free_iirf_t(plugin_data->iirf, plugin_data->gt);
+                  free_iir_stage(plugin_data->gt);
+                """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

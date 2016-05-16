@@ -1,0 +1,88 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb>
+    a lv2:Plugin ;
+    lv2:binary <ZynReverb.so> ;
+    rdfs:seeAlso <ZynReverb.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Cathedral 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Cathedral 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Cathedral 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Hall 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Hall 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Room 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset007>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Room 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset008>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Basement" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset009>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Tunnel" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset010>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Echoed 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset011>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Echoed 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset012>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Very Long 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset013>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#Reverb> ;
+    rdfs:label "Very Long 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

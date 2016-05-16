@@ -1,0 +1,81 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:impulse_fc a :Plugin ;
+   a :GeneratorPlugin ;
+
+   doap:name "Non-bandlimited single-sample impulses" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#impulse_fc> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Frequency (Hz)" ;
+     :index 0 ;
+     :symbol "frequency" ;
+     :minimum 0 ;
+     :maximum 5000 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "out" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+
+      #define LOG001 -6.9077552789f
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      sample_rate = s_rate;
+      phase = 0.f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      phase = 0.f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      int i;
+      float phase_step = frequency / sample_rate;
+
+      for (i=0; i<sample_count; i++) {
+        if (phase > 1.f) {
+          phase -= 1.f;
+          buffer_write(out[i], 1.f);
+        } else {
+          buffer_write(out[i], 0.f);
+        }
+        phase += phase_step;
+      }
+
+      plugin_data->phase = phase;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

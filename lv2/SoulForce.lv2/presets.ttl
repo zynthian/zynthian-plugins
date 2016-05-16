@@ -1,0 +1,166 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset001>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset002>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.400000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset003>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset004>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset005>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset006>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset007>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset008>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.300000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset009>
+    lv2:port [
+        lv2:symbol "shape" ;
+        pset:value 0.300000 ;
+    ] ,
+    [
+        lv2:symbol "fback" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "source" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "foot" ;
+        pset:value 1.000000 ;
+    ] .
+
+

@@ -1,0 +1,127 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:satanMaximiser a :Plugin ;
+   a :DynamicsPlugin ;
+   a :DistortionPlugin ;
+
+   doap:name "Barry's Satan Maximiser" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#satanMaximiser> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Decay time (samples)" ;
+     :index 0 ;
+     :symbol "env_time_p" ;
+     :minimum 2 ;
+     :maximum 30 ;
+     :default 30 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Knee point (dB)" ;
+     :index 1 ;
+     :symbol "knee_point" ;
+     :minimum -90 ;
+     :maximum 0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include <math.h>
+      #include "ladspa-util.h"
+
+      #define BUFFER_SIZE 16
+      #define BUFFER_MASK 15
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      env = 0.0f;
+      buffer = malloc(sizeof(LADSPA_Data) * BUFFER_SIZE);
+      buffer_pos = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      env = 0.0f;
+      memset(buffer, 0, sizeof(LADSPA_Data) * BUFFER_SIZE);
+      buffer_pos = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      int delay;
+      float env_tr, env_sc, knee;
+      float env_time = env_time_p;
+
+      if (env_time < 2.0f) {
+	env_time = 2.0f;
+      }
+      knee = DB_CO(knee_point);
+      delay = f_round(env_time * 0.5f);
+      env_tr = 1.0f / env_time;
+
+      for (pos = 0; pos < sample_count; pos++) {
+	if (fabs(input[pos]) > env) {
+	  env = fabs(input[pos]);
+	} else {
+	  env = fabs(input[pos]) * env_tr + env * (1.0f - env_tr);
+	}
+	if (env <= knee) {
+	  env_sc = 1.0f / knee;
+	} else {
+	  env_sc = 1.0f / env;
+	}
+	buffer[buffer_pos] = input[pos];
+	output[pos] = buffer[(buffer_pos - delay) & BUFFER_MASK] * env_sc;
+	buffer_pos = (buffer_pos + 1) & BUFFER_MASK;
+      }
+
+      plugin_data->env = env;
+      plugin_data->buffer_pos = buffer_pos;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

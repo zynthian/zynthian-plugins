@@ -1,0 +1,88 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:fmOsc a :Plugin ;
+   a :OscillatorPlugin ;
+
+   doap:name "FM Oscillator" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#fmOsc> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Waveform (1=sin, 2=tri, 3=squ, 4=saw)" ;
+     :index 0 ;
+     :symbol "wave" ;
+     :minimum 1 ;
+     :maximum 4 ;
+     :default 1.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Frequency (Hz)" ;
+     :index 1 ;
+     :symbol "fm" ;
+     :minimum -0.25 ;
+     :maximum 0.25 ;
+     :default 440.0 ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 2 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+      #include "util/blo.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      tables = blo_h_tables_new(1024);
+      osc = blo_h_new(tables, BLO_SINE, (float)s_rate);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      osc->wave = LIMIT(f_round(wave) - 1, 0, BLO_N_WAVES-1);
+
+      tables = tables; // So gcc doesn't think it's unused
+
+      for (pos = 0; pos < sample_count; pos++) {
+	blo_hd_set_freq(osc, fm[pos]);
+        buffer_write(output[pos], blo_hd_run_cub(osc));
+      }
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      blo_h_tables_free(plugin_data->tables);
+      blo_h_free(plugin_data->osc);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

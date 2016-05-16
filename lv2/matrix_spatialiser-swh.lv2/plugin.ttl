@@ -1,0 +1,202 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:matrixSpatialiser-main_in a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_in" .
+  
+swh:matrixSpatialiser-main_out a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "main_out" .
+  
+swh:matrixSpatialiser a :Plugin ;
+   a :UtilityPlugin ;
+
+   doap:name "Matrix Spatialiser" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#matrixSpatialiser> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input L" ;
+     :index 0 ;
+     :symbol "i_left" ;
+     pg:inGroup swh:matrixSpatialiser-main_in ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input R" ;
+     :index 1 ;
+     :symbol "i_right" ;
+     pg:inGroup swh:matrixSpatialiser-main_in ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Width" ;
+     :index 2 ;
+     :symbol "width" ;
+     :minimum -512 ;
+     :maximum 512 ;
+     :default 0.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output L" ;
+     :index 3 ;
+     :symbol "o_left" ;
+     pg:inGroup swh:matrixSpatialiser-main_out ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output R" ;
+     :index 4 ;
+     :symbol "o_right" ;
+     pg:inGroup swh:matrixSpatialiser-main_out ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   swhext:code """
+	/*
+	   thanks to Steve Harris for walking me through my first plugin !
+	*/
+
+	#include "ladspa-util.h"
+
+        /* we use sin/cos panning and start at pi/4. this is the correction factor
+	   to bring the signal back to unity gain in neutral position.
+	   it should be 1/x : sin(x) = cos(x) (~1.41421...). but since we are using an
+	   approximation of sin/cos, we take its equal gain point, which leads to 1.3333...
+	*/
+	#define EQUALGAINPOINT_OFFSET 128.0f
+	#define EQUALGAINPOINT_TO_UNITY 4.0f / 3.0f
+
+	#define BITSPERCYCLE 10                 /* resolution of the width parameter for */
+	#define BITSPERQUARTER (BITSPERCYCLE-2) /* one cycle (0-2pi) */
+
+	/* borrowed code: http://www.dspguru.com/comp.dsp/tricks/alg/sincos.htm
+	   i'm using a constant of 0.75, which makes the calculations simpler and does
+	   not yield discontinuities.
+	   author: Olli Niemitalo (oniemita@mail.student.oulu.fi)
+	*/
+	static inline void sin_cos_approx(int phasein, float *vsin, float *vcos) {
+		// Modulo phase into quarter, convert to float 0..1
+		float modphase = (phasein & ((1<<BITSPERQUARTER) - 1))
+		* 1.0f / (1<<BITSPERQUARTER);
+		// Extract quarter bits
+		int quarter = phasein & (3<<BITSPERQUARTER);
+		// Recognize quarter
+		if (!quarter) {
+			// First quarter, angle = 0 .. pi/2
+			float x = modphase - 0.5f;
+			float temp = 0.75f - x * x;
+			*vsin = temp + x;
+			*vcos = temp - x;
+		} else if (quarter == 1<<BITSPERQUARTER) {
+			// Second quarter, angle = pi/2 .. pi
+			float x = 0.5f - modphase;
+			float temp = 0.75f - x*x;
+			*vsin = x + temp;
+			*vcos = x - temp;
+		} else if (quarter == 2<<BITSPERQUARTER) {
+			// Third quarter, angle = pi .. 1.5pi
+			float x = modphase - 0.5f;
+			float temp = x*x - 0.75f;
+			*vsin = temp - x;
+			*vcos = temp + x;
+		} else {
+			// Fourth quarter, angle = 1.5pi..2pi
+			float x = modphase - 0.5f;
+			float temp = 0.75f - x*x;
+			*vsin = x - temp;
+			*vcos = x + temp;
+		}
+	}
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+	current_m_gain = 0.0f;
+	current_s_gain = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+	sin_cos_approx(EQUALGAINPOINT_OFFSET, &current_s_gain, &current_m_gain);
+	current_m_gain *= EQUALGAINPOINT_TO_UNITY; /* normalize the neutral  */
+	current_s_gain *= EQUALGAINPOINT_TO_UNITY; /* setting to unity gain. */
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+	unsigned long pos;
+	LADSPA_Data mid, side;
+	LADSPA_Data m_gain, s_gain;
+	int width_ = f_round(width + EQUALGAINPOINT_OFFSET);
+
+	/* smoothen the gain changes. to spread the curve over the entire
+	   buffer length (i.e.#sample_count samples), make lp dependent on
+	   sample_count.
+	*/
+	const float lp = 7.0f / (float) sample_count; /* value found by experiment */
+	const float lp_i = 1.0f - lp;
+
+	/* do approximately the same as
+	   s_gain = sin(width); m_gain = cos(width);
+	   but a lot faster:
+	*/
+	sin_cos_approx(width_, &s_gain, &m_gain);
+
+	m_gain *= EQUALGAINPOINT_TO_UNITY; /* normalize the neutral  */
+	s_gain *= EQUALGAINPOINT_TO_UNITY; /* setting to unity gain. */
+
+	#ifdef DEBUG
+	/* do a "hardware bypass" if width == 0 */
+	/* no smoothing here                    */
+	if (width_ == 128) {
+		for (pos = 0; pos < sample_count; pos++) {
+		o_left[pos] = i_left[pos];
+		o_right[pos] =i_right[pos];
+		}
+	} else
+	#endif
+
+	for (pos = 0; pos < sample_count; pos++) {
+		current_m_gain = current_m_gain * lp_i + m_gain * lp;
+		current_s_gain = current_s_gain * lp_i + s_gain * lp;
+		mid = (i_left[pos] + i_right[pos]) * 0.5f * current_m_gain;
+		side = (i_left[pos] - i_right[pos]) * 0.5f * current_s_gain;
+		o_left[pos] = mid + side;
+		o_right[pos] = mid - side;
+	}
+
+	plugin_data->current_m_gain = current_m_gain;
+	plugin_data->current_s_gain = current_s_gain;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

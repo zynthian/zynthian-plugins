@@ -1,0 +1,602 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset001>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 63 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 24 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 85 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 5 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 83 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset002>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 69 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 35 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 71 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset003>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 69 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 24 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 75 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 78 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 85 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset004>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 51 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 10 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 21 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 78 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset005>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 53 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 20 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 75 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 71 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset006>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 33 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 106 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset007>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 21 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 26 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 62 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 77 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 45 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset008>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 14 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 127 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 5 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 71 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 25 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset009>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 84 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 20 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 42 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 51 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 78 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 105 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset010>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 26 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 60 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 71 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 114 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset011>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 40 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 88 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 71 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 114 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 88 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 64 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset012>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 93 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 15 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 114 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 77 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 95 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+<http://zynaddsubfx.sourceforge.net/fx#Reverb:preset013>
+    lv2:port [
+        lv2:symbol "time" ;
+        pset:value 111 ;
+    ] ,
+    [
+        lv2:symbol "delay" ;
+        pset:value 30 ;
+    ] ,
+    [
+        lv2:symbol "fb" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_bw" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "unused_er" ;
+        pset:value 0 ;
+    ] ,
+    [
+        lv2:symbol "lpf" ;
+        pset:value 114 ;
+    ] ,
+    [
+        lv2:symbol "hpf" ;
+        pset:value 90 ;
+    ] ,
+    [
+        lv2:symbol "damp" ;
+        pset:value 74 ;
+    ] ,
+    [
+        lv2:symbol "type" ;
+        pset:value 1 ;
+    ] ,
+    [
+        lv2:symbol "size" ;
+        pset:value 80 ;
+    ] ,
+    [
+        lv2:symbol "bw" ;
+        pset:value 20 ;
+    ] .
+
+

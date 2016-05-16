@@ -1,0 +1,1219 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix state: <http://lv2plug.in/ns/ext/state#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:juce:TalDub3#preset001> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="0" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.408000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.239000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.473684 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.148000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.252000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.548000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.432000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.440000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset002> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="1" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.592000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.272000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.052632 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.276000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.536000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.484000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.364000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset003> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="2" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.113000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.800000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.636000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.124000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.700000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.624000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset004> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="3" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.300000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.051000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.284000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.272000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.592000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.444000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.752000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset005> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="4" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.292000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.102000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.152000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.256000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.728000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.724000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.660000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset006> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="5" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.892000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.412000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.105263 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.444000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.188000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.768000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.492000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.156000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset007> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="6" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.728000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.148000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.473684 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.640000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.672000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.724000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.148000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset008> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="7" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.824000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.704000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.157895 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.460000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.664000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.868000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.664000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.240000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset009> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="8" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.176000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.800000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.336000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.572000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.296000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.828000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.736000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalDub3#preset010> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="9" version="1">
+  <programs>
+    <program programname="Gentle St Delay" cutoff="0.54800003767013549805"
+             resonance="0.43200001120567321777" inputdrive="0.40800002217292785645"
+             delaytime="0.2390000075101852417" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="1" feedback="0.14800000190734863281" highcut="0.25200000405311584473"
+             dry="0.5" wet="0.44000002741813659668" livemode="0"/>
+    <program programname="Short St Slap Back" cutoff="0.53600001335144042969"
+             resonance="0.48400002717971801758" inputdrive="0.59200000762939453125"
+             delaytime="0.2720000147819519043" delaytimesync="2" delaytwice_l="0"
+             delaytwice_r="1" feedback="0" highcut="0.27600002288818359375"
+             dry="0.5" wet="0.36400002241134643555" livemode="0"/>
+    <program programname="Infinite St Delay" cutoff="0.70000004768371582031"
+             resonance="0.62400001287460327148" inputdrive="0.34000000357627868652"
+             delaytime="0.11300000548362731934" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.63600003719329833984"
+             highcut="0.12400000542402267456" dry="0.5" wet="0.5" livemode="0"/>
+    <program programname="Fast Delay" cutoff="0.59200000762939453125" resonance="0.44400003552436828613"
+             inputdrive="0.30000001192092895508" delaytime="0.051000002771615982056"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.28400000929832458496"
+             highcut="0.2720000147819519043" dry="0.5" wet="0.75200003385543823242"
+             livemode="0"/>
+    <program programname="Tab it !" cutoff="0.72800004482269287109" resonance="0.72400003671646118164"
+             inputdrive="0.29200002551078796387" delaytime="0.10200000554323196411"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.15200001001358032227"
+             highcut="0.25600001215934753418" dry="0.5" wet="0.66000002622604370117"
+             livemode="0"/>
+    <program programname="Sweet Drive 1/8" cutoff="0.76800000667572021484"
+             resonance="0.49200001358985900879" inputdrive="0.89200001955032348633"
+             delaytime="0.4120000302791595459" delaytimesync="3" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.44400003552436828613" highcut="0.18800000846385955811"
+             dry="0.5" wet="0.15600000321865081787" livemode="0"/>
+    <program programname="Sweet Drive 1/4." cutoff="0.67200005054473876953"
+             resonance="0.72400003671646118164" inputdrive="0.72800004482269287109"
+             delaytime="0.14800000190734863281" delaytimesync="10" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.6400000452995300293" highcut="0.34000000357627868652"
+             dry="0.5" wet="0.14800000190734863281" livemode="0"/>
+    <program programname="Thin HP Delay 1/4" cutoff="0.868000030517578125"
+             resonance="0.66400003433227539062" inputdrive="0.8240000605583190918"
+             delaytime="0.70400005578994750977" delaytimesync="4" delaytwice_l="0"
+             delaytwice_r="0" feedback="0.46000000834465026855" highcut="0.66400003433227539062"
+             dry="0.5" wet="0.24000000953674316406" livemode="0"/>
+    <program programname="Space LP Tab Delay" cutoff="0.29600000381469726562"
+             resonance="0.82800006866455078125" inputdrive="0.34000000357627868652"
+             delaytime="0.17600001394748687744" delaytimesync="1" delaytwice_l="0"
+             delaytwice_r="0.80000001192092895508" feedback="0.33600002527236938477"
+             highcut="0.57200002670288085938" dry="0.5" wet="0.73600006103515625"
+             livemode="0"/>
+    <program programname="Lo Fi Scape" cutoff="0.66000002622604370117" resonance="0.82000005245208740234"
+             inputdrive="0.62000000476837158203" delaytime="0.039000000804662704468"
+             delaytimesync="1" delaytwice_l="0" delaytwice_r="0" feedback="0.64800000190734863281"
+             highcut="0.26399999856948852539" dry="0.5" wet="0.38800001144409179688"
+             livemode="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.620000 ;
+    ] ,
+    [
+        lv2:symbol "delaytime" ;
+        pset:value 0.039000 ;
+    ] ,
+    [
+        lv2:symbol "delaytimesync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_l" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "delaytwice_r" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "feedback" ;
+        pset:value 0.648000 ;
+    ] ,
+    [
+        lv2:symbol "highcut" ;
+        pset:value 0.264000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.660000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.820000 ;
+    ] ,
+    [
+        lv2:symbol "dry" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "wet" ;
+        pset:value 0.388000 ;
+    ] ,
+    [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "livemode" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lv2_port_14" ;
+        pset:value 0.000000 ;
+    ] .
+
+

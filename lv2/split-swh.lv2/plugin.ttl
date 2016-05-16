@@ -1,0 +1,79 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:split-in a pg:Group ;
+   a pg:MonoGroup ;
+   :symbol "in" .
+  
+swh:split-out a pg:Group ;
+   a pg:StereoGroup ;
+   :symbol "out" ;
+   pg:source swh:split-in .
+  
+swh:split a :Plugin ;
+   a :ConverterPlugin ;
+
+   doap:name "Mono to Stereo splitter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#split> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "input" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     pg:inGroup swh:split-in ;
+     pg:role pg:centerChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output 1" ;
+     :index 1 ;
+     :symbol "out2" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     pg:inGroup swh:split-out ;
+     pg:role pg:leftChannel ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output 2" ;
+     :index 2 ;
+     :symbol "out1" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     pg:inGroup swh:split-out ;
+     pg:role pg:rightChannel ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+			unsigned long pos;
+
+			for (pos = 0; pos < sample_count; pos++) {
+				const LADSPA_Data in = input[pos];
+
+				out1[pos] = in;
+				out2[pos] = in;
+			}
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

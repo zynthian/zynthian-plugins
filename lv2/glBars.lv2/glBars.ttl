@@ -1,0 +1,101 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix mod:  <http://moddevices.com/ns/mod#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rsz:  <http://lv2plug.in/ns/ext/resize-port#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+@prefix unit: <http://lv2plug.in/ns/extensions/units#> .
+
+<http://distrho.sf.net/plugins/glBars>
+    a lv2:AnalyserPlugin, lv2:Plugin ;
+
+    lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
+
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/buf-size#boundedBlockLength> ;
+
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/options#options> ,
+                        <http://lv2plug.in/ns/ext/urid#map> ;
+
+    ui:ui <http://distrho.sf.net/plugins/glBars#UI> ;
+
+    lv2:port [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "lv2_audio_in_1" ;
+        lv2:name "Audio Input 1" ;
+    ] ;
+
+    lv2:port [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "lv2_audio_out_1" ;
+        lv2:name "Audio Output 1" ;
+    ] ;
+
+    lv2:port [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 2 ;
+        lv2:name "Scale" ;
+        lv2:symbol "scale" ;
+        lv2:default 0.180337 ;
+        lv2:minimum 0.090168 ;
+        lv2:maximum 0.541011 ;
+        lv2:portProperty <http://lv2plug.in/ns/ext/port-props#logarithmic> ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 3 ;
+        lv2:name "Speed" ;
+        lv2:symbol "speed" ;
+        lv2:default 0.025000 ;
+        lv2:minimum 0.012500 ;
+        lv2:maximum 0.100000 ;
+        lv2:portProperty <http://lv2plug.in/ns/ext/port-props#logarithmic> ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 4 ;
+        lv2:name "X" ;
+        lv2:symbol "x" ;
+        lv2:default 0.000000 ;
+        lv2:minimum 0.000000 ;
+        lv2:maximum 4.000000 ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 5 ;
+        lv2:name "Y" ;
+        lv2:symbol "y" ;
+        lv2:default 0.500000 ;
+        lv2:minimum -4.000000 ;
+        lv2:maximum 4.000000 ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:name "Z" ;
+        lv2:symbol "z" ;
+        lv2:default 0.000000 ;
+        lv2:minimum -4.000000 ;
+        lv2:maximum 4.000000 ;
+    ] ;
+
+    rdfs:comment """
+OpenGL Bars
+""" ;
+
+    mod:brand "DISTRHO" ;
+    mod:label "glBars" ;
+
+    doap:name "glBars" ;
+    doap:license "LGPL" ;
+
+    doap:maintainer [
+        foaf:name "DISTRHO" ;
+        foaf:homepage <https://github.com/DISTRHO/GLBars> ;
+    ] ;
+
+    lv2:microVersion 0 ;
+    lv2:minorVersion 2 .
+

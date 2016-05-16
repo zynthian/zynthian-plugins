@@ -1,0 +1,201 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:svf a :Plugin ;
+   a :FilterPlugin ;
+
+   doap:name "State Variable Filter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#svf> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "input" ;
+     :minimum -1 ;
+     :maximum 1 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "output" ;
+     :minimum -1 ;
+     :maximum 1 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Filter type (0=none, 1=LP, 2=HP, 3=BP, 4=BR, 5=AP)" ;
+     :index 2 ;
+     :symbol "filt_type" ;
+     :minimum 0 ;
+     :maximum 5 ;
+     :default 0.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Filter freq" ;
+     :index 3 ;
+     :symbol "filt_freq" ;
+     :minimum 0 ;
+     :maximum 6000 ;
+     :default 440.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Filter Q" ;
+     :index 4 ;
+     :symbol "filt_q" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Filter resonance" ;
+     :index 5 ;
+     :symbol "filt_res" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   swhext:code """
+#include "ladspa-util.h"
+
+// Constants to match filter types
+#define F_LP 1
+#define F_HP 2
+#define F_BP 3
+#define F_BR 4
+#define F_AP 5
+
+// Number of filter oversamples
+#define F_R 3
+
+/* Structure to hold parameters for SV filter */
+
+typedef struct {
+	float f;     // 2.0*sin(PI*fs/(fc*r));
+	float q;     // 2.0*cos(pow(q, 0.1)*PI*0.5);
+	float qnrm;  // sqrt(m/2.0f+0.01f);
+	float h;     // high pass output
+	float b;     // band pass output
+	float l;     // low pass output
+	float p;     // peaking output (allpass with resonance)
+	float n;     // notch output
+	float *op;   // pointer to output value
+} sv_filter;
+
+/* Store data in SVF struct, takes the sampling frequency, cutoff frequency
+   and Q, and fills in the structure passed */
+
+static inline void setup_svf(sv_filter *sv, float fs, float fc, float q, int t) {
+	sv->f = 2.0f * sin(M_PI * fc / (float)(fs * F_R));
+	sv->q = 2.0f * cos(pow(q, 0.1f) * M_PI * 0.5f);
+	sv->qnrm = sqrt(sv->q/2.0+0.01);
+	switch(t) {
+	case F_LP:
+		sv->op = &(sv->l);
+		break;
+	case F_HP:
+		sv->op = &(sv->h);
+		break;
+	case F_BP:
+		sv->op = &(sv->b);
+		break;
+	case F_BR:
+		sv->op = &(sv->n);
+		break;
+	default:
+		sv->op = &(sv->p);
+	}
+}
+
+/* Run one sample through the SV filter. Filter is by andy@vellocet */
+
+static inline float run_svf(sv_filter *sv, float in) {
+	float out;
+	int i;
+
+	in = sv->qnrm * in ;
+	for (i=0; i < F_R; i++) {
+		// only needed for pentium chips
+		in  = flush_to_zero(in);
+		sv->l = flush_to_zero(sv->l);
+		// very slight waveshape for extra stability
+		sv->b = sv->b - sv->b * sv->b * sv->b * 0.001f;
+
+		// regular state variable code here
+		// the notch and peaking outputs are optional
+		sv->h = in - sv->l - sv->q * sv->b;
+		sv->b = sv->b + sv->f * sv->h;
+		sv->l = sv->l + sv->f * sv->b;
+		sv->n = sv->l + sv->h;
+		sv->p = sv->l - sv->h;
+
+		out = *(sv->op);
+		in = out;
+	}
+
+	return out;
+}
+
+		""" ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+sample_rate = s_rate;
+
+svf = calloc(1, sizeof(sv_filter));
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+setup_svf(svf, 0, 0, 0, 0);
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+free(plugin_data->svf);
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+long int pos;
+
+setup_svf(svf, sample_rate, filt_freq, filt_q, f_round(filt_type));
+
+for (pos = 0; pos < sample_count; pos++) {
+	buffer_write(output[pos], run_svf(svf, input[pos] + (svf->b * filt_res)));
+}
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

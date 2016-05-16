@@ -1,0 +1,112 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:valve a :Plugin ;
+   a :DistortionPlugin ;
+   a :SimulatorPlugin ;
+
+   doap:name "Valve saturation" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#valve> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Distortion level" ;
+     :index 0 ;
+     :symbol "q_p" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Distortion character" ;
+     :index 1 ;
+     :symbol "dist_p" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      itm1 = 0.0f;
+      otm1 = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+unsigned long pos;
+LADSPA_Data fx;
+
+const float q = q_p - 0.999f;
+const float dist = dist_p * 40.0f + 0.1f;
+
+if (q == 0.0f) {
+	for (pos = 0; pos < sample_count; pos++) {
+		if (input[pos] == q) {
+			fx = 1.0f / dist;
+		} else {
+			fx = input[pos] / (1.0f - f_exp(-dist * input[pos]));
+		}
+		otm1 = 0.999f * otm1 + fx - itm1;
+		round_to_zero(&otm1);
+		itm1 = fx;
+		buffer_write(output[pos], otm1);
+	}
+} else {
+	for (pos = 0; pos < sample_count; pos++) {
+		if (input[pos] == q) {
+			fx = 1.0f / dist + q / (1.0f - f_exp(dist * q));
+		} else {
+			fx = (input[pos] - q) /
+			 (1.0f - f_exp(-dist * (input[pos] - q))) +
+			 q / (1.0f - f_exp(dist * q));
+		}
+		otm1 = 0.999f * otm1 + fx - itm1;
+		round_to_zero(&otm1);
+		itm1 = fx;
+		buffer_write(output[pos], otm1);
+	}
+}
+
+plugin_data->itm1 = itm1;
+plugin_data->otm1 = otm1;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

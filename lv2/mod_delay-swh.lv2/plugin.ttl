@@ -1,0 +1,110 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:modDelay a :Plugin ;
+   a :DelayPlugin ;
+
+   doap:name "Modulatable delay" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#modDelay> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Base delay (s)" ;
+     :index 0 ;
+     :symbol "base" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 1 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Delay (s)" ;
+     :index 1 ;
+     :symbol "delay" ;
+     :minimum 0 ;
+     :maximum 1.7 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      unsigned int size = 32768;
+
+      fs = s_rate;
+      while (size < 2.7f * fs) {
+	size *= 2;
+      }
+      buffer = calloc(size, sizeof(LADSPA_Data));
+      buffer_mask = size - 1;
+      write_ptr = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      memset(buffer, 0, buffer_mask + 1);
+      write_ptr = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+
+      for (pos = 0; pos < sample_count; pos++) {
+	float tmp;
+	const float rpf = modff((base + delay[pos]) * fs, &tmp);
+	const int rp = write_ptr - 4 - f_round(tmp);
+
+        buffer[write_ptr++] = input[pos];
+	write_ptr &= buffer_mask;
+
+        buffer_write(output[pos], cube_interp(rpf, buffer[(rp - 1) & buffer_mask], buffer[rp & buffer_mask],  buffer[(rp + 1) & buffer_mask], buffer[(rp + 2) & buffer_mask]));
+      }
+      plugin_data->write_ptr = write_ptr;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

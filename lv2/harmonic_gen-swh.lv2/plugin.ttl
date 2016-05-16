@@ -1,0 +1,228 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:harmonicGen a :Plugin ;
+   a :GeneratorPlugin ;
+
+   doap:name "Harmonic generator" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#harmonicGen> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Fundamental magnitude" ;
+     :index 0 ;
+     :symbol "mag_1" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "2nd harmonic magnitude" ;
+     :index 1 ;
+     :symbol "mag_2" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "3rd harmonic magnitude" ;
+     :index 2 ;
+     :symbol "mag_3" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "4th harmonic magnitude" ;
+     :index 3 ;
+     :symbol "mag_4" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "5th harmonic magnitude" ;
+     :index 4 ;
+     :symbol "mag_5" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "6th harmonic magnitude" ;
+     :index 5 ;
+     :symbol "mag_6" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "7th harmonic magnitude" ;
+     :index 6 ;
+     :symbol "mag_7" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "8th harmonic magnitude" ;
+     :index 7 ;
+     :symbol "mag_8" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "9th harmonic magnitude" ;
+     :index 8 ;
+     :symbol "mag_9" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "10th harmonic magnitude" ;
+     :index 9 ;
+     :symbol "mag_10" ;
+     :minimum -1 ;
+     :maximum +1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 10 ;
+     :symbol "input" ;
+     :minimum -1 ;
+     :maximum +1 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 11 ;
+     :symbol "output" ;
+     :minimum -1 ;
+     :maximum +1 ;
+   ] ;
+  
+   swhext:code """
+      #define HARMONICS 11
+
+      /* Calculate Chebychev coefficents from partial magnitudes, adapted from
+       * example in Num. Rec. */
+      void chebpc(float c[], float d[])
+      {
+          int k, j;
+          float sv, dd[HARMONICS];
+      
+          for (j = 0; j < HARMONICS; j++) {
+              d[j] = dd[j] = 0.0;
+          }
+      
+          d[0] = c[HARMONICS - 1];
+      
+          for (j = HARMONICS - 2; j >= 1; j--) {
+              for (k = HARMONICS - j; k >= 1; k--) {
+                  sv = d[k];
+                  d[k] = 2.0 * d[k - 1] - dd[k];
+                  dd[k] = sv;
+              }
+              sv = d[0];
+              d[0] = -dd[0] + c[j];
+              dd[0] = sv;
+          }
+      
+          for (j = HARMONICS - 1; j >= 1; j--) {
+              d[j] = d[j - 1] - dd[j];
+          }
+          d[0] = -dd[0] + 0.5 * c[0];
+      }
+    """ ;
+
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      itm1 = 0.0f;
+      otm1 = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos, i;
+      float mag_fix;
+      float mag[HARMONICS] = {0.0f, mag_1, mag_2, mag_3, mag_4, mag_5, mag_6,
+                              mag_7, mag_8, mag_9, mag_10};
+      float p[HARMONICS];
+
+      // Normalise magnitudes
+      mag_fix = (fabs(mag_1) + fabs(mag_2) + fabs(mag_3) + fabs(mag_4) +
+                 fabs(mag_5) + fabs(mag_6) + fabs(mag_7) + fabs(mag_8) +
+                 fabs(mag_9) + fabs(mag_10));
+      if (mag_fix < 1.0f) {
+        mag_fix = 1.0f;
+      } else {
+        mag_fix = 1.0f / mag_fix;
+      }
+      for (i=0; i<HARMONICS; i++) {
+        mag[i] *= mag_fix;
+      }
+
+      // Calculate polynomial coefficients, using Chebychev aproximation
+      chebpc(mag, p);
+
+      for (pos = 0; pos < sample_count; pos++) {
+        float x = input[pos], y;
+
+        // Calculate the polynomial using Horner's Rule
+	y = p[0] + (p[1] + (p[2] + (p[3] + (p[4] + (p[5] + (p[6] + (p[7] +
+            (p[8] + (p[9] + p[10] * x) * x) * x) * x) * x) * x) * x) * x) *
+            x) * x;
+
+	// DC offset remove (odd harmonics cause DC offset)
+        otm1 = 0.999f * otm1 + y - itm1;
+        itm1 = y;
+
+        output[pos] = otm1;
+      }
+
+      plugin_data->itm1 = itm1;
+      plugin_data->otm1 = otm1;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

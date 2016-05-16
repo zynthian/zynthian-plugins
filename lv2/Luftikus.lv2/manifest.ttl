@@ -1,0 +1,24 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<https://code.google.com/p/lkjb-plugins/luftikus>
+    a lv2:Plugin ;
+    lv2:binary <Luftikus.so> ;
+    rdfs:seeAlso <Luftikus.ttl> .
+
+<https://code.google.com/p/lkjb-plugins/luftikus#ExternalUI>
+    a <http://kxstudio.sf.net/ns/lv2ext/external-ui#Widget> ;
+    ui:binary <Luftikus.so> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<https://code.google.com/p/lkjb-plugins/luftikus#ParentUI>
+    a ui:X11UI ;
+    ui:binary <Luftikus.so> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature ui:noUserResize ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+

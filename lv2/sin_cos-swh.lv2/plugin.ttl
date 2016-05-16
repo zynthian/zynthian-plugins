@@ -1,0 +1,95 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:sinCos a :Plugin ;
+   a :OscillatorPlugin ;
+
+   doap:name "Sine + cosine oscillator" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#sinCos> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Base frequency (Hz)" ;
+     :index 0 ;
+     :symbol "freq" ;
+     :minimum 0.000001 ;
+     :maximum 0.5 ;
+     :default 440.0 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Pitch offset" ;
+     :index 1 ;
+     :symbol "pitch" ;
+     :minimum 0 ;
+     :maximum 8 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Sine output" ;
+     :index 2 ;
+     :symbol "sine" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Cosine output" ;
+     :index 3 ;
+     :symbol "cosine" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      fs = (float)s_rate;
+      phi = 0.0;
+      last_om = 0.0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const double target_om = 2.0 * M_PI * f_clamp(freq, 0.0f, 0.5f) * pow(2.0, f_clamp(pitch, 0.0f, 16.0f)) / fs;
+      const double om_d = (target_om - last_om) / (double)sample_count;
+      double om = last_om;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        buffer_write(sine[pos], sin(phi));
+        buffer_write(cosine[pos], cos(phi));
+	om += om_d;
+	phi += om;
+      }
+      while (phi > 2.0 * M_PI) {
+	phi -= 2.0 * M_PI;
+      }
+
+      plugin_data->phi = phi;
+      plugin_data->last_om = target_om;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

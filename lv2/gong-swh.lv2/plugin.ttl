@@ -1,0 +1,426 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:gong a :Plugin ;
+   a :SimulatorPlugin ;
+   a :GeneratorPlugin ;
+
+   doap:name "Gong model" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#gong> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner damping" ;
+     :index 0 ;
+     :symbol "damp_i" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer damping" ;
+     :index 1 ;
+     :symbol "damp_o" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Mic position" ;
+     :index 2 ;
+     :symbol "micpos" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.25 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner size 1" ;
+     :index 3 ;
+     :symbol "scale0" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 1 +" ;
+     :index 4 ;
+     :symbol "apa0" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 1 -" ;
+     :index 5 ;
+     :symbol "apb0" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner size 2" ;
+     :index 6 ;
+     :symbol "scale1" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 2 +" ;
+     :index 7 ;
+     :symbol "apa1" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 2 -" ;
+     :index 8 ;
+     :symbol "apb1" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner size 3" ;
+     :index 9 ;
+     :symbol "scale2" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 3 +" ;
+     :index 10 ;
+     :symbol "apa2" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 3 -" ;
+     :index 11 ;
+     :symbol "apb2" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner size 4" ;
+     :index 12 ;
+     :symbol "scale3" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 4 +" ;
+     :index 13 ;
+     :symbol "apa3" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Inner stiffness 4 -" ;
+     :index 14 ;
+     :symbol "apb3" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer size 1" ;
+     :index 15 ;
+     :symbol "scale4" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 1 +" ;
+     :index 16 ;
+     :symbol "apa4" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 1 -" ;
+     :index 17 ;
+     :symbol "apb4" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer size 2" ;
+     :index 18 ;
+     :symbol "scale5" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 2 +" ;
+     :index 19 ;
+     :symbol "apa5" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 2 -" ;
+     :index 20 ;
+     :symbol "apb5" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer size 3" ;
+     :index 21 ;
+     :symbol "scale6" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 3 +" ;
+     :index 22 ;
+     :symbol "apa6" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 3 -" ;
+     :index 23 ;
+     :symbol "apb6" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer size 4" ;
+     :index 24 ;
+     :symbol "scale7" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 4 +" ;
+     :index 25 ;
+     :symbol "apa7" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Outer stiffness 4 -" ;
+     :index 26 ;
+     :symbol "apb7" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.5 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 27 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 28 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "util/waveguide_nl.h"
+
+      /* required for clang compilation */
+      void waveguide_nl_process(waveguide_nl *wg, float in0, float in1, float *out0, float *out1);
+
+      #define RUN_WG(n, junct_a, junct_b) waveguide_nl_process(w[n], junct_a - out[n*2+1], junct_b - out[n*2], out+n*2, out+n*2+1)
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      /* Max delay length for inner waveguides */
+      maxsize_i = (float)s_rate * 0.03643242f;
+      /* Max delay length for outer waveguides */
+      maxsize_o = (float)s_rate * 0.05722782f;
+
+      /* The waveguide structures */
+      w = malloc(8 * sizeof(waveguide_nl *));
+      w[0] = waveguide_nl_new(maxsize_i, 0.5, 0.0f, 0.0f);
+      w[1] = waveguide_nl_new(maxsize_i, 0.5, 0.0f, 0.0f);
+      w[2] = waveguide_nl_new(maxsize_i, 0.5, 0.0f, 0.0f);
+      w[3] = waveguide_nl_new(maxsize_i, 0.5, 0.0f, 0.0f);
+      w[4] = waveguide_nl_new(maxsize_o, 0.5, 0.0f, 0.0f);
+      w[5] = waveguide_nl_new(maxsize_o, 0.5, 0.0f, 0.0f);
+      w[6] = waveguide_nl_new(maxsize_o, 0.5, 0.0f, 0.0f);
+      w[7] = waveguide_nl_new(maxsize_o, 0.5, 0.0f, 0.0f);
+
+      /* Buffers to hold the currect deflections */
+      out = calloc(32, sizeof(float));
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      unsigned int i;
+
+      for (i = 0; i < 8; i++) {
+        waveguide_nl_reset(w[i]);
+      }
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      /* The a coef of the inner lowpass */
+      const float lpi = 1.0f - damp_i * 0.1423f;
+      /* The a coef of the outer lowpass */
+      const float lpo = 1.0f - damp_o * 0.19543f;
+
+      /* Set the parameters of the waveguides */
+      waveguide_nl_set_delay(w[0], maxsize_i * scale0);
+      waveguide_nl_set_ap(w[0], apa0, apb0);
+      waveguide_nl_set_delay(w[1], maxsize_i * scale1);
+      waveguide_nl_set_ap(w[1], apa1, apb1);
+      waveguide_nl_set_delay(w[2], maxsize_i * scale2);
+      waveguide_nl_set_ap(w[2], apa2, apb2);
+      waveguide_nl_set_delay(w[3], maxsize_i * scale3);
+      waveguide_nl_set_ap(w[3], apa3, apb3);
+      waveguide_nl_set_delay(w[4], maxsize_o * scale4);
+      waveguide_nl_set_ap(w[4], apa4, apb4);
+      waveguide_nl_set_delay(w[5], maxsize_o * scale5);
+      waveguide_nl_set_ap(w[5], apa5, apb5);
+      waveguide_nl_set_delay(w[6], maxsize_o * scale6);
+      waveguide_nl_set_ap(w[6], apa6, apb6);
+      waveguide_nl_set_delay(w[7], maxsize_o * scale7);
+      waveguide_nl_set_ap(w[7], apa7, apb7);
+
+      for (pos=0; pos<4; pos++) {
+	waveguide_nl_set_fc(w[pos], lpi);
+      }
+      for (; pos<8; pos++) {
+	waveguide_nl_set_fc(w[pos], lpo);
+      }
+
+      for (pos = 0; pos < sample_count; pos++) {
+        /* Calcualte the deflections at the wavejunctions
+           alpha is the centre, beta is north, gamma is east,
+           delta is south and epsilon is west */
+	const float alpha = (out[0] + out[2] + out[4] + out[6]) * 0.5f
+			    + input[pos];
+	const float beta = (out[1] + out[9] + out[14]) * 0.666666666666f;
+	const float gamma = (out[3] + out[8] + out[11]) * 0.666666666666f;
+	const float delta = (out[5] + out[10] + out[13]) * 0.666666666666f;
+	const float epsilon = (out[7] + out[12] + out[15]) * 0.666666666666f;
+
+        /* Inject the energy at the junctions + reflections into the
+           waveguides (the macro gives the reflection calcs) */
+	RUN_WG(0, beta, alpha);
+	RUN_WG(1, gamma, alpha);
+	RUN_WG(2, delta, alpha);
+	RUN_WG(3, epsilon, alpha);
+	RUN_WG(4, beta, gamma);
+	RUN_WG(5, gamma, delta);
+	RUN_WG(6, delta, epsilon);
+	RUN_WG(7, epsilon, beta);
+
+        output[pos] = (1.0f - micpos) * alpha + micpos * delta;
+      }
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      unsigned int i;
+
+      for (i = 0; i < 8; i++) {
+        waveguide_nl_free(plugin_data->w[i]);
+      }
+      free(plugin_data->w);
+      free(plugin_data->out);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

@@ -1,0 +1,34 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah>
+    a lv2:Plugin ;
+    lv2:binary <ZynAlienWah.so> ;
+    rdfs:seeAlso <ZynAlienWah.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#AlienWah> ;
+    rdfs:label "AlienWah 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#AlienWah> ;
+    rdfs:label "AlienWah 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#AlienWah> ;
+    rdfs:label "AlienWah 3" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#AlienWah:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#AlienWah> ;
+    rdfs:label "AlienWah 4" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

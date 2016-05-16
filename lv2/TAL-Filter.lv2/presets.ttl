@@ -1,0 +1,1299 @@
+@prefix atom:  <http://lv2plug.in/ns/ext/atom#> .
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix state: <http://lv2plug.in/ns/ext/state#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+<urn:juce:TalFilter#preset001> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="0" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.432000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.512000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.460000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.157895 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.860000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.516000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.509000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset002> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="1" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.772000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.484000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.264000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.280000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.157895 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.844000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.496000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.656000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset003> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="2" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.572000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.624000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.744000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.244000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.315789 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.166667 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.860000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.528000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.496000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.216000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset004> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="3" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.360000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.444000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.332000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.432000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.166667 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.780000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.544000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.836000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.148000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.212000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset005> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="4" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.448000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.724000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.142857 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.744000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.548000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.736842 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.784000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset006> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="5" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.780000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.492000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.476000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.157895 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.166667 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.824000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.508000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.552000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset007> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="6" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.428000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.724000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.716000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.520000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.833333 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.936000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.780000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.752000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.208000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset008> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="7" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.456000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.664000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.660000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.052632 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.500000 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.848000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.480000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.516000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.340000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset009> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="8" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.628000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.828000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.142857 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.204000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.872000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.666667 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.808000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.692000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.512000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 1.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+<urn:juce:TalFilter#preset010> a pset:Preset ;
+    state:state [
+        <urn:juce:stateString>
+"""
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tal curprogram="9" version="1">
+  <programs>
+    <program programname="Clean Set Up" cutoff="1" resonance="0.43200001120567321777"
+             filtertype="1" lfointensity="0.51200002431869506836" lforate="0.46000000834465026855"
+             lfosync="4" lfowaveform="1" volume="0.86000001430511474609" inputdrive="0.51600003242492675781"
+             envelopeintensity="0.50900000333786010742" envelopespeed="0"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo Sine 1/4 LP" cutoff="0.7720000147819519043"
+             resonance="0.48400002717971801758" filtertype="1" lfointensity="0.26399999856948852539"
+             lforate="0.28000000119209289551" lfosync="4" lfowaveform="1"
+             volume="0.84400004148483276367" inputdrive="0.49600002169609069824"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.65600001811981201172"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Lfo 2/1 BP" cutoff="0.57200002670288085938" resonance="0.62400001287460327148"
+             filtertype="3" lfointensity="0.74400001764297485352" lforate="0.24400001764297485352"
+             lfosync="7" lfowaveform="2" volume="0.86000001430511474609" inputdrive="0.52799999713897705078"
+             envelopeintensity="0.49600002169609069824" envelopespeed="0"
+             lfowidth="0.21600000560283660889" miditrigger="0"/>
+    <program programname="Fast Env Guitar" cutoff="0.36000001430511474609"
+             resonance="0.44400003552436828613" filtertype="1" lfointensity="0.33200001716613769531"
+             lforate="0.43200001120567321777" lfosync="1" lfowaveform="2"
+             volume="0.7800000309944152832" inputdrive="0.54400002956390380859"
+             envelopeintensity="0.83600002527236938477" envelopespeed="0.14800000190734863281"
+             lfowidth="0.21200001239776611328" miditrigger="0"/>
+    <program programname="Random Lfo  HP" cutoff="0.44800001382827758789"
+             resonance="0.72400003671646118164" filtertype="2" lfointensity="0.74400001764297485352"
+             lforate="0.54800003767013549805" lfosync="15" lfowaveform="5"
+             volume="0.78400003910064697266" inputdrive="0.34000000357627868652"
+             envelopeintensity="0.50800001621246337891" envelopespeed="0.50800001621246337891"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="Inverted  BP Env" cutoff="0.7800000309944152832"
+             resonance="0.49200001358985900879" filtertype="3" lfointensity="0.50800001621246337891"
+             lforate="0.47600001096725463867" lfosync="4" lfowaveform="2"
+             volume="0.8240000605583190918" inputdrive="0.50800001621246337891"
+             envelopeintensity="0" envelopespeed="0.5520000457763671875" lfowidth="0"
+             miditrigger="0"/>
+    <program programname="Noisy Mod BP" cutoff="0.42800003290176391602" resonance="0.72400003671646118164"
+             filtertype="3" lfointensity="0.71600002050399780273" lforate="0.52000004053115844727"
+             lfosync="1" lfowaveform="6" volume="0.93600004911422729492" inputdrive="0.7800000309944152832"
+             envelopeintensity="0.75200003385543823242" envelopespeed="0.20800000429153442383"
+             lfowidth="0" miditrigger="0"/>
+    <program programname="SQ Lfo 1/16 LP" cutoff="0.4560000300407409668" resonance="0.66400003433227539062"
+             filtertype="1" lfointensity="0.34000000357627868652" lforate="0.66000002622604370117"
+             lfosync="2" lfowaveform="4" volume="0.84800004959106445312" inputdrive="0.48000001907348632812"
+             envelopeintensity="0.51600003242492675781" envelopespeed="0.34000000357627868652"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Digital Artefacts HP" cutoff="0.62800002098083496094"
+             resonance="0.82800006866455078125" filtertype="2" lfointensity="0.20400001108646392822"
+             lforate="0.87200003862380981445" lfosync="1" lfowaveform="5"
+             volume="0.80800002813339233398" inputdrive="0.69200003147125244141"
+             envelopeintensity="0.51200002431869506836" envelopespeed="0"
+             lfowidth="1" miditrigger="0"/>
+    <program programname="Lfo Reso  1/1 BP" cutoff="0.46800002455711364746"
+             resonance="0.82000005245208740234" filtertype="3" lfointensity="0.70800000429153442383"
+             lforate="0.3160000145435333252" lfosync="6" lfowaveform="3" volume="0.84800004959106445312"
+             inputdrive="0.73200005292892456055" envelopeintensity="0.51200002431869506836"
+             envelopespeed="0.40400001406669616699" lfowidth="0" miditrigger="0"/>
+  </programs>
+</tal>
+"""
+    ] ;
+
+    lv2:port [
+        lv2:symbol "unused" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "cutoff" ;
+        pset:value 0.468000 ;
+    ] ,
+    [
+        lv2:symbol "resonance" ;
+        pset:value 0.820000 ;
+    ] ,
+    [
+        lv2:symbol "filtertype" ;
+        pset:value 0.285714 ;
+    ] ,
+    [
+        lv2:symbol "lfointensity" ;
+        pset:value 0.708000 ;
+    ] ,
+    [
+        lv2:symbol "lforate" ;
+        pset:value 0.316000 ;
+    ] ,
+    [
+        lv2:symbol "lfosync" ;
+        pset:value 0.263158 ;
+    ] ,
+    [
+        lv2:symbol "lfowaveform" ;
+        pset:value 0.333333 ;
+    ] ,
+    [
+        lv2:symbol "volume" ;
+        pset:value 0.848000 ;
+    ] ,
+    [
+        lv2:symbol "inputdrive" ;
+        pset:value 0.732000 ;
+    ] ,
+    [
+        lv2:symbol "envelopeintensity" ;
+        pset:value 0.512000 ;
+    ] ,
+    [
+        lv2:symbol "envelopespeed" ;
+        pset:value 0.404000 ;
+    ] ,
+    [
+        lv2:symbol "lfowidth" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "unused_2" ;
+        pset:value 0.000000 ;
+    ] ,
+    [
+        lv2:symbol "miditrigger" ;
+        pset:value 0.000000 ;
+    ] .
+
+

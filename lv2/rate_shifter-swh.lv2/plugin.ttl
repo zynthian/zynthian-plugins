@@ -1,0 +1,110 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:rateShifter a :Plugin ;
+   a :PitchPlugin ;
+
+   doap:name "Rate shifter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#rateShifter> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Rate" ;
+     :index 0 ;
+     :symbol "rate" ;
+     :minimum -4 ;
+     :maximum 4 ;
+     :default 1.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 1 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 2 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      unsigned int size = 32768;
+      const float fs = s_rate;
+
+      while (size < 2.7f * fs) {
+	size *= 2;
+      }
+      buffer = calloc(size, sizeof(LADSPA_Data));
+      buffer_mask = size - 1;
+      read_ptr.all = 0;
+      write_ptr = size / 2;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      memset(buffer, 0, buffer_mask + 1);
+      read_ptr.all = 0;
+      write_ptr = (buffer_mask + 1) / 2;
+      write_ptr = 0;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->buffer);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      fixp32 read_inc;
+
+      read_inc.all = (long long)(rate * 4294967296.0f);
+
+      for (pos = 0; pos < sample_count; pos++) {
+	const unsigned int rp = read_ptr.part.in;
+
+	/* Do write pointer stuff */
+        buffer[write_ptr] = input[pos];
+	write_ptr = (write_ptr + 1) & buffer_mask;
+
+	/* And now read pointer */
+        buffer_write(output[pos], cube_interp((float)read_ptr.part.fr / 4294967296.0f, buffer[(rp - 1) & buffer_mask], buffer[rp],  buffer[(rp + 1) & buffer_mask], buffer[(rp + 2) & buffer_mask]));
+	read_ptr.all += read_inc.all;
+	read_ptr.part.in &= buffer_mask;
+      }
+
+      plugin_data->read_ptr.all = read_ptr.all;
+      plugin_data->write_ptr = write_ptr;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

@@ -1,0 +1,70 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm>
+    a lv2:Plugin ;
+    lv2:binary <SoulForce_dsp.so> ;
+    rdfs:seeAlso <SoulForce_dsp.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#UI>
+    a ui:X11UI ;
+    ui:binary <SoulForce_ui.so> ;
+    rdfs:seeAlso <SoulForce_ui.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Stay Down" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Looking for the World" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Guerilla Love" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Tumble to the Power" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset006>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Do Yourself a Favour" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset007>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Past is Past" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset008>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "You and Only You" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://www.niallmoody.com/ndcplugs/soulforce.htm#preset009>
+    a pset:Preset ;
+    lv2:appliesTo <http://www.niallmoody.com/ndcplugs/soulforce.htm> ;
+    rdfs:label "Soul Force" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

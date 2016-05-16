@@ -1,0 +1,173 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:amPitchshift a :Plugin ;
+   a :PitchPlugin ;
+
+   doap:name "AM pitchshifter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#amPitchshift> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Pitch shift" ;
+     :index 0 ;
+     :symbol "pitch" ;
+     :minimum 0.25 ;
+     :maximum 4.0 ;
+     :default 1.0 ;
+     :portProperty pprops:logarithmic ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Buffer size" ;
+     :index 1 ;
+     :symbol "size" ;
+     :minimum 1 ;
+     :maximum 7 ;
+     :default 4 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "latency" ;
+     :index 4 ;
+     :symbol "latency" ;
+     :portProperty :reportsLatency ;
+   ] ;
+  
+   swhext:code """
+      #include <stdlib.h>
+      #include <math.h>
+
+      #include "ladspa-util.h"
+
+      /* Beware of dependcies if you change this */
+      #define DELAY_SIZE 8192
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      delay = calloc(DELAY_SIZE, sizeof(LADSPA_Data));
+      rptr.all = 0;
+      wptr = 0;
+      last_size = -1;
+      delay_mask = 0xFF;
+      delay_ofs = 0x80;
+      last_gain = 0.5f;
+      count = 0;
+      last_inc = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->delay);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      fixp16 om;
+      float gain = last_gain, gain_inc = last_inc;
+      unsigned int i;
+
+      om.all = f_round(pitch * 65536.0f);
+
+      if (size != last_size) {
+	int size_tmp = f_round(size);
+
+	if (size_tmp > 7) {
+	  size_tmp = 5;
+	} else if (size_tmp < 1) {
+	  size_tmp = 1;
+	}
+	plugin_data->last_size = size;
+
+	/* Calculate the ringbuf parameters, the magick constants will need
+	 * to be changed if you change DELAY_SIZE */
+	delay_mask = (1 << (size_tmp + 6)) - 1;
+	delay_ofs = 1 << (size_tmp + 5);
+      }
+
+      for (pos = 0; pos < sample_count; pos++) {
+	float out = 0.0f;
+
+	if (count++ > 14) {
+	  float tmp;
+	  count = 0;
+	  tmp = 0.5f * (float)((rptr.part.in - wptr + delay_ofs/2) &
+                delay_mask) / (float)delay_ofs;
+	  tmp = sinf(M_PI * 2.0f * tmp) * 0.5f + 0.5f;
+	  gain_inc = (tmp - gain) / 15.0f;
+	}
+	gain += gain_inc;
+
+	delay[wptr] = input[pos];
+
+	/* Add contributions from the two readpointers, scaled by thier
+         * distance from the write pointer */
+	i = rptr.part.in;
+	out += cube_interp((float)rptr.part.fr * 0.0000152587f,
+                           delay[(i - 1) & delay_mask], delay[i],
+                           delay[(i + 1) & delay_mask],
+                           delay[(i + 2) & delay_mask]) * (1.0f - gain);
+	i += delay_ofs;
+	out += cube_interp((float)rptr.part.fr * 0.0000152587f,
+                           delay[(i - 1) & delay_mask], delay[i & delay_mask],
+                           delay[(i + 1) & delay_mask],
+                           delay[(i + 2) & delay_mask]) * gain;
+	
+	buffer_write(output[pos], out);
+
+	/* Increment ringbuffer pointers */
+	wptr = (wptr + 1) & delay_mask;
+	rptr.all += om.all;
+	rptr.part.in &= delay_mask;
+      }
+
+    plugin_data->rptr.all = rptr.all;
+    plugin_data->wptr = wptr;
+    plugin_data->delay_mask = delay_mask;
+    plugin_data->delay_ofs = delay_ofs;
+    plugin_data->last_gain = gain;
+    plugin_data->count = count;
+    plugin_data->last_inc = gain_inc;
+
+    *(plugin_data->latency) = delay_ofs/2;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

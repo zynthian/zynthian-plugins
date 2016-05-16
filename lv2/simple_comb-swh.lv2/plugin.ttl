@@ -1,0 +1,122 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:comb a :Plugin ;
+   a :CombPlugin ;
+
+   doap:name "Comb Filter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#comb> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Band separation (Hz)" ;
+     :index 0 ;
+     :symbol "freq" ;
+     :minimum 16 ;
+     :maximum 640 ;
+     :default 172 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Feedback" ;
+     :index 1 ;
+     :symbol "fb" ;
+     :minimum -0.99 ;
+     :maximum 0.99 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+			#include "ladspa-util.h"
+			#define COMB_SIZE 0x4000
+			#define COMB_MASK 0x3FFF
+		""" ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+			sample_rate = s_rate;
+			comb_tbl = malloc(sizeof(LADSPA_Data) * COMB_SIZE);
+			comb_pos = 0;
+			last_offset = 1000;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+			int i;
+
+			for (i = 0; i < COMB_SIZE; i++) {
+				comb_tbl[i] = 0;
+			}
+			comb_pos = 0;
+			last_offset = 1000;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+			free(plugin_data->comb_tbl);
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+			float offset;
+			int data_pos;
+			unsigned long pos;
+			float xf, xf_step, d_pos, fr, interp;
+
+			offset = sample_rate / freq;
+			offset = f_clamp(offset, 0, COMB_SIZE - 1);
+			xf_step = 1.0f / (float)sample_count;
+			xf = 0.0f;
+
+			for (pos = 0; pos < sample_count; pos++) {
+				xf += xf_step;
+				d_pos = comb_pos - LIN_INTERP(xf, last_offset, offset);
+				data_pos = f_trunc(d_pos);
+				fr = d_pos - data_pos;
+				interp =  cube_interp(fr, comb_tbl[(data_pos - 1) & COMB_MASK], comb_tbl[data_pos & COMB_MASK], comb_tbl[(data_pos + 1) & COMB_MASK], comb_tbl[(data_pos + 2) & COMB_MASK]);
+				comb_tbl[comb_pos] = input[pos] + fb * interp;
+				buffer_write(output[pos], (input[pos] + interp) * 0.5f);
+				comb_pos = (comb_pos + 1) & COMB_MASK;
+			}
+
+			plugin_data->comb_pos = comb_pos;
+			plugin_data->last_offset = offset;
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

@@ -1,0 +1,112 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:lsFilter a :Plugin ;
+   a :FilterPlugin ;
+
+   doap:name "LS Filter" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#lsFilter> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Filter type (0=LP, 1=BP, 2=HP)" ;
+     :index 0 ;
+     :symbol "type" ;
+     :minimum 0 ;
+     :maximum 2 ;
+     :default 0.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Cutoff frequency (Hz)" ;
+     :index 1 ;
+     :symbol "cutoff" ;
+     :minimum 0.002 ;
+     :maximum 0.5 ;
+     :default 0.251 ;
+     :portProperty pprops:logarithmic ;
+     :portProperty :sampleRate ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Resonance" ;
+     :index 2 ;
+     :symbol "resonance" ;
+     :minimum 0.0 ;
+     :maximum 1.0 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 3 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 4 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+      #include "util/ls_filter.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      filt = malloc(sizeof(ls_filt));
+      fs = s_rate;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      ls_filt_init(filt);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      const ls_filt_type t = (ls_filt_type)f_round(type);
+
+      ls_filt_setup(filt, t, cutoff, resonance, fs);
+
+      for (pos = 0; pos < sample_count; pos++) {
+        buffer_write(output[pos], ls_filt_run(filt, input[pos]));
+      }
+	
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->filt);
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

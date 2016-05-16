@@ -1,0 +1,342 @@
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://www.klangfreund.com/lufsmetermultichannel>
+    a lv2:Plugin ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/buf-size#boundedBlockLength> ,
+                        <http://lv2plug.in/ns/ext/urid#map> ;
+    lv2:extensionData <http://lv2plug.in/ns/ext/options#interface> ,
+                      <http://lv2plug.in/ns/ext/state#interface> ,
+                      <http://kxstudio.sf.net/ns/lv2ext/programs#Interface> ;
+
+    ui:ui <http://www.klangfreund.com/lufsmetermultichannel#ExternalUI> ,
+          <http://www.klangfreund.com/lufsmetermultichannel#ParentUI> ;
+
+    lv2:port [
+        a lv2:InputPort, atom:AtomPort ;
+        atom:bufferType atom:Sequence ;
+        atom:supports <http://lv2plug.in/ns/ext/time#Position> ;
+        lv2:index 0 ;
+        lv2:symbol "lv2_events_in" ;
+        lv2:name "Events Input" ;
+        lv2:designation lv2:control ;
+        lv2:portProperty lv2:connectionOptional ;
+    ] ;
+
+    lv2:port [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 1 ;
+        lv2:symbol "lv2_freewheel" ;
+        lv2:name "Freewheel" ;
+        lv2:default 0.0 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+        lv2:designation <http://lv2plug.in/ns/lv2core#freeWheeling> ;
+        lv2:portProperty lv2:toggled, <http://lv2plug.in/ns/ext/port-props#notOnGUI> ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:ControlPort ;
+        lv2:index 2 ;
+        lv2:symbol "lv2_latency" ;
+        lv2:name "Latency" ;
+        lv2:designation <http://lv2plug.in/ns/lv2core#latency> ;
+        lv2:portProperty lv2:reportsLatency, lv2:integer ;
+    ] ;
+
+    lv2:port [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "lv2_audio_in_1" ;
+        lv2:name "Audio Input 1" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 4 ;
+        lv2:symbol "lv2_audio_in_2" ;
+        lv2:name "Audio Input 2" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 5 ;
+        lv2:symbol "lv2_audio_in_3" ;
+        lv2:name "Audio Input 3" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 6 ;
+        lv2:symbol "lv2_audio_in_4" ;
+        lv2:name "Audio Input 4" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 7 ;
+        lv2:symbol "lv2_audio_in_5" ;
+        lv2:name "Audio Input 5" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 8 ;
+        lv2:symbol "lv2_audio_in_6" ;
+        lv2:name "Audio Input 6" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 9 ;
+        lv2:symbol "lv2_audio_in_7" ;
+        lv2:name "Audio Input 7" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 10 ;
+        lv2:symbol "lv2_audio_in_8" ;
+        lv2:name "Audio Input 8" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 11 ;
+        lv2:symbol "lv2_audio_in_9" ;
+        lv2:name "Audio Input 9" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 12 ;
+        lv2:symbol "lv2_audio_in_10" ;
+        lv2:name "Audio Input 10" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 13 ;
+        lv2:symbol "lv2_audio_in_11" ;
+        lv2:name "Audio Input 11" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 14 ;
+        lv2:symbol "lv2_audio_in_12" ;
+        lv2:name "Audio Input 12" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 15 ;
+        lv2:symbol "lv2_audio_in_13" ;
+        lv2:name "Audio Input 13" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 16 ;
+        lv2:symbol "lv2_audio_in_14" ;
+        lv2:name "Audio Input 14" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 17 ;
+        lv2:symbol "lv2_audio_in_15" ;
+        lv2:name "Audio Input 15" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 18 ;
+        lv2:symbol "lv2_audio_in_16" ;
+        lv2:name "Audio Input 16" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 19 ;
+        lv2:symbol "lv2_audio_in_17" ;
+        lv2:name "Audio Input 17" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 20 ;
+        lv2:symbol "lv2_audio_in_18" ;
+        lv2:name "Audio Input 18" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 21 ;
+        lv2:symbol "lv2_audio_in_19" ;
+        lv2:name "Audio Input 19" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 22 ;
+        lv2:symbol "lv2_audio_in_20" ;
+        lv2:name "Audio Input 20" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 23 ;
+        lv2:symbol "lv2_audio_in_21" ;
+        lv2:name "Audio Input 21" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 24 ;
+        lv2:symbol "lv2_audio_in_22" ;
+        lv2:name "Audio Input 22" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 25 ;
+        lv2:symbol "lv2_audio_in_23" ;
+        lv2:name "Audio Input 23" ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 26 ;
+        lv2:symbol "lv2_audio_in_24" ;
+        lv2:name "Audio Input 24" ;
+    ] ;
+
+    lv2:port [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 27 ;
+        lv2:symbol "lv2_audio_out_1" ;
+        lv2:name "Audio Output 1" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 28 ;
+        lv2:symbol "lv2_audio_out_2" ;
+        lv2:name "Audio Output 2" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 29 ;
+        lv2:symbol "lv2_audio_out_3" ;
+        lv2:name "Audio Output 3" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 30 ;
+        lv2:symbol "lv2_audio_out_4" ;
+        lv2:name "Audio Output 4" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 31 ;
+        lv2:symbol "lv2_audio_out_5" ;
+        lv2:name "Audio Output 5" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 32 ;
+        lv2:symbol "lv2_audio_out_6" ;
+        lv2:name "Audio Output 6" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 33 ;
+        lv2:symbol "lv2_audio_out_7" ;
+        lv2:name "Audio Output 7" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 34 ;
+        lv2:symbol "lv2_audio_out_8" ;
+        lv2:name "Audio Output 8" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 35 ;
+        lv2:symbol "lv2_audio_out_9" ;
+        lv2:name "Audio Output 9" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 36 ;
+        lv2:symbol "lv2_audio_out_10" ;
+        lv2:name "Audio Output 10" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 37 ;
+        lv2:symbol "lv2_audio_out_11" ;
+        lv2:name "Audio Output 11" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 38 ;
+        lv2:symbol "lv2_audio_out_12" ;
+        lv2:name "Audio Output 12" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 39 ;
+        lv2:symbol "lv2_audio_out_13" ;
+        lv2:name "Audio Output 13" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 40 ;
+        lv2:symbol "lv2_audio_out_14" ;
+        lv2:name "Audio Output 14" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 41 ;
+        lv2:symbol "lv2_audio_out_15" ;
+        lv2:name "Audio Output 15" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 42 ;
+        lv2:symbol "lv2_audio_out_16" ;
+        lv2:name "Audio Output 16" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 43 ;
+        lv2:symbol "lv2_audio_out_17" ;
+        lv2:name "Audio Output 17" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 44 ;
+        lv2:symbol "lv2_audio_out_18" ;
+        lv2:name "Audio Output 18" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 45 ;
+        lv2:symbol "lv2_audio_out_19" ;
+        lv2:name "Audio Output 19" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 46 ;
+        lv2:symbol "lv2_audio_out_20" ;
+        lv2:name "Audio Output 20" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 47 ;
+        lv2:symbol "lv2_audio_out_21" ;
+        lv2:name "Audio Output 21" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 48 ;
+        lv2:symbol "lv2_audio_out_22" ;
+        lv2:name "Audio Output 22" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 49 ;
+        lv2:symbol "lv2_audio_out_23" ;
+        lv2:name "Audio Output 23" ;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 50 ;
+        lv2:symbol "lv2_audio_out_24" ;
+        lv2:name "Audio Output 24" ;
+    ] ;
+
+    doap:name "LUFS Meter (Multichannel)" ;
+    doap:maintainer [ foaf:name "Klangfreund" ] .
+

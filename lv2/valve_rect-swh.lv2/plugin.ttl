@@ -1,0 +1,146 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:valveRect a :Plugin ;
+   a :DistortionPlugin ;
+   a :SimulatorPlugin ;
+
+   doap:name "Valve rectifier" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#valveRect> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Sag level" ;
+     :index 0 ;
+     :symbol "sag" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Distortion" ;
+     :index 1 ;
+     :symbol "dist_p" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+      // Number of samples in averaging buffer
+      avg_size = s_rate / 9;
+      // Reciprocal of obove
+      avg_sizer = 9.0f / (float)s_rate;
+      // Averaging buffer
+      avg = calloc(avg_size, sizeof(float));
+      // Sum of samples in averaging buffer
+      avgs = 0.0f;
+      // Position in averaging buffer
+      apos = 0;
+      // Last value in lowpass 1
+      lp1tm1 = 0.0f;
+      // Last value in lowpass 2
+      lp2tm1 = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+      memset(avg, 0, avg_size * sizeof(float));
+      avgs = 0.0f;
+      apos = 0;
+      lp1tm1 = 0.0f;
+      lp2tm1 = 0.0f;
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+      free(plugin_data->avg);
+    """ ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float q, x, fx;
+      const float dist = dist_p * 40.0f + 0.1f;
+
+      for (pos = 0; pos < sample_count; pos++) {
+        x = fabs(input[pos]);
+        if (x > lp1tm1) {
+          lp1tm1 = x;
+        } else {
+          lp1tm1 = 0.9999f * lp1tm1 + 0.0001f * x;
+        }
+
+        avgs -= avg[apos];
+        avgs += lp1tm1;
+        avg[apos++] = lp1tm1;
+        apos %= avg_size;
+
+        lp2tm1 = 0.999f * lp2tm1 + avgs*avg_sizer * 0.001f;
+	q = lp1tm1 * sag - lp2tm1 * 1.02f - 1.0f;
+	if (q > -0.01f) {
+          q = -0.01f;
+        } else if (q < -1.0f) {
+          q = -1.0f;
+        }
+
+        if (input[pos] == q) {
+          fx = 1.0f / dist + q / (1.0f - f_exp(dist * q));
+        } else {
+          fx = (input[pos] - q) /
+           (1.0f - f_exp(-dist * (input[pos] - q))) +
+           q / (1.0f - f_exp(dist * q));
+        }
+
+        buffer_write(output[pos], fx);
+      }
+
+      plugin_data->lp1tm1 = lp1tm1;
+      plugin_data->lp2tm1 = lp2tm1;
+      plugin_data->avgs = avgs;
+      plugin_data->apos = apos;
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

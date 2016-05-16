@@ -1,0 +1,84 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<urn:juce:TalDub3>
+    a lv2:Plugin ;
+    lv2:binary <TAL-Dub-3.so> ;
+    rdfs:seeAlso <TAL-Dub-3.ttl> .
+
+<urn:juce:TalDub3#ExternalUI>
+    a <http://kxstudio.sf.net/ns/lv2ext/external-ui#Widget> ;
+    ui:binary <TAL-Dub-3.so> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<urn:juce:TalDub3#ParentUI>
+    a ui:X11UI ;
+    ui:binary <TAL-Dub-3.so> ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature ui:noUserResize ;
+    lv2:extensionData <http://kxstudio.sf.net/ns/lv2ext/programs#UIInterface> .
+
+<urn:juce:TalDub3#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Gentle St Delay" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset002>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Short St Slap Back" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset003>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Infinite St Delay" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset004>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Fast Delay" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset005>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Tab it !" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset006>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Sweet Drive 1/8" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset007>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Sweet Drive 1/4." ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset008>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Thin HP Delay 1/4" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset009>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Space LP Tab Delay" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<urn:juce:TalDub3#preset010>
+    a pset:Preset ;
+    lv2:appliesTo <urn:juce:TalDub3> ;
+    rdfs:label "Lo Fi Scape" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

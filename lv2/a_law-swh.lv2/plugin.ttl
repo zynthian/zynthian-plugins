@@ -1,0 +1,65 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:alaw a :Plugin ;
+   a :DynamicsPlugin ;
+
+   doap:name "A-Law Compressor" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#alaw> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 0 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 1 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      /* float a = 87.7; */
+      float ainv = 0.011402508551881; /* 1.0 / a */
+      float aloginv = 0.182684374819744; /* 1.0 / (1.0 + log(a)) */
+      float aexp = 16.021419671691538; /* a * aloginv */
+      unsigned long pos;
+      for (pos = 0; pos < sample_count; pos++) {
+          float s = input[pos];
+          float sabs = fabs(s);
+          if (sabs < ainv) {
+              s *= aexp;
+          } else {
+              if (s >= 0)
+                   s = 1.0 + log(sabs) * aloginv;
+              else
+                   s = -1.0 - log(sabs) * aloginv;
+          }
+          buffer_write(output[pos], s);
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

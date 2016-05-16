@@ -1,0 +1,378 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:mbeq a :Plugin ;
+   a :MultiEQPlugin ;
+
+   doap:name "Multiband EQ" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#mbeq> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "50Hz gain (low shelving)" ;
+     :index 0 ;
+     :symbol "band_1" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "100Hz gain" ;
+     :index 1 ;
+     :symbol "band_2" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "156Hz gain" ;
+     :index 2 ;
+     :symbol "band_3" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "220Hz gain" ;
+     :index 3 ;
+     :symbol "band_4" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "311Hz gain" ;
+     :index 4 ;
+     :symbol "band_5" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "440Hz gain" ;
+     :index 5 ;
+     :symbol "band_6" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "622Hz gain" ;
+     :index 6 ;
+     :symbol "band_7" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "880Hz gain" ;
+     :index 7 ;
+     :symbol "band_8" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "1250Hz gain" ;
+     :index 8 ;
+     :symbol "band_9" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "1750Hz gain" ;
+     :index 9 ;
+     :symbol "band_10" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "2500Hz gain" ;
+     :index 10 ;
+     :symbol "band_11" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "3500Hz gain" ;
+     :index 11 ;
+     :symbol "band_12" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "5000Hz gain" ;
+     :index 12 ;
+     :symbol "band_13" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "10000Hz gain" ;
+     :index 13 ;
+     :symbol "band_14" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "20000Hz gain" ;
+     :index 14 ;
+     :symbol "band_15" ;
+     :minimum -70 ;
+     :maximum +30 ;
+     :default 0.0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 15 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 16 ;
+     :symbol "output" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :ControlPort ;
+     :name "latency" ;
+     :index 17 ;
+     :symbol "latency" ;
+     :portProperty :reportsLatency ;
+   ] ;
+  
+   swhext:code """
+#include <string.h>
+#include <fftw3.h>
+
+typedef fftwf_plan fft_plan;
+typedef float fftw_real;
+
+#include "ladspa-util.h"
+
+#define FFT_LENGTH 1024
+#define OVER_SAMP  4
+#define BANDS      15
+
+
+float bands[BANDS] =
+  { 50.00f, 100.00f, 155.56f, 220.00f, 311.13f,
+    440.00f, 622.25f, 880.00f, 1244.51f, 1760.00f, 2489.02f,
+    3519.95, 4978.04f, 9956.08f, 19912.16f };
+		""" ;
+
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+int i, bin;
+float last_bin, next_bin;
+float db;
+float hz_per_bin = (float)s_rate / (float)FFT_LENGTH;
+
+in_fifo = calloc(FFT_LENGTH, sizeof(LADSPA_Data));
+out_fifo = calloc(FFT_LENGTH, sizeof(LADSPA_Data));
+out_accum = calloc(FFT_LENGTH * 2, sizeof(LADSPA_Data));
+real = calloc(FFT_LENGTH, sizeof(fftw_real));
+comp = calloc(FFT_LENGTH, sizeof(fftw_real));
+window = calloc(FFT_LENGTH, sizeof(float));
+bin_base = calloc(FFT_LENGTH/2, sizeof(int));
+bin_delta = calloc(FFT_LENGTH/2, sizeof(float));
+fifo_pos = 0;
+
+plan_rc = fftwf_plan_r2r_1d(FFT_LENGTH, real, comp, FFTW_R2HC, FFTW_MEASURE);
+plan_cr = fftwf_plan_r2r_1d(FFT_LENGTH, comp, real, FFTW_HC2R, FFTW_MEASURE);
+
+// Create raised cosine window table
+for (i=0; i < FFT_LENGTH; i++) {
+	window[i] = -0.5f*cos(2.0f*M_PI*(double)i/(double)FFT_LENGTH)+0.5f;
+	window[i] *= 2.0f;
+}
+
+// Create db->coeffiecnt lookup table
+db_table = malloc(1000 * sizeof(float));
+for (i=0; i < 1000; i++) {
+	db = ((float)i/10) - 70;
+	db_table[i] = pow(10.0f, db/20.0f);
+}
+
+// Create FFT bin -> band + delta tables
+bin = 0;
+while (bin <= bands[0]/hz_per_bin) {
+	bin_base[bin] = 0;
+	bin_delta[bin++] = 0.0f;
+}
+for (i = 1; i < BANDS-1 && bin < (FFT_LENGTH/2)-1 && bands[i+1] < s_rate/2; i++) {
+	last_bin = bin;
+	next_bin = (bands[i+1])/hz_per_bin;
+	while (bin <= next_bin) {
+		bin_base[bin] = i;
+		bin_delta[bin] = (float)(bin - last_bin) / (float)(next_bin - last_bin);
+		bin++;
+	}
+}
+for (; bin < (FFT_LENGTH/2); bin++) {
+	bin_base[bin] = BANDS-1;
+	bin_delta[bin] = 0.0f;
+}
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "activate" ;
+     swhext:code """
+fifo_pos = 0;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "cleanup" ;
+     swhext:code """
+fftwf_destroy_plan(plugin_data->plan_rc);
+fftwf_destroy_plan(plugin_data->plan_cr);
+free(plugin_data->in_fifo);
+free(plugin_data->out_fifo);
+free(plugin_data->out_accum);
+free(plugin_data->real);
+free(plugin_data->comp);
+free(plugin_data->window);
+free(plugin_data->bin_base);
+free(plugin_data->bin_delta);
+free(plugin_data->db_table);
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+int i, bin, gain_idx;
+float gains[BANDS + 1] =
+  { band_1, band_2, band_3, band_4, band_5, band_6, band_7, band_8, band_9,
+    band_10, band_11, band_12, band_13, band_14, band_15, 0.0f };
+float coefs[FFT_LENGTH / 2];
+unsigned long pos;
+
+int step_size = FFT_LENGTH / OVER_SAMP;
+int fft_latency = FFT_LENGTH - step_size;
+
+// Convert gains from dB to co-efficents
+for (i = 0; i < BANDS; i++) {
+	gain_idx = (int)((gains[i] * 10) + 700);
+	gains[i] = db_table[LIMIT(gain_idx, 0, 999)];
+}
+
+// Calculate coefficients for each bin of FFT
+coefs[0] = 0.0f;
+coefs[FFT_LENGTH/2-1] = 0.0f;
+for (bin=1; bin < (FFT_LENGTH/2-1); bin++) {
+	coefs[bin] = ((1.0f-bin_delta[bin]) * gains[bin_base[bin]])
+		      + (bin_delta[bin] * gains[bin_base[bin]+1]);
+}
+
+if (fifo_pos == 0) {
+	fifo_pos = fft_latency;
+}
+
+for (pos = 0; pos < sample_count; pos++) {
+	in_fifo[fifo_pos] = input[pos];
+	buffer_write(output[pos], out_fifo[fifo_pos-fft_latency]);
+	fifo_pos++;
+
+	// If the FIFO is full
+	if (fifo_pos >= FFT_LENGTH) {
+		fifo_pos = fft_latency;
+
+		// Window input FIFO
+		for (i=0; i < FFT_LENGTH; i++) {
+			real[i] = in_fifo[i] * window[i];
+		}
+
+		// Run the real->complex transform
+		fftwf_execute(plan_rc);
+
+		// Multiply the bins magnitudes by the coeficients
+		comp[0] *= coefs[0];
+		for (i = 1; i < FFT_LENGTH/2; i++) {
+			comp[i] *= coefs[i];
+			comp[FFT_LENGTH-i] *= coefs[i];
+		}
+
+		// Run the complex->real transform
+                fftwf_execute(plan_cr);
+
+		// Window into the output accumulator
+		for (i = 0; i < FFT_LENGTH; i++) {
+			out_accum[i] += 0.9186162f * window[i] * real[i]/(FFT_LENGTH * OVER_SAMP);
+		}
+		for (i = 0; i < step_size; i++) {
+			out_fifo[i] = out_accum[i];
+		}
+
+		// Shift output accumulator
+		memmove(out_accum, out_accum + step_size, FFT_LENGTH*sizeof(LADSPA_Data));
+
+		// Shift input fifo
+		for (i = 0; i < fft_latency; i++) {
+			in_fifo[i] = in_fifo[i+step_size];
+		}
+	}
+}
+
+// Store the fifo_position
+plugin_data->fifo_pos = fifo_pos;
+
+*(plugin_data->latency) = fft_latency;
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

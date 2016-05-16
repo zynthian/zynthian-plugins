@@ -1,0 +1,84 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:crossoverDist a :Plugin ;
+   a :DistortionPlugin ;
+
+   doap:name "Crossover distortion" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#crossoverDist> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Crossover amplitude" ;
+     :index 0 ;
+     :symbol "amp" ;
+     :minimum 0 ;
+     :maximum 0.1 ;
+     :default 0 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Smoothing" ;
+     :index 1 ;
+     :symbol "smooth" ;
+     :minimum 0 ;
+     :maximum 1 ;
+     :default 1 ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 2 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 3 ;
+     :symbol "output" ;
+   ] ;
+  
+   swhext:code """
+      #include "ladspa-util.h"
+    """ ;
+
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+      unsigned long pos;
+      float sig;
+      const float fade = fabs(amp * smooth) + 0.0001;
+
+      for (pos = 0; pos < sample_count; pos++) {
+	sig = fabs(input[pos]) - amp;
+
+        if (sig < 0.0f) {
+          sig *= (1.0f + sig/fade) * smooth;
+        }
+
+	if (input[pos] < 0.0f) {
+	  buffer_write(output[pos], -sig);
+        } else {
+	  buffer_write(output[pos], sig);
+        }
+      }
+    """ ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .

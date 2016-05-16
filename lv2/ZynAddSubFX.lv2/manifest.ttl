@@ -1,0 +1,22 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://zynaddsubfx.sourceforge.net>
+    a lv2:Plugin ;
+    lv2:binary <ZynAddSubFX.so> ;
+    rdfs:seeAlso <ZynAddSubFX.ttl> .
+
+<http://zynaddsubfx.sourceforge.net#UI>
+    a ui:X11UI ;
+    ui:binary <ZynAddSubFX_ui.so> ;
+    rdfs:seeAlso <ZynAddSubFX_ui.ttl> .
+
+<http://zynaddsubfx.sourceforge.net#preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net> ;
+    rdfs:label "Default" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

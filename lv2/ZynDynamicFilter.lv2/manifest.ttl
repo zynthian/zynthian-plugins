@@ -1,0 +1,40 @@
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+
+<http://zynaddsubfx.sourceforge.net/fx#DynamicFilter>
+    a lv2:Plugin ;
+    lv2:binary <ZynDynamicFilter.so> ;
+    rdfs:seeAlso <ZynDynamicFilter.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#DynamicFilter:preset001>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#DynamicFilter> ;
+    rdfs:label "Wah Wah" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#DynamicFilter:preset002>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#DynamicFilter> ;
+    rdfs:label "Auto Wah" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#DynamicFilter:preset003>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#DynamicFilter> ;
+    rdfs:label "Sweep" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#DynamicFilter:preset004>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#DynamicFilter> ;
+    rdfs:label "Vocal Morph 1" ;
+    rdfs:seeAlso <presets.ttl> .
+
+<http://zynaddsubfx.sourceforge.net/fx#DynamicFilter:preset005>
+    a pset:Preset ;
+    lv2:appliesTo <http://zynaddsubfx.sourceforge.net/fx#DynamicFilter> ;
+    rdfs:label "Vocal Morph 2" ;
+    rdfs:seeAlso <presets.ttl> .
+
+

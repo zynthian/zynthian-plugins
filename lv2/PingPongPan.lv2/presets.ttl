@@ -1,0 +1,14 @@
+@prefix lv2:   <http://lv2plug.in/ns/lv2core#> .
+@prefix pset:  <http://lv2plug.in/ns/ext/presets#> .
+
+<http://distrho.sf.net/plugins/PingPongPan#preset001>
+    lv2:port [
+        lv2:symbol "freq" ;
+        pset:value 50.000000 ;
+    ] ,
+    [
+        lv2:symbol "width" ;
+        pset:value 75.000000 ;
+    ] .
+
+

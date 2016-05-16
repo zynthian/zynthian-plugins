@@ -1,0 +1,104 @@
+@prefix : <http://lv2plug.in/ns/lv2core#> .
+@prefix swh: <http://plugin.org.uk/swh-plugins/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix swhext: <http://plugin.org.uk/extensions#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pprops: <http://lv2plug.in/ns/ext/port-props#> .
+
+swh:divider a :Plugin ;
+   a :GeneratorPlugin ;
+
+   doap:name "Audio Divider (Suboctave Generator)" ;
+   doap:maintainer [
+      foaf:name "Steve Harris";
+      foaf:homepage <http://plugin.org.uk/> ;
+      foaf:mbox <mailto:steve@plugin.org.uk> ;
+   ] ;
+   doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+   :documentation <http://plugin.org.uk/ladspa-swh/docs/ladspa-swh.html#divider> ;
+
+   :pluginProperty :hardRtCapable ;
+    
+   :port [
+     a :InputPort, :ControlPort ;
+     :name "Denominator" ;
+     :index 0 ;
+     :symbol "denominator" ;
+     :minimum 1 ;
+     :maximum 8 ;
+     :default 1.0 ;
+     :portProperty :integer ;
+   ] ;
+  
+   :port [
+     a :InputPort, :AudioPort ;
+     :name "Input" ;
+     :index 1 ;
+     :symbol "input" ;
+   ] ;
+  
+   :port [
+     a :OutputPort, :AudioPort ;
+     :name "Output" ;
+     :index 2 ;
+     :symbol "output" ;
+     :minimum -1 ;
+     :maximum +1 ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "instantiate" ;
+     swhext:code """
+out = 1.0f;
+amp = 0.0f;
+count = 0.0f;
+lamp = 0.0f;
+last = 0.0f;
+zeroxs = 0;
+		""" ;
+   ] ;
+  
+   swhext:callback [
+     swhext:event "run" ;
+     swhext:code """
+/* Integer version of denominator */
+int den = (int)denominator;
+
+unsigned long pos;
+
+for (pos = 0; pos < sample_count; pos++) {
+	count += 1.0f;
+	if ((input[pos] > 0.0f && last <= 0.0f) ||
+	 (input[pos] < 0.0f && last >= 0.0)) {
+		zeroxs++;
+		if (den == 1) {
+			out = out > 0.0f ? -1.0f : 1.0f;
+			lamp = amp / count;
+			zeroxs = 0;
+			count = 0;
+			amp = 0;
+		}
+	}
+	amp += fabs(input[pos]);
+	if (den > 1 && (zeroxs % den) == den-1) {
+		out = out > 0.0f ? -1.0f : 1.0f;
+		lamp = amp / count;
+		zeroxs = 0;
+		count = 0;
+		amp = 0;
+	}
+	last = input[pos];
+	output[pos] = out * lamp;
+}
+
+plugin_data->last = last;
+plugin_data->amp = amp;
+plugin_data->lamp = lamp;
+plugin_data->zeroxs = zeroxs;
+plugin_data->count = count;
+plugin_data->out = out;
+		""" ;
+   ] ;
+  
+   swhext:createdBy <http://plugin.org.uk/swh-plugins/toTurtle.xsl> .
