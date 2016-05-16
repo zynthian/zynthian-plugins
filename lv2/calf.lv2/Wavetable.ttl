@@ -1,0 +1,488 @@
+@prefix : <http://calf.sourceforge.net/plugins/Wavetable#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix lv2ctx: <http://lv2plug.in/ns/dev/contexts#> .
+@prefix strport: <http://lv2plug.in/ns/dev/string-port#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ue: <http://lv2plug.in/ns/extensions/units#> .
+@prefix epp: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui>
+    a uiext:GtkUI ;
+    lv2:extensionData uiext:showInterface ;
+    lv2:requiredFeature uiext:makeResident ;
+    uiext:binary <calflv2gui.so> .
+
+:out a pg:StereoGroup , pg:OutputGroup ;
+    lv2:symbol "out" ;
+    rdfs:label "Output" .
+
+<http://calf.sourceforge.net/plugins/Wavetable> a lv2:Plugin ;
+    a lv2:InstrumentPlugin ;
+    doap:name "Calf Wavetable" ;
+    doap:maintainer [ foaf:name "Krzysztof Foltman" ; ] ;
+    uiext:ui <http://calf.sourceforge.net/plugins/gui/gtk2-gui> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/data-access> ;
+    doap:license <http://usefulinc.com/doap/licenses/lgpl> ;
+    dct:replaces <urn:ladspa:34561> ;
+    lv2:optionalFeature epp:supportsStrictBounds ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/uri-map> ;
+    lv2:extensionData <http://lv2plug.in/ns/ext/state#interface> ;
+    pg:mainOutput :out ;
+    lv2:port [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "out_l" ;
+        lv2:name "Out L" ;
+        lv2:designation pg:left ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "out_r" ;
+        lv2:name "Out R" ;
+        lv2:designation pg:right ;
+        pg:group :out ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 2 ;
+        lv2:symbol "o1wave" ;
+        lv2:name "Osc1 Wave" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Shiny1"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Shiny2"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Rezo"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Metal"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Bell"; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Blah"; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Pluck"; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Stretch"; rdf:value 7 ] ;
+        lv2:scalePoint [ rdfs:label "Stretch 2"; rdf:value 8 ] ;
+        lv2:scalePoint [ rdfs:label "Hard Sync"; rdf:value 9 ] ;
+        lv2:scalePoint [ rdfs:label "Hard Sync 2"; rdf:value 10 ] ;
+        lv2:scalePoint [ rdfs:label "Soft Sync"; rdf:value 11 ] ;
+        lv2:scalePoint [ rdfs:label "Bell 2"; rdf:value 12 ] ;
+        lv2:scalePoint [ rdfs:label "Bell 3"; rdf:value 13 ] ;
+        lv2:scalePoint [ rdfs:label "Tine"; rdf:value 14 ] ;
+        lv2:scalePoint [ rdfs:label "Tine 2"; rdf:value 15 ] ;
+        lv2:scalePoint [ rdfs:label "Clav"; rdf:value 16 ] ;
+        lv2:scalePoint [ rdfs:label "Clav 2"; rdf:value 17 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr"; rdf:value 18 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 2"; rdf:value 19 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 3"; rdf:value 20 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 4"; rdf:value 21 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 5"; rdf:value 22 ] ;
+        lv2:scalePoint [ rdfs:label "Reed"; rdf:value 23 ] ;
+        lv2:scalePoint [ rdfs:label "Reed 2"; rdf:value 24 ] ;
+        lv2:scalePoint [ rdfs:label "Silver"; rdf:value 25 ] ;
+        lv2:scalePoint [ rdfs:label "Brass"; rdf:value 26 ] ;
+        lv2:scalePoint [ rdfs:label "Multi"; rdf:value 27 ] ;
+        lv2:scalePoint [ rdfs:label "Multi 2"; rdf:value 28 ] ;
+        lv2:default 28.0000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 28.0000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 3 ;
+        lv2:symbol "o1offset" ;
+        lv2:name "Osc1 Ctl" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.200000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 4 ;
+        lv2:symbol "o1trans" ;
+        lv2:name "Osc1 Transpose" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 0.00000 ;
+        lv2:minimum -48.0000 ;
+        lv2:maximum 48.0000 ;
+        ue:unit ue:semitone12TET ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 5 ;
+        lv2:symbol "o1detune" ;
+        lv2:name "Osc1 Detune" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 6.00000 ;
+        lv2:minimum -100.000 ;
+        lv2:maximum 100.000 ;
+        ue:unit ue:cent ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:symbol "o1level" ;
+        lv2:name "Osc1 Level" ;
+        lv2:default 0.100000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 7 ;
+        lv2:symbol "o2wave" ;
+        lv2:name "Osc2 Wave" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Shiny1"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Shiny2"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Rezo"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Metal"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Bell"; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Blah"; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Pluck"; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Stretch"; rdf:value 7 ] ;
+        lv2:scalePoint [ rdfs:label "Stretch 2"; rdf:value 8 ] ;
+        lv2:scalePoint [ rdfs:label "Hard Sync"; rdf:value 9 ] ;
+        lv2:scalePoint [ rdfs:label "Hard Sync 2"; rdf:value 10 ] ;
+        lv2:scalePoint [ rdfs:label "Soft Sync"; rdf:value 11 ] ;
+        lv2:scalePoint [ rdfs:label "Bell 2"; rdf:value 12 ] ;
+        lv2:scalePoint [ rdfs:label "Bell 3"; rdf:value 13 ] ;
+        lv2:scalePoint [ rdfs:label "Tine"; rdf:value 14 ] ;
+        lv2:scalePoint [ rdfs:label "Tine 2"; rdf:value 15 ] ;
+        lv2:scalePoint [ rdfs:label "Clav"; rdf:value 16 ] ;
+        lv2:scalePoint [ rdfs:label "Clav 2"; rdf:value 17 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr"; rdf:value 18 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 2"; rdf:value 19 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 3"; rdf:value 20 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 4"; rdf:value 21 ] ;
+        lv2:scalePoint [ rdfs:label "Gtr 5"; rdf:value 22 ] ;
+        lv2:scalePoint [ rdfs:label "Reed"; rdf:value 23 ] ;
+        lv2:scalePoint [ rdfs:label "Reed 2"; rdf:value 24 ] ;
+        lv2:scalePoint [ rdfs:label "Silver"; rdf:value 25 ] ;
+        lv2:scalePoint [ rdfs:label "Brass"; rdf:value 26 ] ;
+        lv2:scalePoint [ rdfs:label "Multi"; rdf:value 27 ] ;
+        lv2:scalePoint [ rdfs:label "Multi 2"; rdf:value 28 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 28.0000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 8 ;
+        lv2:symbol "o2offset" ;
+        lv2:name "Osc2 Ctl" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.400000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 9 ;
+        lv2:symbol "o2trans" ;
+        lv2:name "Osc2 Transpose" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 0.00000 ;
+        lv2:minimum -48.0000 ;
+        lv2:maximum 48.0000 ;
+        ue:unit ue:semitone12TET ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 10 ;
+        lv2:symbol "o2detune" ;
+        lv2:name "Osc2 Detune" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default -6.00000 ;
+        lv2:minimum -100.000 ;
+        lv2:maximum 100.000 ;
+        ue:unit ue:cent ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 11 ;
+        lv2:symbol "o2level" ;
+        lv2:name "Osc2 Level" ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 12 ;
+        lv2:symbol "adsr_a" ;
+        lv2:name "EG1 Attack" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.00000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 13 ;
+        lv2:symbol "adsr_d" ;
+        lv2:name "EG1 Decay" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 350.000 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 14 ;
+        lv2:symbol "adsr_s" ;
+        lv2:name "EG1 Sustain" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.500000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 15 ;
+        lv2:symbol "adsr_f" ;
+        lv2:name "EG1 Fade" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -10000.0 ;
+        lv2:maximum 10000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 16 ;
+        lv2:symbol "adsr_r" ;
+        lv2:name "EG1 Release" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 50.0000 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 17 ;
+        lv2:symbol "adsr_v" ;
+        lv2:name "EG1 VelMod" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 18 ;
+        lv2:symbol "adsr2_a" ;
+        lv2:name "EG2 Attack" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.00000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 19 ;
+        lv2:symbol "adsr2_d" ;
+        lv2:name "EG2 Decay" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 350.000 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 20 ;
+        lv2:symbol "adsr2_s" ;
+        lv2:name "EG2 Sustain" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.500000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 21 ;
+        lv2:symbol "adsr2_f" ;
+        lv2:name "EG2 Fade" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -10000.0 ;
+        lv2:maximum 10000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 22 ;
+        lv2:symbol "adsr2_r" ;
+        lv2:name "EG2 Release" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 50.0000 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 23 ;
+        lv2:symbol "adsr2_v" ;
+        lv2:name "EG2 VelMod" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 24 ;
+        lv2:symbol "adsr3_a" ;
+        lv2:name "EG3 Attack" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.00000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 25 ;
+        lv2:symbol "adsr3_d" ;
+        lv2:name "EG3 Decay" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 350.000 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 26 ;
+        lv2:symbol "adsr3_s" ;
+        lv2:name "EG3 Sustain" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.500000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 27 ;
+        lv2:symbol "adsr3_f" ;
+        lv2:name "EG3 Fade" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -10000.0 ;
+        lv2:maximum 10000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 28 ;
+        lv2:symbol "adsr3_r" ;
+        lv2:name "EG3 Release" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 50.0000 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 29 ;
+        lv2:symbol "adsr3_v" ;
+        lv2:name "EG3 VelMod" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 30 ;
+        lv2:symbol "pbend_range" ;
+        lv2:name "PBend Range" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 200.000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 2400.00 ;
+        ue:unit ue:cent ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 31 ;
+        lv2:symbol "eg1amp" ;
+        lv2:name "EG1->Amp" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 32 ;
+        lv2:symbol "lfo1_rate" ;
+        lv2:name "LFO1 Rate" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 5.00000 ;
+        lv2:minimum 0.0100000 ;
+        lv2:maximum 20.0000 ;
+        ue:unit ue:hz ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 33 ;
+        lv2:symbol "lfo2_rate" ;
+        lv2:name "LFO2 Rate" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 0.250000 ;
+        lv2:minimum 0.0100000 ;
+        lv2:maximum 20.0000 ;
+        ue:unit ue:hz ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2ev:EventPort ;
+        lv2:index 34 ;
+        lv2:symbol "event_in" ;
+        lv2:name "Event" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2ev:supportsEvent lv2midi:MidiEvent ;
+    ]
+.
+
+

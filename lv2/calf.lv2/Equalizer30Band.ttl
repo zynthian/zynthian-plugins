@@ -1,0 +1,3159 @@
+@prefix : <http://calf.sourceforge.net/plugins/Equalizer30Band#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix lv2ctx: <http://lv2plug.in/ns/dev/contexts#> .
+@prefix strport: <http://lv2plug.in/ns/dev/string-port#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ue: <http://lv2plug.in/ns/extensions/units#> .
+@prefix epp: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui>
+    a uiext:GtkUI ;
+    lv2:extensionData uiext:showInterface ;
+    lv2:requiredFeature uiext:makeResident ;
+    uiext:binary <calflv2gui.so> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 1
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 2
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 3
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 4
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 10
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 11
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 12
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 13
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 14
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 15
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 16
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 17
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 18
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 19
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 20
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 21
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 22
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 23
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 24
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 25
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 26
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 27
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 28
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 29
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 30
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 31
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 32
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 33
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 34
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 35
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 36
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 37
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 38
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 39
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 40
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 41
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 42
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 43
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 44
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 45
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 46
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 47
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 48
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 49
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 50
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 51
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 52
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 53
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 54
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 55
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 56
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 57
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 58
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 59
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 60
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 61
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 62
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 63
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 64
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 65
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 66
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 67
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 68
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 69
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 70
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 71
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 72
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 73
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 74
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 75
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 76
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 77
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 78
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 79
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 80
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 81
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 82
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 83
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 84
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 85
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 86
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 87
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 88
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 89
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 90
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 91
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 92
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 93
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 94
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 95
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 96
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 97
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 98
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 99
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 100
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 101
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 102
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 103
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 104
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 105
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 106
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 107
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 108
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 109
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 110
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 111
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 112
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 113
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 114
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 115
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 116
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 117
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 118
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 119
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 120
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 121
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 122
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 123
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 124
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 125
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 126
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 127
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 128
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 129
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 130
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 131
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 132
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 133
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 134
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 135
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 136
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 137
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 138
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 139
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 140
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 141
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 142
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 143
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 144
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 145
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 146
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 147
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 148
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 149
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 150
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 151
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 152
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 153
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 154
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 155
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 156
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 157
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 158
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 159
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 160
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 161
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 162
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 163
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 164
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 165
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 166
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 167
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 168
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 169
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 170
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 171
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 172
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 173
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 174
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 175
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 176
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 177
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 178
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 179
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 180
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 181
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 182
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 183
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 184
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 185
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 186
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 187
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 188
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 189
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 190
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 191
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 192
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 193
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 194
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 195
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 196
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Equalizer30Band> ;
+    uiext:portIndex 197
+] .
+
+:in a pg:StereoGroup , pg:InputGroup ;
+    lv2:symbol "in" ;
+    rdfs:label "Input" .
+
+:out a pg:StereoGroup , pg:OutputGroup ;
+    lv2:symbol "out" ;
+    rdfs:label "Output" .
+
+<http://calf.sourceforge.net/plugins/Equalizer30Band> a lv2:Plugin ;
+    a lv2:EQPlugin ;
+    doap:name "Calf Equalizer 30 Band" ;
+    doap:maintainer [ foaf:name "drgreenthumb" ; ] ;
+    uiext:ui <http://calf.sourceforge.net/plugins/gui/gtk2-gui> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/data-access> ;
+    doap:license <http://usefulinc.com/doap/licenses/lgpl> ;
+    dct:replaces <urn:ladspa:34068> ;
+    lv2:optionalFeature epp:supportsStrictBounds ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    pg:mainInput :in ;
+    pg:mainOutput :out ;
+    lv2:port [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "in_l" ;
+        lv2:name "In L" ;
+        lv2:designation pg:left ;
+        pg:group :in ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "in_r" ;
+        lv2:name "In R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :in ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 2 ;
+        lv2:symbol "out_l" ;
+        lv2:name "Out L" ;
+        lv2:designation pg:left ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "out_r" ;
+        lv2:name "Out R" ;
+        lv2:designation pg:right ;
+        pg:group :out ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 4 ;
+        lv2:symbol "level_in" ;
+        lv2:name "In Level" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 5 ;
+        lv2:symbol "level_in_vuL" ;
+        lv2:name "Level In L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:symbol "level_in_vuR" ;
+        lv2:name "Level In R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 7 ;
+        lv2:symbol "level_in_clipL" ;
+        lv2:name "Level Clip In L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 8 ;
+        lv2:symbol "level_in_clipR" ;
+        lv2:name "Level Clip In R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 9 ;
+        lv2:symbol "bypass" ;
+        lv2:name "Bypass" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 10 ;
+        lv2:symbol "filters" ;
+        lv2:name "Filters Type" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Butterworth"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Chebyshev 1"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Chebyshev 2"; rdf:value 2 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 2.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 11 ;
+        lv2:symbol "gainscale1" ;
+        lv2:name "Gain scale 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 18.0000 ;
+        lv2:minimum 6.00000 ;
+        lv2:maximum 30.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 12 ;
+        lv2:symbol "gainscale2" ;
+        lv2:name "Gain scale 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 18.0000 ;
+        lv2:minimum 6.00000 ;
+        lv2:maximum 30.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 13 ;
+        lv2:symbol "level_out" ;
+        lv2:name "Out Level" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 14 ;
+        lv2:symbol "level_out_vuL" ;
+        lv2:name "Level Out L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 15 ;
+        lv2:symbol "level_out_vuR" ;
+        lv2:name "Level Out R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 16 ;
+        lv2:symbol "level_out_clipL" ;
+        lv2:name "Level Clip Out L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 17 ;
+        lv2:symbol "level_out_clipR" ;
+        lv2:name "Level Clip Out R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 18 ;
+        lv2:symbol "gain10" ;
+        lv2:name "Gain 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 19 ;
+        lv2:symbol "gain_scale10" ;
+        lv2:name "Gain Scale 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 20 ;
+        lv2:symbol "gain11" ;
+        lv2:name "Gain 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 21 ;
+        lv2:symbol "freq11" ;
+        lv2:name "Freq 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 22 ;
+        lv2:symbol "gain_scale11" ;
+        lv2:name "Gain Scale 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 23 ;
+        lv2:symbol "gain12" ;
+        lv2:name "Gain 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 24 ;
+        lv2:symbol "freq12" ;
+        lv2:name "Freq 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 25 ;
+        lv2:symbol "gain_scale12" ;
+        lv2:name "Gain Scale 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 26 ;
+        lv2:symbol "gain13" ;
+        lv2:name "Gain 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 27 ;
+        lv2:symbol "freq13" ;
+        lv2:name "Freq 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 28 ;
+        lv2:symbol "gain_scale13" ;
+        lv2:name "Gain Scale 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 29 ;
+        lv2:symbol "gain14" ;
+        lv2:name "Gain 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 30 ;
+        lv2:symbol "freq14" ;
+        lv2:name "Freq 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 31 ;
+        lv2:symbol "gain_scale14" ;
+        lv2:name "Gain Scale 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 32 ;
+        lv2:symbol "gain15" ;
+        lv2:name "Gain 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 33 ;
+        lv2:symbol "freq15" ;
+        lv2:name "Freq 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 34 ;
+        lv2:symbol "gain_scale15" ;
+        lv2:name "Gain Scale 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 35 ;
+        lv2:symbol "gain16" ;
+        lv2:name "Gain 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 36 ;
+        lv2:symbol "freq16" ;
+        lv2:name "Freq 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 37 ;
+        lv2:symbol "gain_scale16" ;
+        lv2:name "Gain Scale 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 38 ;
+        lv2:symbol "gain17" ;
+        lv2:name "Gain 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 39 ;
+        lv2:symbol "freq17" ;
+        lv2:name "Freq 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 40 ;
+        lv2:symbol "gain_scale17" ;
+        lv2:name "Gain Scale 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 41 ;
+        lv2:symbol "gain18" ;
+        lv2:name "Gain 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 42 ;
+        lv2:symbol "freq18" ;
+        lv2:name "Freq 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 43 ;
+        lv2:symbol "gain_scale18" ;
+        lv2:name "Gain Scale 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 44 ;
+        lv2:symbol "gain19" ;
+        lv2:name "Gain 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 45 ;
+        lv2:symbol "freq19" ;
+        lv2:name "Freq 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 46 ;
+        lv2:symbol "gain_scale19" ;
+        lv2:name "Gain Scale 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 47 ;
+        lv2:symbol "gain110" ;
+        lv2:name "Gain 110" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 48 ;
+        lv2:symbol "freq110" ;
+        lv2:name "Freq 110" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 49 ;
+        lv2:symbol "gain_scale110" ;
+        lv2:name "Gain Scale 110" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 50 ;
+        lv2:symbol "gain111" ;
+        lv2:name "Gain 111" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 51 ;
+        lv2:symbol "freq111" ;
+        lv2:name "Freq 111" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 52 ;
+        lv2:symbol "gain_scale111" ;
+        lv2:name "Gain Scale 111" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 53 ;
+        lv2:symbol "gain112" ;
+        lv2:name "Gain 112" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 54 ;
+        lv2:symbol "freq112" ;
+        lv2:name "Freq 112" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 55 ;
+        lv2:symbol "gain_scale112" ;
+        lv2:name "Gain Scale 112" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 56 ;
+        lv2:symbol "gain113" ;
+        lv2:name "Gain 113" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 57 ;
+        lv2:symbol "freq113" ;
+        lv2:name "Freq 113" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 58 ;
+        lv2:symbol "gain_scale113" ;
+        lv2:name "Gain Scale 113" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 59 ;
+        lv2:symbol "gain114" ;
+        lv2:name "Gain 114" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 60 ;
+        lv2:symbol "freq114" ;
+        lv2:name "Freq 114" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 61 ;
+        lv2:symbol "gain_scale114" ;
+        lv2:name "Gain Scale 114" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 62 ;
+        lv2:symbol "gain115" ;
+        lv2:name "Gain 115" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 63 ;
+        lv2:symbol "freq115" ;
+        lv2:name "Freq 115" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 64 ;
+        lv2:symbol "gain_scale115" ;
+        lv2:name "Gain Scale 115" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 65 ;
+        lv2:symbol "gain116" ;
+        lv2:name "Gain 116" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 66 ;
+        lv2:symbol "freq116" ;
+        lv2:name "Freq 116" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 67 ;
+        lv2:symbol "gain_scale116" ;
+        lv2:name "Gain Scale 116" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 68 ;
+        lv2:symbol "gain117" ;
+        lv2:name "Gain 117" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 69 ;
+        lv2:symbol "freq117" ;
+        lv2:name "Freq 117" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 70 ;
+        lv2:symbol "gain_scale117" ;
+        lv2:name "Gain Scale 117" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 71 ;
+        lv2:symbol "gain118" ;
+        lv2:name "Gain 118" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 72 ;
+        lv2:symbol "freq118" ;
+        lv2:name "Freq 118" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 73 ;
+        lv2:symbol "gain_scale118" ;
+        lv2:name "Gain Scale 118" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 74 ;
+        lv2:symbol "gain119" ;
+        lv2:name "Gain 119" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 75 ;
+        lv2:symbol "freq119" ;
+        lv2:name "Freq 119" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 76 ;
+        lv2:symbol "gain_scale119" ;
+        lv2:name "Gain Scale 119" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 77 ;
+        lv2:symbol "gain120" ;
+        lv2:name "Gain 120" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 78 ;
+        lv2:symbol "freq120" ;
+        lv2:name "Freq 120" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 79 ;
+        lv2:symbol "gain_scale120" ;
+        lv2:name "Gain Scale 120" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 80 ;
+        lv2:symbol "gain121" ;
+        lv2:name "Gain 121" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 81 ;
+        lv2:symbol "freq121" ;
+        lv2:name "Freq 121" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 82 ;
+        lv2:symbol "gain_scale121" ;
+        lv2:name "Gain Scale 121" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 83 ;
+        lv2:symbol "gain122" ;
+        lv2:name "Gain 122" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 84 ;
+        lv2:symbol "freq122" ;
+        lv2:name "Freq 122" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 85 ;
+        lv2:symbol "gain_scale122" ;
+        lv2:name "Gain Scale 122" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 86 ;
+        lv2:symbol "gain123" ;
+        lv2:name "Gain 123" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 87 ;
+        lv2:symbol "freq123" ;
+        lv2:name "Freq 123" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 88 ;
+        lv2:symbol "gain_scale123" ;
+        lv2:name "Gain Scale 123" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 89 ;
+        lv2:symbol "gain124" ;
+        lv2:name "Gain 124" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 90 ;
+        lv2:symbol "freq124" ;
+        lv2:name "Freq 124" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 91 ;
+        lv2:symbol "gain_scale124" ;
+        lv2:name "Gain Scale 124" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 92 ;
+        lv2:symbol "gain125" ;
+        lv2:name "Gain 125" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 93 ;
+        lv2:symbol "freq125" ;
+        lv2:name "Freq 125" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 94 ;
+        lv2:symbol "gain_scale125" ;
+        lv2:name "Gain Scale 125" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 95 ;
+        lv2:symbol "gain126" ;
+        lv2:name "Gain 126" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 96 ;
+        lv2:symbol "freq126" ;
+        lv2:name "Freq 126" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 97 ;
+        lv2:symbol "gain_scale126" ;
+        lv2:name "Gain Scale 126" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 98 ;
+        lv2:symbol "gain127" ;
+        lv2:name "Gain 127" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 99 ;
+        lv2:symbol "freq127" ;
+        lv2:name "Freq 127" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 100 ;
+        lv2:symbol "gain_scale127" ;
+        lv2:name "Gain Scale 127" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 101 ;
+        lv2:symbol "gain128" ;
+        lv2:name "Gain 128" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 102 ;
+        lv2:symbol "freq128" ;
+        lv2:name "Freq 128" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 103 ;
+        lv2:symbol "gain_scale128" ;
+        lv2:name "Gain Scale 128" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 104 ;
+        lv2:symbol "gain129" ;
+        lv2:name "Gain 129" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 105 ;
+        lv2:symbol "freq129" ;
+        lv2:name "Freq 129" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 106 ;
+        lv2:symbol "gain_scale129" ;
+        lv2:name "Gain Scale 129" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 107 ;
+        lv2:symbol "gain130" ;
+        lv2:name "Gain 130" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 108 ;
+        lv2:symbol "freq130" ;
+        lv2:name "Freq 130" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 109 ;
+        lv2:symbol "gain_scale130" ;
+        lv2:name "Gain Scale 130" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 110 ;
+        lv2:symbol "gain20" ;
+        lv2:name "Gain 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 111 ;
+        lv2:symbol "gain_scale20" ;
+        lv2:name "Gain Scale 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 112 ;
+        lv2:symbol "gain21" ;
+        lv2:name "Gain 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 113 ;
+        lv2:symbol "freq21" ;
+        lv2:name "Freq 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 114 ;
+        lv2:symbol "gain_scale21" ;
+        lv2:name "Gain Scale 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 115 ;
+        lv2:symbol "gain22" ;
+        lv2:name "Gain 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 116 ;
+        lv2:symbol "freq22" ;
+        lv2:name "Freq 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 117 ;
+        lv2:symbol "gain_scale22" ;
+        lv2:name "Gain Scale 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 118 ;
+        lv2:symbol "gain23" ;
+        lv2:name "Gain 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 119 ;
+        lv2:symbol "freq23" ;
+        lv2:name "Freq 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 120 ;
+        lv2:symbol "gain_scale23" ;
+        lv2:name "Gain Scale 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 121 ;
+        lv2:symbol "gain24" ;
+        lv2:name "Gain 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 122 ;
+        lv2:symbol "freq24" ;
+        lv2:name "Freq 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 123 ;
+        lv2:symbol "gain_scale24" ;
+        lv2:name "Gain Scale 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 124 ;
+        lv2:symbol "gain25" ;
+        lv2:name "Gain 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 125 ;
+        lv2:symbol "freq25" ;
+        lv2:name "Freq 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 126 ;
+        lv2:symbol "gain_scale25" ;
+        lv2:name "Gain Scale 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 127 ;
+        lv2:symbol "gain26" ;
+        lv2:name "Gain 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 128 ;
+        lv2:symbol "freq26" ;
+        lv2:name "Freq 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 129 ;
+        lv2:symbol "gain_scale26" ;
+        lv2:name "Gain Scale 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 130 ;
+        lv2:symbol "gain27" ;
+        lv2:name "Gain 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 131 ;
+        lv2:symbol "freq27" ;
+        lv2:name "Freq 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 132 ;
+        lv2:symbol "gain_scale27" ;
+        lv2:name "Gain Scale 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 133 ;
+        lv2:symbol "gain28" ;
+        lv2:name "Gain 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 134 ;
+        lv2:symbol "freq28" ;
+        lv2:name "Freq 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 135 ;
+        lv2:symbol "gain_scale28" ;
+        lv2:name "Gain Scale 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 136 ;
+        lv2:symbol "gain29" ;
+        lv2:name "Gain 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 137 ;
+        lv2:symbol "freq29" ;
+        lv2:name "Freq 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 138 ;
+        lv2:symbol "gain_scale29" ;
+        lv2:name "Gain Scale 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 139 ;
+        lv2:symbol "gain210" ;
+        lv2:name "Gain 210" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 140 ;
+        lv2:symbol "freq210" ;
+        lv2:name "Freq 210" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 141 ;
+        lv2:symbol "gain_scale210" ;
+        lv2:name "Gain Scale 210" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 142 ;
+        lv2:symbol "gain211" ;
+        lv2:name "Gain 211" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 143 ;
+        lv2:symbol "freq211" ;
+        lv2:name "Freq 211" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 144 ;
+        lv2:symbol "gain_scale211" ;
+        lv2:name "Gain Scale 211" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 145 ;
+        lv2:symbol "gain212" ;
+        lv2:name "Gain 212" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 146 ;
+        lv2:symbol "freq212" ;
+        lv2:name "Freq 212" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 147 ;
+        lv2:symbol "gain_scale212" ;
+        lv2:name "Gain Scale 212" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 148 ;
+        lv2:symbol "gain213" ;
+        lv2:name "Gain 213" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 149 ;
+        lv2:symbol "freq213" ;
+        lv2:name "Freq 213" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 150 ;
+        lv2:symbol "gain_scale213" ;
+        lv2:name "Gain Scale 213" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 151 ;
+        lv2:symbol "gain214" ;
+        lv2:name "Gain 214" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 152 ;
+        lv2:symbol "freq214" ;
+        lv2:name "Freq 214" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 153 ;
+        lv2:symbol "gain_scale214" ;
+        lv2:name "Gain Scale 214" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 154 ;
+        lv2:symbol "gain215" ;
+        lv2:name "Gain 215" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 155 ;
+        lv2:symbol "freq215" ;
+        lv2:name "Freq 215" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 156 ;
+        lv2:symbol "gain_scale215" ;
+        lv2:name "Gain Scale 215" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 157 ;
+        lv2:symbol "gain216" ;
+        lv2:name "Gain 216" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 158 ;
+        lv2:symbol "freq216" ;
+        lv2:name "Freq 216" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 159 ;
+        lv2:symbol "gain_scale216" ;
+        lv2:name "Gain Scale 216" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 160 ;
+        lv2:symbol "gain217" ;
+        lv2:name "Gain 217" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 161 ;
+        lv2:symbol "freq217" ;
+        lv2:name "Freq 217" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 162 ;
+        lv2:symbol "gain_scale217" ;
+        lv2:name "Gain Scale 217" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 163 ;
+        lv2:symbol "gain218" ;
+        lv2:name "Gain 218" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 164 ;
+        lv2:symbol "freq218" ;
+        lv2:name "Freq 218" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 165 ;
+        lv2:symbol "gain_scale218" ;
+        lv2:name "Gain Scale 218" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 166 ;
+        lv2:symbol "gain219" ;
+        lv2:name "Gain 219" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 167 ;
+        lv2:symbol "freq219" ;
+        lv2:name "Freq 219" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 168 ;
+        lv2:symbol "gain_scale219" ;
+        lv2:name "Gain Scale 219" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 169 ;
+        lv2:symbol "gain220" ;
+        lv2:name "Gain 220" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 170 ;
+        lv2:symbol "freq220" ;
+        lv2:name "Freq 220" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 171 ;
+        lv2:symbol "gain_scale220" ;
+        lv2:name "Gain Scale 220" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 172 ;
+        lv2:symbol "gain221" ;
+        lv2:name "Gain 221" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 173 ;
+        lv2:symbol "freq221" ;
+        lv2:name "Freq 221" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 174 ;
+        lv2:symbol "gain_scale221" ;
+        lv2:name "Gain Scale 221" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 175 ;
+        lv2:symbol "gain222" ;
+        lv2:name "Gain 222" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 176 ;
+        lv2:symbol "freq222" ;
+        lv2:name "Freq 222" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 177 ;
+        lv2:symbol "gain_scale222" ;
+        lv2:name "Gain Scale 222" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 178 ;
+        lv2:symbol "gain223" ;
+        lv2:name "Gain 223" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 179 ;
+        lv2:symbol "freq223" ;
+        lv2:name "Freq 223" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 180 ;
+        lv2:symbol "gain_scale223" ;
+        lv2:name "Gain Scale 223" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 181 ;
+        lv2:symbol "gain224" ;
+        lv2:name "Gain 224" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 182 ;
+        lv2:symbol "freq224" ;
+        lv2:name "Freq 224" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 183 ;
+        lv2:symbol "gain_scale224" ;
+        lv2:name "Gain Scale 224" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 184 ;
+        lv2:symbol "gain225" ;
+        lv2:name "Gain 225" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 185 ;
+        lv2:symbol "freq225" ;
+        lv2:name "Freq 225" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 186 ;
+        lv2:symbol "gain_scale225" ;
+        lv2:name "Gain Scale 225" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 187 ;
+        lv2:symbol "gain226" ;
+        lv2:name "Gain 226" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 188 ;
+        lv2:symbol "freq226" ;
+        lv2:name "Freq 226" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 189 ;
+        lv2:symbol "gain_scale226" ;
+        lv2:name "Gain Scale 226" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 190 ;
+        lv2:symbol "gain227" ;
+        lv2:name "Gain 227" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 191 ;
+        lv2:symbol "freq227" ;
+        lv2:name "Freq 227" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 192 ;
+        lv2:symbol "gain_scale227" ;
+        lv2:name "Gain Scale 227" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 193 ;
+        lv2:symbol "gain228" ;
+        lv2:name "Gain 228" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 194 ;
+        lv2:symbol "freq228" ;
+        lv2:name "Freq 228" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 195 ;
+        lv2:symbol "gain_scale228" ;
+        lv2:name "Gain Scale 228" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 196 ;
+        lv2:symbol "gain229" ;
+        lv2:name "Gain 229" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 197 ;
+        lv2:symbol "freq229" ;
+        lv2:name "Freq 229" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 198 ;
+        lv2:symbol "gain_scale229" ;
+        lv2:name "Gain Scale 229" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 199 ;
+        lv2:symbol "gain230" ;
+        lv2:name "Gain 230" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 200 ;
+        lv2:symbol "freq230" ;
+        lv2:name "Freq 230" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:portProperty lv2:integer ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 25000.0 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 201 ;
+        lv2:symbol "gain_scale230" ;
+        lv2:name "Gain Scale 230" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum -32.0000 ;
+        lv2:maximum 32.0000 ;
+    ]
+.
+
+

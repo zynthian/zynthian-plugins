@@ -1,0 +1,2693 @@
+@prefix : <http://calf.sourceforge.net/plugins/Vocoder#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix lv2ctx: <http://lv2plug.in/ns/dev/contexts#> .
+@prefix strport: <http://lv2plug.in/ns/dev/string-port#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ue: <http://lv2plug.in/ns/extensions/units#> .
+@prefix epp: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui>
+    a uiext:GtkUI ;
+    lv2:extensionData uiext:showInterface ;
+    lv2:requiredFeature uiext:makeResident ;
+    uiext:binary <calflv2gui.so> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 4
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 5
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 6
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 7
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 9
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 10
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 11
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 12
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 14
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 15
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 16
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 17
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 32
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 38
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 44
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 50
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 56
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 62
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 68
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 74
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 80
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 86
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 92
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 98
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 104
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 110
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 116
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 122
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 128
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 134
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 140
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 146
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 152
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 158
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 164
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 170
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 176
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 182
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 188
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 194
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 200
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 206
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 212
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Vocoder> ;
+    uiext:portIndex 218
+] .
+
+:in a pg:StereoGroup , pg:InputGroup ;
+    lv2:symbol "in" ;
+    rdfs:label "Input" .
+
+:out a pg:StereoGroup , pg:OutputGroup ;
+    lv2:symbol "out" ;
+    rdfs:label "Output" .
+
+<http://calf.sourceforge.net/plugins/Vocoder> a lv2:Plugin ;
+    a lv2:FilterPlugin ;
+    doap:name "Calf Vocoder" ;
+    doap:maintainer [ foaf:name "Markus Schmidt / Christian Holschuh" ; ] ;
+    uiext:ui <http://calf.sourceforge.net/plugins/gui/gtk2-gui> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/data-access> ;
+    doap:license <http://usefulinc.com/doap/licenses/lgpl> ;
+    dct:replaces <urn:ladspa:34068> ;
+    lv2:optionalFeature epp:supportsStrictBounds ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    pg:mainInput :in ;
+    pg:mainOutput :out ;
+    lv2:port [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "in_l" ;
+        lv2:name "In L" ;
+        lv2:designation pg:left ;
+        pg:group :in ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "in_r" ;
+        lv2:name "In R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :in ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 2 ;
+        lv2:symbol "sidechain" ;
+        lv2:name "Sidechain" ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "sidechain2" ;
+        lv2:name "Sidechain 2" ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 4 ;
+        lv2:symbol "out_l" ;
+        lv2:name "Out L" ;
+        lv2:designation pg:left ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 5 ;
+        lv2:symbol "out_r" ;
+        lv2:name "Out R" ;
+        lv2:designation pg:right ;
+        pg:group :out ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:symbol "bypass" ;
+        lv2:name "Bypass" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 7 ;
+        lv2:symbol "link" ;
+        lv2:name "Link" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 8 ;
+        lv2:symbol "detectors" ;
+        lv2:name "Detectors" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 9 ;
+        lv2:symbol "carrier_in" ;
+        lv2:name "Carrier In" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 10 ;
+        lv2:symbol "carrier_inL" ;
+        lv2:name "Carrier In L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 11 ;
+        lv2:symbol "carrier_inR" ;
+        lv2:name "Carrier In R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 12 ;
+        lv2:symbol "carrier_clip_inL" ;
+        lv2:name "Carrier Clip In L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 13 ;
+        lv2:symbol "carrier_clip_inR" ;
+        lv2:name "Carrier Clip In R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 14 ;
+        lv2:symbol "mod_in" ;
+        lv2:name "Modulator In" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 15 ;
+        lv2:symbol "mod_inL" ;
+        lv2:name "Modulator In L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 16 ;
+        lv2:symbol "mod_inR" ;
+        lv2:name "Modulator In R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 17 ;
+        lv2:symbol "mod_clip_inL" ;
+        lv2:name "Modulator Clip In L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 18 ;
+        lv2:symbol "mod_clip_inR" ;
+        lv2:name "Modulator Clip In R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 19 ;
+        lv2:symbol "out" ;
+        lv2:name "Out" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 20 ;
+        lv2:symbol "outL" ;
+        lv2:name "Out L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 21 ;
+        lv2:symbol "outR" ;
+        lv2:name "Out R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 22 ;
+        lv2:symbol "clip_outL" ;
+        lv2:name "Clip Out L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 23 ;
+        lv2:symbol "clip_outR" ;
+        lv2:name "Clip Out R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 24 ;
+        lv2:symbol "carrier" ;
+        lv2:name "Carrier" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 25 ;
+        lv2:symbol "modulator" ;
+        lv2:name "Modulator" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 26 ;
+        lv2:symbol "processed" ;
+        lv2:name "Processed" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 27 ;
+        lv2:symbol "order" ;
+        lv2:name "Isolation" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 4.00000 ;
+        lv2:minimum 2.00000 ;
+        lv2:maximum 9.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 28 ;
+        lv2:symbol "bands" ;
+        lv2:name "Bands" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 2.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 4.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 29 ;
+        lv2:symbol "hiq" ;
+        lv2:name "High-Q" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 30 ;
+        lv2:symbol "attack" ;
+        lv2:name "Attack" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 5.00000 ;
+        lv2:minimum 0.100000 ;
+        lv2:maximum 500.000 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 31 ;
+        lv2:symbol "release" ;
+        lv2:name "Release" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 50.0000 ;
+        lv2:minimum 0.100000 ;
+        lv2:maximum 5000.00 ;
+        ue:unit ue:ms ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 32 ;
+        lv2:symbol "analyzer" ;
+        lv2:name "Analyzer" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Off"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Carrier"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Modulator"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Processed"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Output"; rdf:value 4 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 4.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 33 ;
+        lv2:symbol "volume1" ;
+        lv2:name "Vol 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 34 ;
+        lv2:symbol "pan1" ;
+        lv2:name "Pan 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 35 ;
+        lv2:symbol "noise1" ;
+        lv2:name "Noise 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 36 ;
+        lv2:symbol "mod1" ;
+        lv2:name "Dry 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 37 ;
+        lv2:symbol "solo1" ;
+        lv2:name "Solo 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 38 ;
+        lv2:symbol "level1" ;
+        lv2:name "Level 1" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 39 ;
+        lv2:symbol "volume2" ;
+        lv2:name "Vol 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 40 ;
+        lv2:symbol "pan2" ;
+        lv2:name "Pan 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 41 ;
+        lv2:symbol "noise2" ;
+        lv2:name "Noise 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 42 ;
+        lv2:symbol "mod2" ;
+        lv2:name "Dry 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 43 ;
+        lv2:symbol "solo2" ;
+        lv2:name "Solo 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 44 ;
+        lv2:symbol "level2" ;
+        lv2:name "Level 2" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 45 ;
+        lv2:symbol "volume3" ;
+        lv2:name "Vol 3" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 46 ;
+        lv2:symbol "pan3" ;
+        lv2:name "Pan 3" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 47 ;
+        lv2:symbol "noise3" ;
+        lv2:name "Noise 3" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 48 ;
+        lv2:symbol "mod3" ;
+        lv2:name "Dry 3" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 49 ;
+        lv2:symbol "solo3" ;
+        lv2:name "Solo 3" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 50 ;
+        lv2:symbol "level3" ;
+        lv2:name "Level 3" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 51 ;
+        lv2:symbol "volume4" ;
+        lv2:name "Vol 4" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 52 ;
+        lv2:symbol "pan4" ;
+        lv2:name "Pan 4" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 53 ;
+        lv2:symbol "noise4" ;
+        lv2:name "Noise 4" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 54 ;
+        lv2:symbol "mod4" ;
+        lv2:name "Dry 4" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 55 ;
+        lv2:symbol "solo4" ;
+        lv2:name "Solo 4" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 56 ;
+        lv2:symbol "level4" ;
+        lv2:name "Level 4" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 57 ;
+        lv2:symbol "volume5" ;
+        lv2:name "Vol 5" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 58 ;
+        lv2:symbol "pan5" ;
+        lv2:name "Pan 5" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 59 ;
+        lv2:symbol "noise5" ;
+        lv2:name "Noise 5" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 60 ;
+        lv2:symbol "mod5" ;
+        lv2:name "Dry 5" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 61 ;
+        lv2:symbol "solo5" ;
+        lv2:name "Solo 5" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 62 ;
+        lv2:symbol "level5" ;
+        lv2:name "Level 5" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 63 ;
+        lv2:symbol "volume6" ;
+        lv2:name "Vol 6" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 64 ;
+        lv2:symbol "pan6" ;
+        lv2:name "Pan 6" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 65 ;
+        lv2:symbol "noise6" ;
+        lv2:name "Noise 6" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 66 ;
+        lv2:symbol "mod6" ;
+        lv2:name "Dry 6" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 67 ;
+        lv2:symbol "solo6" ;
+        lv2:name "Solo 6" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 68 ;
+        lv2:symbol "level6" ;
+        lv2:name "Level 6" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 69 ;
+        lv2:symbol "volume7" ;
+        lv2:name "Vol 7" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 70 ;
+        lv2:symbol "pan7" ;
+        lv2:name "Pan 7" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 71 ;
+        lv2:symbol "noise7" ;
+        lv2:name "Noise 7" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 72 ;
+        lv2:symbol "mod7" ;
+        lv2:name "Dry 7" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 73 ;
+        lv2:symbol "solo7" ;
+        lv2:name "Solo 7" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 74 ;
+        lv2:symbol "level7" ;
+        lv2:name "Level 7" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 75 ;
+        lv2:symbol "volume8" ;
+        lv2:name "Vol 8" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 76 ;
+        lv2:symbol "pan8" ;
+        lv2:name "Pan 8" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 77 ;
+        lv2:symbol "noise8" ;
+        lv2:name "Noise 8" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 78 ;
+        lv2:symbol "mod8" ;
+        lv2:name "Dry 8" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 79 ;
+        lv2:symbol "solo8" ;
+        lv2:name "Solo 8" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 80 ;
+        lv2:symbol "level8" ;
+        lv2:name "Level 8" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 81 ;
+        lv2:symbol "volume9" ;
+        lv2:name "Vol 9" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 82 ;
+        lv2:symbol "pan9" ;
+        lv2:name "Pan 9" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 83 ;
+        lv2:symbol "noise9" ;
+        lv2:name "Noise 9" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 84 ;
+        lv2:symbol "mod9" ;
+        lv2:name "Dry 9" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 85 ;
+        lv2:symbol "solo9" ;
+        lv2:name "Solo 9" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 86 ;
+        lv2:symbol "level9" ;
+        lv2:name "Level 9" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 87 ;
+        lv2:symbol "volume10" ;
+        lv2:name "Vol 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 88 ;
+        lv2:symbol "pan10" ;
+        lv2:name "Pan 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 89 ;
+        lv2:symbol "noise10" ;
+        lv2:name "Noise 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 90 ;
+        lv2:symbol "mod10" ;
+        lv2:name "Dry 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 91 ;
+        lv2:symbol "solo10" ;
+        lv2:name "Solo 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 92 ;
+        lv2:symbol "level10" ;
+        lv2:name "Level 10" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 93 ;
+        lv2:symbol "volume11" ;
+        lv2:name "Vol 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 94 ;
+        lv2:symbol "pan11" ;
+        lv2:name "Pan 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 95 ;
+        lv2:symbol "noise11" ;
+        lv2:name "Noise 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 96 ;
+        lv2:symbol "mod11" ;
+        lv2:name "Dry 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 97 ;
+        lv2:symbol "solo11" ;
+        lv2:name "Solo 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 98 ;
+        lv2:symbol "level11" ;
+        lv2:name "Level 11" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 99 ;
+        lv2:symbol "volume12" ;
+        lv2:name "Vol 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 100 ;
+        lv2:symbol "pan12" ;
+        lv2:name "Pan 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 101 ;
+        lv2:symbol "noise12" ;
+        lv2:name "Noise 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 102 ;
+        lv2:symbol "mod12" ;
+        lv2:name "Dry 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 103 ;
+        lv2:symbol "solo12" ;
+        lv2:name "Solo 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 104 ;
+        lv2:symbol "level12" ;
+        lv2:name "Level 12" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 105 ;
+        lv2:symbol "volume13" ;
+        lv2:name "Vol 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 106 ;
+        lv2:symbol "pan13" ;
+        lv2:name "Pan 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 107 ;
+        lv2:symbol "noise13" ;
+        lv2:name "Noise 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 108 ;
+        lv2:symbol "mod13" ;
+        lv2:name "Dry 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 109 ;
+        lv2:symbol "solo13" ;
+        lv2:name "Solo 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 110 ;
+        lv2:symbol "level13" ;
+        lv2:name "Level 13" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 111 ;
+        lv2:symbol "volume14" ;
+        lv2:name "Vol 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 112 ;
+        lv2:symbol "pan14" ;
+        lv2:name "Pan 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 113 ;
+        lv2:symbol "noise14" ;
+        lv2:name "Noise 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 114 ;
+        lv2:symbol "mod14" ;
+        lv2:name "Dry 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 115 ;
+        lv2:symbol "solo14" ;
+        lv2:name "Solo 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 116 ;
+        lv2:symbol "level14" ;
+        lv2:name "Level 14" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 117 ;
+        lv2:symbol "volume15" ;
+        lv2:name "Vol 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 118 ;
+        lv2:symbol "pan15" ;
+        lv2:name "Pan 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 119 ;
+        lv2:symbol "noise15" ;
+        lv2:name "Noise 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 120 ;
+        lv2:symbol "mod15" ;
+        lv2:name "Dry 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 121 ;
+        lv2:symbol "solo15" ;
+        lv2:name "Solo 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 122 ;
+        lv2:symbol "level15" ;
+        lv2:name "Level 15" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 123 ;
+        lv2:symbol "volume16" ;
+        lv2:name "Vol 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 124 ;
+        lv2:symbol "pan16" ;
+        lv2:name "Pan 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 125 ;
+        lv2:symbol "noise16" ;
+        lv2:name "Noise 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 126 ;
+        lv2:symbol "mod16" ;
+        lv2:name "Dry 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 127 ;
+        lv2:symbol "solo16" ;
+        lv2:name "Solo 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 128 ;
+        lv2:symbol "level16" ;
+        lv2:name "Level 16" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 129 ;
+        lv2:symbol "volume17" ;
+        lv2:name "Vol 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 130 ;
+        lv2:symbol "pan17" ;
+        lv2:name "Pan 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 131 ;
+        lv2:symbol "noise17" ;
+        lv2:name "Noise 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 132 ;
+        lv2:symbol "mod17" ;
+        lv2:name "Dry 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 133 ;
+        lv2:symbol "solo17" ;
+        lv2:name "Solo 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 134 ;
+        lv2:symbol "level17" ;
+        lv2:name "Level 17" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 135 ;
+        lv2:symbol "volume18" ;
+        lv2:name "Vol 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 136 ;
+        lv2:symbol "pan18" ;
+        lv2:name "Pan 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 137 ;
+        lv2:symbol "noise18" ;
+        lv2:name "Noise 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 138 ;
+        lv2:symbol "mod18" ;
+        lv2:name "Dry 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 139 ;
+        lv2:symbol "solo18" ;
+        lv2:name "Solo 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 140 ;
+        lv2:symbol "level18" ;
+        lv2:name "Level 18" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 141 ;
+        lv2:symbol "volume19" ;
+        lv2:name "Vol 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 142 ;
+        lv2:symbol "pan19" ;
+        lv2:name "Pan 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 143 ;
+        lv2:symbol "noise19" ;
+        lv2:name "Noise 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 144 ;
+        lv2:symbol "mod19" ;
+        lv2:name "Dry 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 145 ;
+        lv2:symbol "solo19" ;
+        lv2:name "Solo 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 146 ;
+        lv2:symbol "level19" ;
+        lv2:name "Level 19" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 147 ;
+        lv2:symbol "volume20" ;
+        lv2:name "Vol 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 148 ;
+        lv2:symbol "pan20" ;
+        lv2:name "Pan 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 149 ;
+        lv2:symbol "noise20" ;
+        lv2:name "Noise 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 150 ;
+        lv2:symbol "mod20" ;
+        lv2:name "Dry 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 151 ;
+        lv2:symbol "solo20" ;
+        lv2:name "Solo 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 152 ;
+        lv2:symbol "level20" ;
+        lv2:name "Level 20" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 153 ;
+        lv2:symbol "volume21" ;
+        lv2:name "Vol 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 154 ;
+        lv2:symbol "pan21" ;
+        lv2:name "Pan 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 155 ;
+        lv2:symbol "noise21" ;
+        lv2:name "Noise 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 156 ;
+        lv2:symbol "mod21" ;
+        lv2:name "Dry 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 157 ;
+        lv2:symbol "solo21" ;
+        lv2:name "Solo 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 158 ;
+        lv2:symbol "level21" ;
+        lv2:name "Level 21" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 159 ;
+        lv2:symbol "volume22" ;
+        lv2:name "Vol 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 160 ;
+        lv2:symbol "pan22" ;
+        lv2:name "Pan 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 161 ;
+        lv2:symbol "noise22" ;
+        lv2:name "Noise 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 162 ;
+        lv2:symbol "mod22" ;
+        lv2:name "Dry 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 163 ;
+        lv2:symbol "solo22" ;
+        lv2:name "Solo 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 164 ;
+        lv2:symbol "level22" ;
+        lv2:name "Level 22" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 165 ;
+        lv2:symbol "volume23" ;
+        lv2:name "Vol 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 166 ;
+        lv2:symbol "pan23" ;
+        lv2:name "Pan 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 167 ;
+        lv2:symbol "noise23" ;
+        lv2:name "Noise 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 168 ;
+        lv2:symbol "mod23" ;
+        lv2:name "Dry 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 169 ;
+        lv2:symbol "solo23" ;
+        lv2:name "Solo 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 170 ;
+        lv2:symbol "level23" ;
+        lv2:name "Level 23" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 171 ;
+        lv2:symbol "volume24" ;
+        lv2:name "Vol 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 172 ;
+        lv2:symbol "pan24" ;
+        lv2:name "Pan 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 173 ;
+        lv2:symbol "noise24" ;
+        lv2:name "Noise 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 174 ;
+        lv2:symbol "mod24" ;
+        lv2:name "Dry 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 175 ;
+        lv2:symbol "solo24" ;
+        lv2:name "Solo 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 176 ;
+        lv2:symbol "level24" ;
+        lv2:name "Level 24" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 177 ;
+        lv2:symbol "volume25" ;
+        lv2:name "Vol 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 178 ;
+        lv2:symbol "pan25" ;
+        lv2:name "Pan 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 179 ;
+        lv2:symbol "noise25" ;
+        lv2:name "Noise 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 180 ;
+        lv2:symbol "mod25" ;
+        lv2:name "Dry 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 181 ;
+        lv2:symbol "solo25" ;
+        lv2:name "Solo 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 182 ;
+        lv2:symbol "level25" ;
+        lv2:name "Level 25" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 183 ;
+        lv2:symbol "volume26" ;
+        lv2:name "Vol 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 184 ;
+        lv2:symbol "pan26" ;
+        lv2:name "Pan 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 185 ;
+        lv2:symbol "noise26" ;
+        lv2:name "Noise 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 186 ;
+        lv2:symbol "mod26" ;
+        lv2:name "Dry 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 187 ;
+        lv2:symbol "solo26" ;
+        lv2:name "Solo 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 188 ;
+        lv2:symbol "level26" ;
+        lv2:name "Level 26" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 189 ;
+        lv2:symbol "volume27" ;
+        lv2:name "Vol 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 190 ;
+        lv2:symbol "pan27" ;
+        lv2:name "Pan 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 191 ;
+        lv2:symbol "noise27" ;
+        lv2:name "Noise 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 192 ;
+        lv2:symbol "mod27" ;
+        lv2:name "Dry 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 193 ;
+        lv2:symbol "solo27" ;
+        lv2:name "Solo 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 194 ;
+        lv2:symbol "level27" ;
+        lv2:name "Level 27" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 195 ;
+        lv2:symbol "volume28" ;
+        lv2:name "Vol 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 196 ;
+        lv2:symbol "pan28" ;
+        lv2:name "Pan 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 197 ;
+        lv2:symbol "noise28" ;
+        lv2:name "Noise 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 198 ;
+        lv2:symbol "mod28" ;
+        lv2:name "Dry 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 199 ;
+        lv2:symbol "solo28" ;
+        lv2:name "Solo 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 200 ;
+        lv2:symbol "level28" ;
+        lv2:name "Level 28" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 201 ;
+        lv2:symbol "volume29" ;
+        lv2:name "Vol 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 202 ;
+        lv2:symbol "pan29" ;
+        lv2:name "Pan 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 203 ;
+        lv2:symbol "noise29" ;
+        lv2:name "Noise 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 204 ;
+        lv2:symbol "mod29" ;
+        lv2:name "Dry 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 205 ;
+        lv2:symbol "solo29" ;
+        lv2:name "Solo 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 206 ;
+        lv2:symbol "level29" ;
+        lv2:name "Level 29" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 207 ;
+        lv2:symbol "volume30" ;
+        lv2:name "Vol 30" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 208 ;
+        lv2:symbol "pan30" ;
+        lv2:name "Pan 30" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 209 ;
+        lv2:symbol "noise30" ;
+        lv2:name "Noise 30" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 210 ;
+        lv2:symbol "mod30" ;
+        lv2:name "Dry 30" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 211 ;
+        lv2:symbol "solo30" ;
+        lv2:name "Solo 30" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 212 ;
+        lv2:symbol "level30" ;
+        lv2:name "Level 30" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 213 ;
+        lv2:symbol "volume31" ;
+        lv2:name "Vol 31" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 214 ;
+        lv2:symbol "pan31" ;
+        lv2:name "Pan 31" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 215 ;
+        lv2:symbol "noise31" ;
+        lv2:name "Noise 31" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 216 ;
+        lv2:symbol "mod31" ;
+        lv2:name "Dry 31" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 217 ;
+        lv2:symbol "solo31" ;
+        lv2:name "Solo 31" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 218 ;
+        lv2:symbol "level31" ;
+        lv2:name "Level 31" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 219 ;
+        lv2:symbol "volume32" ;
+        lv2:name "Vol 32" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 220 ;
+        lv2:symbol "pan32" ;
+        lv2:name "Pan 32" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.00000 ;
+        lv2:minimum -1.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 221 ;
+        lv2:symbol "noise32" ;
+        lv2:name "Noise 32" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 222 ;
+        lv2:symbol "mod32" ;
+        lv2:name "Dry 32" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.58490e-05 ;
+        lv2:minimum 1.58490e-05 ;
+        lv2:maximum 16.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 223 ;
+        lv2:symbol "solo32" ;
+        lv2:name "Solo 32" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 224 ;
+        lv2:symbol "level32" ;
+        lv2:name "Level 32" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ]
+.
+
+

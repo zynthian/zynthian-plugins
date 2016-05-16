@@ -1,0 +1,379 @@
+@prefix : <http://calf.sourceforge.net/plugins/Analyzer#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix lv2ctx: <http://lv2plug.in/ns/dev/contexts#> .
+@prefix strport: <http://lv2plug.in/ns/dev/string-port#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ue: <http://lv2plug.in/ns/extensions/units#> .
+@prefix epp: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui>
+    a uiext:GtkUI ;
+    lv2:extensionData uiext:showInterface ;
+    lv2:requiredFeature uiext:makeResident ;
+    uiext:binary <calflv2gui.so> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Analyzer> ;
+    uiext:portIndex 0
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Analyzer> ;
+    uiext:portIndex 1
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Analyzer> ;
+    uiext:portIndex 2
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/Analyzer> ;
+    uiext:portIndex 3
+] .
+
+:in a pg:StereoGroup , pg:InputGroup ;
+    lv2:symbol "in" ;
+    rdfs:label "Input" .
+
+:out a pg:StereoGroup , pg:OutputGroup ;
+    lv2:symbol "out" ;
+    rdfs:label "Output" .
+
+<http://calf.sourceforge.net/plugins/Analyzer> a lv2:Plugin ;
+    a lv2:AnalyserPlugin ;
+    doap:name "Calf Analyzer" ;
+    doap:maintainer [ foaf:name "Christian Holschuh / Markus Schmidt" ; ] ;
+    uiext:ui <http://calf.sourceforge.net/plugins/gui/gtk2-gui> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/data-access> ;
+    doap:license <http://usefulinc.com/doap/licenses/lgpl> ;
+    dct:replaces <urn:ladspa:34184> ;
+    lv2:optionalFeature epp:supportsStrictBounds ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    pg:mainInput :in ;
+    pg:mainOutput :out ;
+    lv2:port [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "in_l" ;
+        lv2:name "In L" ;
+        lv2:designation pg:left ;
+        pg:group :in ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "in_r" ;
+        lv2:name "In R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :in ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 2 ;
+        lv2:symbol "out_l" ;
+        lv2:name "Out L" ;
+        lv2:designation pg:left ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "out_r" ;
+        lv2:name "Out R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 4 ;
+        lv2:symbol "meter_L" ;
+        lv2:name "Level L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 5 ;
+        lv2:symbol "meter_R" ;
+        lv2:name "Level R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:symbol "clip_L" ;
+        lv2:name "Clip L" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 7 ;
+        lv2:symbol "clip_R" ;
+        lv2:name "Clip R" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 8 ;
+        lv2:symbol "analyzer_level" ;
+        lv2:name "Analyzer Level" ;
+        lv2:default 1.25000 ;
+        lv2:minimum 0.500000 ;
+        lv2:maximum 2.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 9 ;
+        lv2:symbol "analyzer_mode" ;
+        lv2:name "Analyzer Mode" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Analyzer Average"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Analyzer Left"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Analyzer Right"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Analyzer Stereo"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Stereo Image"; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Stereo Difference"; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Spectralizer Average"; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Spectralizer Left"; rdf:value 7 ] ;
+        lv2:scalePoint [ rdfs:label "Spectralizer Right"; rdf:value 8 ] ;
+        lv2:scalePoint [ rdfs:label "Spectralizer Colored Stereo"; rdf:value 9 ] ;
+        lv2:scalePoint [ rdfs:label "Spectralizer Parallel Stereo"; rdf:value 10 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 10.0000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 10 ;
+        lv2:symbol "analyzer_scale" ;
+        lv2:name "Analyzer Scale" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Logarithmic"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Linear"; rdf:value 1 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 11 ;
+        lv2:symbol "analyzer_post" ;
+        lv2:name "Analyzer Post FFT" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Normalized"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Average"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Additive"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Denoised Peaks"; rdf:value 3 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 3.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 12 ;
+        lv2:symbol "analyzer_view" ;
+        lv2:name "Analyzer View" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Bars"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Lines"; rdf:value 1 ] ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 13 ;
+        lv2:symbol "analyzer_smoothing" ;
+        lv2:name "Analyzer Smoothing" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Off"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Falling"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Transition"; rdf:value 2 ] ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 2.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 14 ;
+        lv2:symbol "analyzer_windowing" ;
+        lv2:name "Analyzer Windowing" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Rectangular"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Hamming"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "von Hann"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Blackman"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Blackman-Harris"; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "Blackman-Nuttall"; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "Sine"; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "Lanczos"; rdf:value 7 ] ;
+        lv2:scalePoint [ rdfs:label "Gauß"; rdf:value 8 ] ;
+        lv2:scalePoint [ rdfs:label "Bartlett"; rdf:value 9 ] ;
+        lv2:scalePoint [ rdfs:label "Triangular"; rdf:value 10 ] ;
+        lv2:scalePoint [ rdfs:label "Bartlett-Hann"; rdf:value 11 ] ;
+        lv2:default 2.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 11.0000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 15 ;
+        lv2:symbol "analyzer_accuracy" ;
+        lv2:name "Analyzer Accuracy" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 7.00000 ;
+        lv2:minimum 2.00000 ;
+        lv2:maximum 8.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 16 ;
+        lv2:symbol "analyzer_speed" ;
+        lv2:name "Analyzer Speed" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 15.0000 ;
+        lv2:minimum 1.00000 ;
+        lv2:maximum 15.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 17 ;
+        lv2:symbol "analyzer_display" ;
+        lv2:name "Analyzer Display" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 18 ;
+        lv2:symbol "analyzer_hold" ;
+        lv2:name "Analyzer Hold" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 19 ;
+        lv2:symbol "analyzer_freeze" ;
+        lv2:name "Analyzer Freeze" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 20 ;
+        lv2:symbol "gonio_mode" ;
+        lv2:name "Gonio Mode" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Small Dots"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Medium Dots"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "Big Dots"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "Fields"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "Lines (High CPU)"; rdf:value 4 ] ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 4.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 21 ;
+        lv2:symbol "gonio_use_fade" ;
+        lv2:name "Gonio Fade Active" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 22 ;
+        lv2:symbol "gonio_fade" ;
+        lv2:name "Gonio Fade" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.500000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 23 ;
+        lv2:symbol "gonio_accuracy" ;
+        lv2:name "Gonio Accuracy" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:default 4.00000 ;
+        lv2:minimum 1.00000 ;
+        lv2:maximum 5.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 24 ;
+        lv2:symbol "gonio_display" ;
+        lv2:name "Gonio Display" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ]
+.
+
+

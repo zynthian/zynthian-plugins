@@ -1,0 +1,318 @@
+@prefix : <http://calf.sourceforge.net/plugins/TapeSimulator#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix lv2ctx: <http://lv2plug.in/ns/dev/contexts#> .
+@prefix strport: <http://lv2plug.in/ns/dev/string-port#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ue: <http://lv2plug.in/ns/extensions/units#> .
+@prefix epp: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui>
+    a uiext:GtkUI ;
+    lv2:extensionData uiext:showInterface ;
+    lv2:requiredFeature uiext:makeResident ;
+    uiext:binary <calflv2gui.so> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 3
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 4
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 5
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 6
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 7
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 8
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 9
+] .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui> uiext:portNotification [
+    uiext:plugin <http://calf.sourceforge.net/plugins/TapeSimulator> ;
+    uiext:portIndex 10
+] .
+
+:in a pg:StereoGroup , pg:InputGroup ;
+    lv2:symbol "in" ;
+    rdfs:label "Input" .
+
+:out a pg:StereoGroup , pg:OutputGroup ;
+    lv2:symbol "out" ;
+    rdfs:label "Output" .
+
+<http://calf.sourceforge.net/plugins/TapeSimulator> a lv2:Plugin ;
+    a lv2:SimulatorPlugin ;
+    doap:name "Calf Tape Simulator" ;
+    doap:maintainer [ foaf:name "Markus Schmidt, Christian Holschuh" ; ] ;
+    uiext:ui <http://calf.sourceforge.net/plugins/gui/gtk2-gui> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/data-access> ;
+    doap:license <http://usefulinc.com/doap/licenses/lgpl> ;
+    dct:replaces <urn:ladspa:34184> ;
+    lv2:optionalFeature epp:supportsStrictBounds ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    pg:mainInput :in ;
+    pg:mainOutput :out ;
+    lv2:port [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "in_l" ;
+        lv2:name "In L" ;
+        lv2:designation pg:left ;
+        pg:group :in ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "in_r" ;
+        lv2:name "In R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :in ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 2 ;
+        lv2:symbol "out_l" ;
+        lv2:name "Out L" ;
+        lv2:designation pg:left ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "out_r" ;
+        lv2:name "Out R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :out ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 4 ;
+        lv2:symbol "bypass" ;
+        lv2:name "Bypass" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 5 ;
+        lv2:symbol "level_in" ;
+        lv2:name "Input Gain" ;
+        lv2:default 0.500000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:symbol "level_out" ;
+        lv2:name "Output Gain" ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.0156250 ;
+        lv2:maximum 64.0000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 7 ;
+        lv2:symbol "meter_inL" ;
+        lv2:name "Meter-InL" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 8 ;
+        lv2:symbol "meter_inR" ;
+        lv2:name "Meter-InR" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 9 ;
+        lv2:symbol "meter_outL" ;
+        lv2:name "Meter-OutL" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 10 ;
+        lv2:symbol "meter_outR" ;
+        lv2:name "Meter-OutR" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:db ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 11 ;
+        lv2:symbol "clip_inL" ;
+        lv2:name "0dB-InL" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 12 ;
+        lv2:symbol "clip_inR" ;
+        lv2:name "0dB-InR" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 13 ;
+        lv2:symbol "clip_outL" ;
+        lv2:name "0dB-OutL" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:ControlPort ;
+        lv2:index 14 ;
+        lv2:symbol "clip_outR" ;
+        lv2:name "0dB-OutR" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 15 ;
+        lv2:symbol "mix" ;
+        lv2:name "Mix" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 16 ;
+        lv2:symbol "lowpass" ;
+        lv2:name "Filter" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 12500.0 ;
+        lv2:minimum 1000.00 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:hz ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 17 ;
+        lv2:symbol "speed" ;
+        lv2:name "Speed Simulation" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "Slow"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "Fast"; rdf:value 1 ] ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 18 ;
+        lv2:symbol "noise" ;
+        lv2:name "Noise" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.100000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 19 ;
+        lv2:symbol "mechanical" ;
+        lv2:name "Mechanical" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.200000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 20 ;
+        lv2:symbol "magnetical" ;
+        lv2:name "Magnetical" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 1.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 21 ;
+        lv2:symbol "post" ;
+        lv2:name "Post-Filter" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:toggled ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 1.00000 ;
+    ]
+.
+
+

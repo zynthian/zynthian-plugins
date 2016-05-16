@@ -1,0 +1,140 @@
+@prefix : <http://calf.sourceforge.net/plugins/Filter#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix uiext: <http://lv2plug.in/ns/extensions/ui#> .
+@prefix lv2ev: <http://lv2plug.in/ns/ext/event#> .
+@prefix lv2midi: <http://lv2plug.in/ns/ext/midi#> .
+@prefix lv2ctx: <http://lv2plug.in/ns/dev/contexts#> .
+@prefix strport: <http://lv2plug.in/ns/dev/string-port#> .
+@prefix pg: <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix ue: <http://lv2plug.in/ns/extensions/units#> .
+@prefix epp: <http://lv2plug.in/ns/ext/port-props#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix param: <http://lv2plug.in/ns/ext/parameters#> .
+
+<http://calf.sourceforge.net/plugins/gui/gtk2-gui>
+    a uiext:GtkUI ;
+    lv2:extensionData uiext:showInterface ;
+    lv2:requiredFeature uiext:makeResident ;
+    uiext:binary <calflv2gui.so> .
+
+:in a pg:StereoGroup , pg:InputGroup ;
+    lv2:symbol "in" ;
+    rdfs:label "Input" .
+
+:out a pg:StereoGroup , pg:OutputGroup ;
+    lv2:symbol "out" ;
+    rdfs:label "Output" .
+
+<http://calf.sourceforge.net/plugins/Filter> a lv2:Plugin ;
+    a lv2:FilterPlugin ;
+    doap:name "Calf Filter" ;
+    doap:maintainer [ foaf:name "Krzysztof Foltman" ; ] ;
+    uiext:ui <http://calf.sourceforge.net/plugins/gui/gtk2-gui> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/instance-access> ;
+    lv2:optionalFeature <http://lv2plug.in/ns/ext/data-access> ;
+    doap:license <http://usefulinc.com/doap/licenses/lgpl> ;
+    dct:replaces <urn:ladspa:33919> ;
+    lv2:optionalFeature epp:supportsStrictBounds ;
+    lv2:optionalFeature lv2:hardRTCapable ;
+    pg:mainInput :in ;
+    pg:mainOutput :out ;
+    lv2:port [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 0 ;
+        lv2:symbol "in_l" ;
+        lv2:name "In L" ;
+        lv2:designation pg:left ;
+        pg:group :in ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:AudioPort ;
+        lv2:index 1 ;
+        lv2:symbol "in_r" ;
+        lv2:name "In R" ;
+        lv2:portProperty lv2:connectionOptional ;
+        lv2:designation pg:right ;
+        pg:group :in ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 2 ;
+        lv2:symbol "out_l" ;
+        lv2:name "Out L" ;
+        lv2:designation pg:left ;
+        pg:group :out ;
+    ] , [
+        a lv2:OutputPort ;
+        a lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "out_r" ;
+        lv2:name "Out R" ;
+        lv2:designation pg:right ;
+        pg:group :out ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 4 ;
+        lv2:symbol "freq" ;
+        lv2:name "Frequency" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 2000.00 ;
+        lv2:minimum 10.0000 ;
+        lv2:maximum 20000.0 ;
+        ue:unit ue:hz ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 5 ;
+        lv2:symbol "res" ;
+        lv2:name "Resonance" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:default 0.707000 ;
+        lv2:minimum 0.707000 ;
+        lv2:maximum 32.0000 ;
+        ue:unit ue:coef ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 6 ;
+        lv2:symbol "mode" ;
+        lv2:name "Mode" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty lv2:integer ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:scalePoint [ rdfs:label "12dB/oct Lowpass"; rdf:value 0 ] ;
+        lv2:scalePoint [ rdfs:label "24dB/oct Lowpass"; rdf:value 1 ] ;
+        lv2:scalePoint [ rdfs:label "36dB/oct Lowpass"; rdf:value 2 ] ;
+        lv2:scalePoint [ rdfs:label "12dB/oct Highpass"; rdf:value 3 ] ;
+        lv2:scalePoint [ rdfs:label "24dB/oct Highpass"; rdf:value 4 ] ;
+        lv2:scalePoint [ rdfs:label "36dB/oct Highpass"; rdf:value 5 ] ;
+        lv2:scalePoint [ rdfs:label "6dB/oct Bandpass"; rdf:value 6 ] ;
+        lv2:scalePoint [ rdfs:label "12dB/oct Bandpass"; rdf:value 7 ] ;
+        lv2:scalePoint [ rdfs:label "18dB/oct Bandpass"; rdf:value 8 ] ;
+        lv2:scalePoint [ rdfs:label "6dB/oct Bandreject"; rdf:value 9 ] ;
+        lv2:scalePoint [ rdfs:label "12dB/oct Bandreject"; rdf:value 10 ] ;
+        lv2:scalePoint [ rdfs:label "18dB/oct Bandreject"; rdf:value 11 ] ;
+        lv2:default 0.00000 ;
+        lv2:minimum 0.00000 ;
+        lv2:maximum 11.0000 ;
+    ] , [
+        a lv2:InputPort ;
+        a lv2:ControlPort ;
+        lv2:index 7 ;
+        lv2:symbol "inertia" ;
+        lv2:name "Inertia" ;
+        lv2:portProperty epp:hasStrictBounds ;
+        lv2:portProperty epp:logarithmic ;
+        lv2:default 20.0000 ;
+        lv2:minimum 5.00000 ;
+        lv2:maximum 100.000 ;
+        ue:unit ue:ms ;
+    ]
+.
+
+
