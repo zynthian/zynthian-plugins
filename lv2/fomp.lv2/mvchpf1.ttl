@@ -1,0 +1,82 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix fomp: <http://drobilla.net/plugins/fomp/> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix units: <http://lv2plug.in/ns/extensions/units#> .
+
+fomp:mvchpf1
+	a lv2:Plugin ,
+		lv2:HighpassPlugin ;
+	doap:name "Moog High-Pass Filter 1" ;
+	lv2:microVersion 0 ;
+	lv2:minorVersion 0 ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:project fomp: ;
+	lv2:port [
+		a lv2:AudioPort ,
+			lv2:InputPort ;
+		lv2:index 0 ;
+		lv2:name "Input" ;
+		lv2:symbol "in"
+	] , [
+		a lv2:AudioPort ,
+			lv2:OutputPort ;
+		lv2:index 1 ;
+		lv2:name "Output" ;
+		lv2:symbol "out"
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 2 ;
+		lv2:name "FM" ;
+		lv2:symbol "fm" ;
+		units:unit units:oct
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 3 ;
+		lv2:name "Exp FM" ;
+		lv2:symbol "exp_fm" ;
+		units:unit units:oct
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 4 ;
+		lv2:maximum 10.0 ;
+		lv2:minimum -60.0 ;
+		lv2:name "Input gain" ;
+		lv2:symbol "in_gain" ;
+		units:unit units:db
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 440.0 ;
+		lv2:index 5 ;
+		lv2:maximum 1.0 ;
+		lv2:minimum 0.000001 ;
+		lv2:name "Frequency" ;
+		lv2:portProperty <http://lv2plug.in/ns/ext/port-props#logarithmic> ,
+			lv2:sampleRate ;
+		lv2:symbol "freq" ;
+		units:unit units:hz
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:index 6 ;
+		lv2:maximum 10.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "Exp FM gain" ;
+		lv2:symbol "exp_gm_gain"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 7 ;
+		lv2:maximum 15.0 ;
+		lv2:minimum -15.0 ;
+		lv2:name "Output gain" ;
+		lv2:symbol "out_gain" ;
+		units:unit units:db
+	] ;
+	rdfs:comment "Based on the voltage controlled highpass filter by Robert Moog, with some attention to the nonlinear effects.  This is quite different from the lowpass filters.  When you 'overdrive' the filter, the cutoff frequency will rise.  This first version is really very experimental." .

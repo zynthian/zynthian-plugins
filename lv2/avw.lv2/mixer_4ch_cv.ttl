@@ -1,0 +1,101 @@
+@prefix doap: 	<http://usefulinc.com/ns/doap#> .
+@prefix foaf: 	<http://xmlns.com/foaf/0.1/> .
+@prefix lv2: 	<http://lv2plug.in/ns/lv2core#> .
+@prefix rdf: 	<http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: 	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ll: 	<http://ll-plugins.nongnu.org/lv2/namespace#> .
+@prefix guiext: <http://lv2plug.in/ns/extensions/ui#> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_cv/gui>
+  	a guiext:GtkUI ;
+  	guiext:binary <mixer_4ch_cv_gui.so> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_cv>
+	a lv2:Plugin, lv2:UtilityPlugin ;
+	lv2:project <http://avwlv2.sourceforge.net/plugins/avw/> ;        
+	doap:name "AMS Mixer 4 channels - CV" ;
+	doap:license <http://opensource.org/licenses/isc> ;
+	ll:pegName "p" ;
+	guiext:ui <http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_cv/gui> ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:port [
+		a lv2:InputPort, lv2:CVPort ;
+		lv2:index 0 ;
+		lv2:symbol "in1" ;
+		lv2:name "In 1" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+	] ,	[
+		a lv2:InputPort, lv2:CVPort ;
+		lv2:index 1 ;
+		lv2:symbol "in2" ;
+		lv2:name "In 2" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ; 
+	] , [
+		a lv2:InputPort, lv2:CVPort ;
+		lv2:index 2 ;
+		lv2:symbol "in3" ;
+		lv2:name "In 3" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+	] , [
+		a lv2:InputPort, lv2:CVPort ;
+		lv2:index 3 ;
+		lv2:symbol "in4" ;
+		lv2:name "In 4" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+	] , [
+		a lv2:InputPort, lv2:ControlPort ;
+		lv2:index 4 ;
+		lv2:symbol "gain" ;
+		lv2:name "Gain" ;
+		lv2:default 1 ;
+		lv2:minimum 0 ;
+		lv2:maximum 2 ;
+	] ,	[
+		a lv2:InputPort, lv2:ControlPort ;
+		lv2:index 5 ;
+		lv2:symbol "volume1" ;
+		lv2:name "Volume 1" ;
+		lv2:default 1 ;
+		lv2:minimum 0 ;
+		lv2:maximum 2 ;
+	] ,	[
+		a lv2:InputPort, lv2:ControlPort ;
+		lv2:index 6 ;
+		lv2:symbol "volume2" ;
+		lv2:name "Volume 2" ;
+		lv2:default 1 ;
+		lv2:minimum 0 ;
+		lv2:maximum 2 ;
+	] ,	[
+		a lv2:InputPort, lv2:ControlPort ;
+		lv2:index 7 ;
+		lv2:symbol "volume3" ;
+		lv2:name "Volume 3" ;
+		lv2:default 1 ;
+		lv2:minimum 0 ;
+		lv2:maximum 2 ;
+	] ,	[
+		a lv2:InputPort, lv2:ControlPort ;
+		lv2:index 8 ;
+		lv2:symbol "volume4" ;
+		lv2:name "Volume 4" ;
+		lv2:default 1 ;
+		lv2:minimum 0 ;
+		lv2:maximum 2 ;
+	] ,	[
+		a lv2:OutputPort, lv2:CVPort ;
+		lv2:index 9 ;
+		lv2:symbol "out" ;
+		lv2:name "Out" ;
+		lv2:default 0.0 ;
+		lv2:minimum -1.0 ;
+        lv2:maximum 1.0 ;
+	] .

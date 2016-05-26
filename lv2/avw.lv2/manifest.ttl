@@ -1,0 +1,245 @@
+@prefix doap: 	<http://usefulinc.com/ns/doap#> .
+@prefix foaf: 	<http://xmlns.com/foaf/0.1/> .
+@prefix lv2: 	<http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: 	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix uiext: 	<http://lv2plug.in/ns/extensions/ui#> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/>
+	a doap:Project ;
+	lv2:symbol "avw" ;
+	doap:name "AVW LV2" ;
+	doap:shortdesc "An LV2 port of the AMS internal modules." ;
+	doap:homepage <http://avwlv2.sourceforge.net/> ;
+	doap:license <http://opensource.org/licenses/isc> ;
+	doap:maintainer [
+		foaf:name "Aurélien Leblond" ;
+		foaf:mbox <mailto:blablack@gmail.com>
+	] .
+
+<http://avwlv2.sourceforge.net/plugins/avw/ad>
+	a lv2:Plugin ;
+	lv2:binary <ad.so>  ;
+	rdfs:seeAlso <ad.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/amp>
+	a lv2:Plugin ;
+	lv2:binary <amp.so>  ;
+	rdfs:seeAlso <amp.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/noise2_audio>
+	a lv2:Plugin ;
+	lv2:binary <noise2_audio.so>  ;
+	rdfs:seeAlso <noise2_audio.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/noise2_cv>
+	a lv2:Plugin ;
+	lv2:binary <noise2_cv.so>  ;
+	rdfs:seeAlso <noise2_cv.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/lfo_tempo>
+	a lv2:Plugin ;
+	lv2:binary <lfo_tempo.so>  ;
+	rdfs:seeAlso <lfo_tempo.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/lfo_freq>
+	a lv2:Plugin ;
+	lv2:binary <lfo_freq.so>  ;
+	rdfs:seeAlso <lfo_freq.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_audio>
+	a lv2:Plugin ;
+	lv2:binary <vco2_audio.so>  ;
+	rdfs:seeAlso <vco2_audio.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vco2_cv>
+	a lv2:Plugin ;
+	lv2:binary <vco2_cv.so>  ;
+	rdfs:seeAlso <vco2_cv.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcf>
+	a lv2:Plugin ;
+	lv2:binary <vcf.so>  ;
+	rdfs:seeAlso <vcf.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/hztovc>
+	a lv2:Plugin ;
+	lv2:binary <hztovc.so>  ;
+	rdfs:seeAlso <hztovc.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vctohz>
+	a lv2:Plugin ;
+	lv2:binary <vctohz.so>  ;
+	rdfs:seeAlso <vctohz.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/env>
+	a lv2:Plugin ;
+	lv2:binary <env.so>  ;
+	rdfs:seeAlso <env.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcalin_audio>
+	a lv2:Plugin ;
+	lv2:binary <vcalin_audio.so>  ;
+	rdfs:seeAlso <vcalin_audio.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcalin_cv>
+	a lv2:Plugin ;
+	lv2:binary <vcalin_cv.so>  ;
+	rdfs:seeAlso <vcalin_cv.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp_audio>
+	a lv2:Plugin ;
+	lv2:binary <vcaexp_audio.so>  ;
+	rdfs:seeAlso <vcaexp_audio.ttl> .
+	
+
+<http://avwlv2.sourceforge.net/plugins/avw/vcaexp_cv>
+	a lv2:Plugin ;
+	lv2:binary <vcaexp_cv.so>  ;
+	rdfs:seeAlso <vcaexp_cv.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_audio>
+	a lv2:Plugin ;
+	lv2:binary <mixer_4ch_audio.so>  ;
+	rdfs:seeAlso <mixer_4ch_audio.ttl> .		
+
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_4ch_cv>
+	a lv2:Plugin ;
+	lv2:binary <mixer_4ch_cv.so>  ;
+	rdfs:seeAlso <mixer_4ch_cv.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_2ch_audio>
+	a lv2:Plugin ;
+	lv2:binary <mixer_2ch_audio.so>  ;
+	rdfs:seeAlso <mixer_2ch_audio.ttl> .		
+
+<http://avwlv2.sourceforge.net/plugins/avw/mixer_2ch_cv>
+	a lv2:Plugin ;
+	lv2:binary <mixer_2ch_cv.so>  ;
+	rdfs:seeAlso <mixer_2ch_cv.ttl> .
+		
+<http://avwlv2.sourceforge.net/plugins/avw/slew>
+	a lv2:Plugin ;
+	lv2:binary <slew.so>  ;
+	rdfs:seeAlso <slew.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/advenv>
+	a lv2:Plugin ;
+	lv2:binary <advenv.so>  ;
+	rdfs:seeAlso <advenv.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/cvs>
+	a lv2:Plugin ;
+	lv2:binary <cvs.so>  ;
+	rdfs:seeAlso <cvs.ttl> .	
+	
+<http://avwlv2.sourceforge.net/plugins/avw/delay>
+	a lv2:Plugin ;
+	lv2:binary <delay.so>  ;
+	rdfs:seeAlso <delay.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/absolute>
+	a lv2:Plugin ;
+	lv2:binary <absolute.so>  ;
+	rdfs:seeAlso <absolute.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/inv>
+	a lv2:Plugin ;
+	lv2:binary <inv.so>  ;
+	rdfs:seeAlso <inv.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/beatrepeater_mono>
+	a lv2:Plugin ;
+	lv2:binary <beatrepeater_mono.so>  ;
+	rdfs:seeAlso <beatrepeater_mono.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/beatrepeater_stereo>
+	a lv2:Plugin ;
+	lv2:binary <beatrepeater_stereo.so>  ;
+	rdfs:seeAlso <beatrepeater_stereo.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/ringmodulator_audio>
+	a lv2:Plugin ;
+	lv2:binary <ringmodulator_audio.so>  ;
+	rdfs:seeAlso <ringmodulator_audio.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/ringmodulator_cv>
+	a lv2:Plugin ;
+	lv2:binary <ringmodulator_cv.so>  ;
+	rdfs:seeAlso <ringmodulator_cv.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/percussiveenv>
+	a lv2:Plugin ;
+	lv2:binary <percussiveenv.so>  ;
+	rdfs:seeAlso <percussiveenv.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/samplehold>
+	a lv2:Plugin ;
+	lv2:binary <samplehold.so>  ;
+	rdfs:seeAlso <samplehold.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcpanning>
+	a lv2:Plugin ;
+	lv2:binary <vcpanning.so>  ;
+	rdfs:seeAlso <vcpanning.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcswitch_audio>
+	a lv2:Plugin ;
+	lv2:binary <vcswitch_audio.so>  ;
+	rdfs:seeAlso <vcswitch_audio.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/vcswitch_cv>
+	a lv2:Plugin ;
+	lv2:binary <vcswitch_cv.so>  ;
+	rdfs:seeAlso <vcswitch_cv.ttl> .
+		
+<http://avwlv2.sourceforge.net/plugins/avw/mooglpf>
+	a lv2:Plugin ;
+	lv2:binary <mooglpf.so>  ;
+	rdfs:seeAlso <mooglpf.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/downsampler_mono>
+	a lv2:Plugin ;
+	lv2:binary <downsampler_mono.so>  ;
+	rdfs:seeAlso <downsampler_mono.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/downsampler_stereo>
+	a lv2:Plugin ;
+	lv2:binary <downsampler_stereo.so>  ;
+	rdfs:seeAlso <downsampler_stereo.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/granulator_mono>
+	a lv2:Plugin ;
+	lv2:binary <granulator_mono.so>  ;
+	rdfs:seeAlso <granulator_mono.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/granulator_stereo>
+	a lv2:Plugin ;
+	lv2:binary <granulator_stereo.so>  ;
+	rdfs:seeAlso <granulator_stereo.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/beatslicer_mono>
+	a lv2:Plugin ;
+	lv2:binary <beatslicer_mono.so>  ;
+	rdfs:seeAlso <beatslicer_mono.ttl> .
+	
+<http://avwlv2.sourceforge.net/plugins/avw/beatslicer_stereo>
+	a lv2:Plugin ;
+	lv2:binary <beatslicer_stereo.so>  ;
+	rdfs:seeAlso <beatslicer_stereo.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/amplitude>
+	a lv2:Plugin ;
+	lv2:binary <amplitude.so>  ;
+	rdfs:seeAlso <amplitude.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/cvtocontrol>
+	a lv2:Plugin ;
+	lv2:binary <cvtocontrol.so>  ;
+	rdfs:seeAlso <cvtocontrol.ttl> .
+
+<http://avwlv2.sourceforge.net/plugins/avw/controltocv>
+	a lv2:Plugin ;
+	lv2:binary <controltocv.so>  ;
+	rdfs:seeAlso <controltocv.ttl> .
+
+

@@ -1,0 +1,96 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix fomp: <http://drobilla.net/plugins/fomp/> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix units: <http://lv2plug.in/ns/extensions/units#> .
+
+fomp:pulse_vco
+	a lv2:Plugin ,
+		lv2:OscillatorPlugin ;
+	doap:name "Pulse VCO" ;
+	lv2:binary <file:///usr/local/lib/lv2/naspro-ladspa.lv2/ladspa.so> ;
+	lv2:microVersion 0 ;
+	lv2:minorVersion 0 ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:project fomp: ;
+	lv2:port [
+		a lv2:AudioPort ,
+			lv2:OutputPort ;
+		lv2:index 0 ;
+		lv2:name "Output" ;
+		lv2:symbol "out"
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:default 440.0 ;
+		lv2:index 1 ;
+		lv2:maximum 1.0 ;
+		lv2:minimum 0.000001 ;
+		lv2:name "Frequency" ;
+		lv2:portProperty <http://lv2plug.in/ns/ext/port-props#logarithmic> ,
+			lv2:sampleRate ;
+		lv2:symbol "freq" ;
+		units:unit units:hz
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 2 ;
+		lv2:name "Exp FM" ;
+		lv2:symbol "exp_fm" ;
+		units:unit units:oct
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 3 ;
+		lv2:name "Lin FM" ;
+		lv2:symbol "lin_fm"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 4 ;
+		lv2:maximum 4.0 ;
+		lv2:minimum -4.0 ;
+		lv2:name "Octave" ;
+		lv2:portProperty lv2:integer ;
+		lv2:symbol "octave"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 5 ;
+		lv2:maximum 1.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "Tune" ;
+		lv2:symbol "tune"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 6 ;
+		lv2:maximum 4.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "Exp FM gain" ;
+		lv2:symbol "exp_fm_gain"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 7 ;
+		lv2:maximum 4.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "Lin FM gain" ;
+		lv2:symbol "lin_fm_gain"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 1.0 ;
+		lv2:index 8 ;
+		lv2:maximum 1.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "LP filter" ;
+		lv2:symbol "lp_filter"
+	] ;
+	rdfs:comment """Based on the principle of using a precomputed interpolated dirac pulse.  This is the pulse variant (flat amplitude spectrum).
+
+Aliases should be below -80dB for fundamental frequencies below the sample rate / 6 (i.e. up to 8 kHz at Fsamp = 48 kHz).  This frequency range includes the fundamental frequencies of all known musical instruments.""" .

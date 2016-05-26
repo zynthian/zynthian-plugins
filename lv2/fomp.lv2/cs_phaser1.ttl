@@ -1,0 +1,108 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix fomp: <http://drobilla.net/plugins/fomp/> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix units: <http://lv2plug.in/ns/extensions/units#> .
+
+fomp:phaser1
+	a lv2:Plugin ,
+		lv2:PhaserPlugin ;
+	doap:name "CS Phaser 1" ;
+	lv2:microVersion 0 ;
+	lv2:minorVersion 0 ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:project fomp: ;
+	lv2:port [
+		a lv2:AudioPort ,
+			lv2:InputPort ;
+		lv2:index 0 ;
+		lv2:name "Input" ;
+		lv2:symbol "in"
+	] , [
+		a lv2:AudioPort ,
+			lv2:OutputPort ;
+		lv2:index 1 ;
+		lv2:name "Output" ;
+		lv2:symbol "out"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 10 ;
+		lv2:maximum 1.0 ;
+		lv2:minimum -1.0 ;
+		lv2:name "Feedback gain" ;
+		lv2:symbol "fb_gain"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 11 ;
+		lv2:maximum 1.0 ;
+		lv2:minimum -1.0 ;
+		lv2:name "Output mix" ;
+		lv2:symbol "out_mix"
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 2 ;
+		lv2:name "FM" ;
+		lv2:symbol "fm"
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 3 ;
+		lv2:name "Exp FM" ;
+		lv2:symbol "exp_fm"
+	] , [
+		a lv2:CVPort ,
+			lv2:InputPort ;
+		lv2:index 4 ;
+		lv2:name "Lin FM" ;
+		lv2:symbol "lin_fm"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 5 ;
+		lv2:maximum 10.0 ;
+		lv2:minimum -40.0 ;
+		lv2:name "Input gain" ;
+		lv2:symbol "in_gain" ;
+		units:unit units:db
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:index 6 ;
+		lv2:maximum 30.0 ;
+		lv2:minimum 1.0 ;
+		lv2:name "Sections" ;
+		lv2:portProperty lv2:integer ;
+		lv2:symbol "sections"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:default 0.0 ;
+		lv2:index 7 ;
+		lv2:maximum 6.0 ;
+		lv2:minimum -6.0 ;
+		lv2:name "Frequency" ;
+		lv2:symbol "freq"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:index 8 ;
+		lv2:maximum 10.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "Exp FM gain" ;
+		lv2:symbol "exp_fm_gain"
+	] , [
+		a lv2:ControlPort ,
+			lv2:InputPort ;
+		lv2:index 9 ;
+		lv2:maximum 10.0 ;
+		lv2:minimum 0.0 ;
+		lv2:name "Lin FM gain" ;
+		lv2:symbol "lin_fm_gain"
+	] ;
+	rdfs:comment "This is similar to the CSound module 'phaser1'.  It's a series connection of 1 to 30 first order allpass filters with feedback.  For 'Output mix', the range -1 to 0 crossfades between the inverted output and the input, and the range 0 to 1 crossfades between the input and the non-inverted output.  Without feedback, the maximum effect is at +/- 0.5.  For both 'Feedback gain' and 'Output mix', the best polarity depends on whether the number of sections is even or odd." .

@@ -1,0 +1,90 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix fomp: <http://drobilla.net/plugins/fomp/> .
+@prefix lv2: <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<http://drobilla.net/drobilla#me>
+	a foaf:Person ;
+	foaf:name "David Robillard" ;
+	foaf:mbox <mailto:d@drobilla.net> ;
+	rdfs:seeAlso <http://drobilla.net/drobilla> .
+
+fomp:
+	a doap:Project ;
+	lv2:symbol "fomp" ;
+	doap:name "Fomp LV2" ;
+	doap:shortdesc "An LV2 port of Fons Adriaensen's modular plugins." ;
+	doap:homepage <http://drobilla.net/software/fomp-lv2> ;
+	doap:license <http://opensource.org/licenses/gpl-2.0> ;
+	doap:maintainer <http://drobilla.net/drobilla#me> ;
+	doap:developer [
+		a foaf:Person ;
+		foaf:name "Fons Adriaensen" ;
+		foaf:mbox <mailto:fons@linuxaudio.org>
+	] .
+
+fomp:mvclpf1
+	a lv2:Plugin ;
+	rdfs:seeAlso <mvclpf1.ttl> ;
+	lv2:binary <mvclpf24.so> .
+
+fomp:mvclpf2
+	a lv2:Plugin ;
+	rdfs:seeAlso <mvclpf2.ttl> ;
+	lv2:binary <mvclpf24.so> .
+
+fomp:mvclpf3
+	a lv2:Plugin ;
+	rdfs:seeAlso <mvclpf3.ttl> ;
+	lv2:binary <mvclpf24.so> .
+
+fomp:mvclpf4
+	a lv2:Plugin ;
+	rdfs:seeAlso <mvclpf4.ttl> ;
+	lv2:binary <mvclpf24.so> .
+
+fomp:mvchpf1
+	a lv2:Plugin ;
+	rdfs:seeAlso <mvchpf1.ttl> ;
+	lv2:binary <mvchpf24.so> .
+
+fomp:cs_chorus1
+	a lv2:Plugin ;
+	rdfs:seeAlso <cs_chorus1.ttl> ;
+	lv2:binary <cs_chorus.so> .
+
+fomp:cs_chorus2
+	a lv2:Plugin ;
+	rdfs:seeAlso <cs_chorus2.ttl> ;
+	lv2:binary <cs_chorus.so> .
+
+fomp:triple_chorus
+	a lv2:Plugin ;
+	rdfs:seeAlso <triple_chorus.ttl> ;
+	lv2:binary <cs_chorus.so> .
+
+fomp:pulse_vco
+	a lv2:Plugin ;
+	rdfs:seeAlso <pulse_vco.ttl> ;
+	lv2:binary <blvco.so> .
+
+fomp:saw_vco
+	a lv2:Plugin ;
+	rdfs:seeAlso <saw_vco.ttl> ;
+	lv2:binary <blvco.so> .
+
+fomp:rec_vco
+	a lv2:Plugin ;
+	rdfs:seeAlso <rec_vco.ttl> ;
+	lv2:binary <blvco.so> .
+
+fomp:parametric1
+	a lv2:Plugin ;
+	rdfs:seeAlso <parametric1.ttl> ;
+	lv2:binary <filters.so> .
+
+fomp:autowah
+	a lv2:Plugin ;
+	rdfs:seeAlso <autowah.ttl> ;
+	lv2:binary <autowah.so> .
