@@ -13,6 +13,4 @@ All the plugins are "Open Source" and its source code can be found in different 
 * https://github.com/DISTRHO/DPF-Plugins
 * ...
 
-You can learn more about the Zynthian Project reading [the blog] (http://blog.zynthian.org) or visiting [the website] (http://zynthian.org).
-
-[![Join the chat at https://gitter.im/zynthian/zynthian-plugins](https://badges.gitter.im/zynthian/zynthian-plugins.svg)](https://gitter.im/zynthian/zynthian-plugins?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+You can learn more about the Zynthian Project reading [the blog] (http://blog.zynthian.org) or visiting [the website] (http://zynthian.org). Also, you can join the conversation in [the forum] (https://discourse.zynthian.org).
